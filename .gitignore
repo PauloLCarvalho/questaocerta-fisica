@@ -1,0 +1,8 @@
+# Ignorar XAMPP e pastas locais
+/xampp/
+/htdocs/
+/questoes/*.html
+!.gitignore
+!README.md
+!dashboard.php
+!style.css

@@ -9,60 +9,75 @@ if (!isset($_SESSION['email'])) {
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    body { background: #0f0f1e; color: #fff; font-family: 'Poppins', sans-serif; margin: 0; }
-    .container { max-width: 1000px; margin: 40px auto; padding: 20px; }
-    h1 { color: #e94560; text-align: center; margin-bottom: 30px; }
-    .welcome { background: #1a1a2e; padding: 20px; border-radius: 16px; text-align: center; margin-bottom: 30px; }
-    .materias { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-    .card {
-      background: #1a1a2e; padding: 25px; border-radius: 16px; text-align: center;
-      cursor: pointer; transition: 0.3s; border: 1px solid rgba(233,69,96,0.2);
-    }
-    .card:hover { background: #16213e; transform: translateY(-5px); }
-    .card h3 { color: #e94560; margin: 0 0 10px; }
-    .admin-panel { background: #330011; border: 1px solid #e94560; margin: 30px 0; padding: 25px; border-radius: 16px; text-align: center; }
-    .btn-admin { background: #e94560; color: white; padding: 12px 25px; margin: 8px; border-radius: 10px; text-decoration: none; font-weight: bold; }
-    .btn-admin:hover { background: #ff6b6b; }
-    .logout { display: block; text-align: center; margin-top: 40px; color: #e94560; text-decoration: none; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard – Questão Certa</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Questão Certa</h1>
-    <div class="welcome">
-      <h2>Bem-vindo, <strong><?= htmlspecialchars($_SESSION['nome']) ?></strong>!</h2>
+
+  <!-- ==================== HEADER ==================== -->
+  <header>
+    <nav>
+      <a href="index.html" class="logo">Questão Certa</a>
+      <div class="nav-links">
+        <a href="logout.php" class="btn btn-azul">Sair</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ==================== DASHBOARD ==================== -->
+  <section class="dashboard">
+    <div class="wrapper">
+
+      <!-- Bem-vindo -->
+      <div class="welcome">
+        <h2>Bem-vindo, <strong><?= htmlspecialchars($_SESSION['nome']) ?></strong>!</h2>
+        <p>Escolha uma disciplina para começar a estudar.</p>
+      </div>
+
+      <!-- Painel Admin (apenas para nível admin) -->
+      <?php if ($_SESSION['nivel'] === 'admin'): ?>
+        <div class="admin-panel">
+          <h3>Painel do Administrador</h3>
+          <a href="#" class="btn-admin">Gerenciar Questões</a>
+          <a href="#" class="btn-admin">Ver Alunos</a>
+        </div>
+      <?php endif; ?>
+
+      <!-- Título Disciplinas -->
+      <h2 style="text-align:center;color:var(--azul);margin:2rem 0 1.5rem;">Disciplinas Disponíveis</h2>
+
+      <!-- Grid de matérias -->
+      <div class="materias">
+        <div class="card" onclick="location.href='questoes/revisao.html'">
+          <h3>Revisão</h3>
+          <p>Questões que você errou</p>
+        </div>
+        <div class="card" onclick="location.href='questoes/matematica.html'">
+          <h3>Matemática</h3>
+          <p>Questões de matemática</p>
+        </div>
+        <div class="card" onclick="location.href='questoes/natureza.html'">
+          <h3>Ciências da Natureza</h3>
+          <p>Questões de natureza</p>
+        </div>
+          <div class="card" onclick="location.href='questoes/fisica.html'">
+          <h3>Física</h3>
+          <p>Mecânica, energia, eletricidade</p>
+        </div>
+      </div>
+
+      <!-- Link de logout (segundo ponto de saída) -->
+      <a href="logout.php" class="logout">← Sair da conta</a>
+
     </div>
+  </section>
 
-    <?php if ($_SESSION['nivel'] === 'admin'): ?>
-      <div class="admin-panel">
-        <h3>Painel do Administrador</h3>
-        <a href="#" class="btn-admin">Gerenciar Questões</a>
-        <a href="#" class="btn-admin">Ver Alunos</a>
-      </div>
-    <?php endif; ?>
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <p>&copy; 2025 Questão Certa. Todos os direitos reservados. <a href="#">Política de Privacidade</a></p>
+  </footer>
 
-    <h2 style="text-align:center; color:#e94560; margin:30px 0 20px;">Escolha uma Disciplina</h2>
-    <div class="materias">
-      <div class="card" onclick="location.href='questoes/fisica.html'">
-        <h3>Física</h3>
-        <p>Mecânica, energia, eletricidade</p>
-      </div>
-      <div class="card" onclick="alert('Em breve!')">
-        <h3>Português</h3>
-        <p>Em desenvolvimento</p>
-      </div>
-      <div class="card" onclick="alert('Em breve!')">
-        <h3>Matemática</h3>
-        <p>Em desenvolvimento</p>
-      </div>
-    </div>
-
-    <a href="logout.php" class="logout">Sair da conta</a>
-  </div>
 </body>
 </html>

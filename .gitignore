@@ -1,8 +1,14 @@
-# Ignorar XAMPP e pastas locais
+# JSON sensível
+usuarios.json
+
+# Pastas locais/dev
 /xampp/
 /htdocs/
-/questoes/*.html
-!.gitignore
-!README.md
-!dashboard.php
-!style.css
+node_modules/
+
+# Arquivos temporários
+*.log
+.DS_Store
+
+# Questões em dev (adicionar quando prontas)
+!/questoes/*.html

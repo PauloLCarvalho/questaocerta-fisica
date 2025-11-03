@@ -1,8 +1,14 @@
 [
-  {
-    "nome": "Admin Master",
-    "email": "admin@questaocerta.com",
-    "senha": "$2y$10$K7A0Dyp9UIKv8gMAinPOsOeYPPO7qJZmnebm8iRDq3ifBdtPyq/iW",
-    "nivel": "admin"
-  }
+    {
+        "nome": "Admin Master",
+        "email": "admin@questaocerta.com",
+        "senha": "$2y$10$K7A0Dyp9UIKv8gMAinPOsOeYPPO7qJZmnebm8iRDq3ifBdtPyq\/iW",
+        "nivel": "admin"
+    },
+    {
+        "nome": "luciano maciel",
+        "email": "dmin@questaocerta.com",
+        "senha": "$2y$10$pYBe30P4qLNkKHmQsPKjke5mMKeiwNslO5rfVeF0mZToXb1ucsm5S",
+        "nivel": "aluno"
+    }
 ]

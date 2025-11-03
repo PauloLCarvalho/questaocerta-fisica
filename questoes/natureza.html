@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ciências da Natureza - Questão Certa</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    :root {
+      --verde: #23FA0F;
+      --laranja: #FAA40F;
+      --azul: #0E70FA;
+      --rosa: #FA0FA2;
+      --azul-escuro: #416BA5;
+      --verde-escuro: #407A45;
+      --cinza: #f0f0f0;
+      --fonte-tamanho: 0.8rem;
+    }
+
+    body {
+      background: var(--cinza);
+      color: #2c3e50;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.7;
+      font-size: var(--fonte-tamanho);
+      position: relative;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid var(--azul);
+    }
+
+    .header h1 {
+      color: var(--azul);
+      font-size: 1.6rem;
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .btn-voltar {
+      background: var(--azul-escuro);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-voltar:hover {
+      background: #355a8a;
+      transform: translateY(-2px);
+    }
+
+    /* MATRIZ DE PROGRESSO - FIXA, FORA DO CONTAINER */
+    .progresso-matrix {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 14px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      backdrop-filter: blur(5px);
+      max-width: 180px;
+    }
+
+    .bolinha {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #e0e0e0;
+      border: 2px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: bold;
+      color: #666;
+      transition: all 0.3s;
+    }
+
+    .bolinha.correta {
+      background: var(--verde);
+      border-color: var(--verde-escuro);
+      color: white;
+    }
+
+    .bolinha.errada {
+      background: var(--rosa);
+      border-color: #d32f2f;
+      color: white;
+    }
+
+    .questao {
+      margin-bottom: 40px;
+      padding: 28px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      background: #fafafa;
+    }
+
+    .questao-numero {
+      font-weight: bold;
+      color: var(--azul);
+      font-size: 0.96rem;
+      margin-bottom: 15px;
+    }
+
+    .enunciado {
+      margin-bottom: 20px;
+      font-size: 0.84rem;
+    }
+
+    .alternativas {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .alternativa {
+      margin: 14px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.2s;
+    }
+
+    .alternativa:hover {
+      background: #e8f4ff;
+      border-radius: 8px;
+      padding: 6px 0;
+    }
+
+    .eliminar-btn, .selecionar-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.72rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    .eliminar-btn {
+      background: #fff;
+      border: 2px solid #ccc;
+      color: #999;
+    }
+
+    .eliminar-btn.eliminado {
+      background: var(--rosa);
+      color: white;
+      border-color: var(--rosa);
+    }
+
+    .selecionar-btn {
+      background: #fff;
+      border: 2px solid #ccc;
+      color: #999;
+    }
+
+    .selecionar-btn.selecionado {
+      background: var(--laranja);
+      color: white;
+      border-color: var(--laranja);
+      box-shadow: 0 0 8px rgba(250, 164, 15, 0.4);
+    }
+
+    .texto-alternativa {
+      flex: 1;
+      transition: all 0.3s;
+      font-size: 0.84rem;
+    }
+
+    .eliminado .texto-alternativa {
+      text-decoration: line-through;
+      opacity: 0.5;
+      color: #999;
+    }
+
+    .btn-responder {
+      background: var(--laranja);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 18px;
+      font-size: 0.8rem;
+      transition: all 0.3s;
+      box-shadow: 0 3px 10px rgba(250, 164, 15, 0.3);
+    }
+
+    .btn-responder:hover:not(:disabled) {
+      background: #e69500;
+      transform: translateY(-2px);
+    }
+
+    .btn-responder:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    .btn-dica {
+      background: var(--azul);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.72rem;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: all 0.3s;
+    }
+
+    .btn-dica:hover {
+      background: #0d5cc7;
+    }
+
+    .dica {
+      margin-top: 12px;
+      padding: 12px;
+      background: #e3f2fd;
+      border-left: 4px solid var(--azul);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.76rem;
+      color: #1565c0;
+      display: none;
+    }
+
+    .dica.mostrando {
+      display: block;
+    }
+
+    .resposta {
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      display: none;
+      font-size: 0.88rem;
+    }
+
+    .correto {
+      background: #d4edda;
+      color: var(--verde-escuro);
+      border: 1px solid var(--verde-escuro);
+    }
+
+    .errado {
+      background: #f8d7da;
+      color: var(--rosa);
+      border: 1px solid var(--rosa);
+    }
+
+    /* RESPONSIVIDADE */
+    @media (max-width: 768px) {
+      .progresso-matrix {
+        grid-template-columns: 1fr;
+        top: 10px;
+        left: 10px;
+        gap: 6px;
+        padding: 10px;
+        max-width: 50px;
+      }
+      .bolinha {
+        width: 22px;
+        height: 22px;
+        font-size: 0.7rem;
+      }
+      .container {
+        padding: 20px;
+        margin-left: 60px;
+      }
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .btn-voltar {
+        font-size: 0.75rem;
+        padding: 8px 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        margin-left: 55px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- MATRIZ FIXA FORA DO CONTAINER -->
+  <div class="progresso-matrix" id="progresso"></div>
+
+  <div class="container">
+    <div class="header">
+      <h1>Ciências da Natureza</h1>
+      <a href="../dashboard.php" class="btn-voltar">Voltar ao Dashboard</a>
+    </div>
+
+    <!-- QUESTÃO 136 -->
+    <div class="questao" id="q0">
+      <div class="questao-numero">Questão 136 (2024)</div>
+      <div class="enunciado">
+        Em ecologia, a sucessão ecológica é o processo pelo qual as comunidades biológicas se alteram ao longo do tempo. Considere o seguinte cenário: uma área de floresta tropical é desmatada para plantio de soja. Após o abandono da área, inicia-se a sucessão secundária.<br><br>Qual é a característica principal da sucessão secundária nesse contexto?
+      </div>
+      <div class="alternativas" id="alt0"></div>
+      <button class="btn-dica" onclick="mostrarDica(0)">Dica do Professor</button>
+      <div class="dica" id="dica0">
+        <strong>Dica:</strong> Sucessão secundária ocorre em áreas com solo já formado, diferente da primária.
+      </div>
+      <button class="btn-responder" onclick="verificar(0)">Responder</button>
+      <div class="resposta" id="r0"></div>
+    </div>
+
+    <!-- QUESTÃO 176 -->
+    <div class="questao" id="q1">
+      <div class="questao-numero">Questão 176 (2023)</div>
+      <div class="enunciado">
+        Em neurofisiologia, o potencial de ação é propagado por canais iônicos de Na⁺ e K⁺. A repolarização ocorre devido a:
+      </div>
+      <div class="alternativas" id="alt1"></div>
+      <button class="btn-dica" onclick="mostrarDica(1)">Dica do Professor</button>
+      <div class="dica" id="dica1">
+        <strong>Dica:</strong> Repolarização = saída de íons positivos (K⁺).
+      </div>
+      <button class="btn-responder" onclick="verificar(1)">Responder</button>
+      <div class="resposta" id="r1"></div>
+    </div>
+
+    <!-- QUESTÃO 177 -->
+    <div class="questao" id="q2">
+      <div class="questao-numero">Questão 177 (2023)</div>
+      <div class="enunciado">
+        A lei de Coulomb F = k q₁q₂/r² descreve a força entre cargas. Para q₁ = q₂ = 1 μC e r = 1 m, F é aproximadamente:
+      </div>
+      <div class="alternativas" id="alt2"></div>
+      <button class="btn-dica" onclick="mostrarDica(2)">Dica do Professor</button>
+      <div class="dica" id="dica2">
+        <strong>Dica:</strong> k ≈ 9 × 10⁹. q₁ = q₂ = 10⁻⁶ C → F = 9 N.
+      </div>
+      <button class="btn-responder" onclick="verificar(2)">Responder</button>
+      <div class="resposta" id="r2"></div>
+    </div>
+
+    <!-- QUESTÃO 178 -->
+    <div class="questao" id="q3">
+      <div class="questao-numero">Questão 178 (2023)</div>
+      <div class="enunciado">
+        Em aquecimento global, o efeito estufa é intensificado por gases como CH₄ e CO₂. O principal sumidouro natural de CO₂ é:
+      </div>
+      <div class="alternativas" id="alt3"></div>
+      <button class="btn-dica" onclick="mostrarDica(3)">Dica do Professor</button>
+      <div class="dica" id="dica3">
+        <strong>Dica:</strong> Oceanos absorvem ~25% do CO₂ antropogênico.
+      </div>
+      <button class="btn-responder" onclick="verificar(3)">Responder</button>
+      <div class="resposta" id="r3"></div>
+    </div>
+
+    <!-- QUESTÃO 179 -->
+    <div class="questao" id="q4">
+      <div class="questao-numero">Questão 179 (2023)</div>
+      <div class="enunciado">
+        Em estequiometria, para 2Al + 3Cl₂ → 2AlCl₃, a massa de Cl₂ necessária para reagir com 27 g de Al (molar=27 g/mol) é:
+      </div>
+      <div class="alternativas" id="alt4"></div>
+      <button class="btn-dica" onclick="mostrarDica(4)">Dica do Professor</button>
+      <div class="dica" id="dica4">
+        <strong>Dica:</strong> 27 g Al = 1 mol. 1 mol Al → 1,5 mol Cl₂ (71 g/mol).
+      </div>
+      <button class="btn-responder" onclick="verificar(4)">Responder</button>
+      <div class="resposta" id="r4"></div>
+    </div>
+
+    <!-- QUESTÃO 180 -->
+    <div class="questao" id="q5">
+      <div class="questao-numero">Questão 180 (2023)</div>
+      <div class="enunciado">
+        Um gráfico de força em função da posição mostra trabalho W = ∫F dx. Para F constante = 10 N em Δx = 5 m, W é:
+      </div>
+      <div class="alternativas" id="alt5"></div>
+      <button class="btn-dica" onclick="mostrarDica(5)">Dica do Professor</button>
+      <div class="dica" id="dica5">
+        <strong>Dica:</strong> Trabalho = F × Δx (força constante).
+      </div>
+      <button class="btn-responder" onclick="verificar(5)">Responder</button>
+      <div class="resposta" id="r5"></div>
+    </div>
+  </div>
+
+  <script>
+    const questoes = [
+      {
+        correta: 2,
+        alternativas: [
+          "Ausência total de solo fértil, iniciando do zero.",
+          "Rápida colonização por pioneiras como musgos e liquens.",
+          "Presença de solo residual, permitindo regeneração mais rápida que a primária.",
+          "Domínio imediato de espécies climácicas maduras.",
+          "Ausência de intervenção humana no processo."
+        ],
+        dica: "Sucessão secundária ocorre em áreas com solo já formado, diferente da primária."
+      },
+      {
+        correta: 1,
+        alternativas: [
+          "Entrada de Na⁺.",
+          "Saída de K⁺.",
+          "Bloqueio de Ca²⁺.",
+          "Aumento de Cl⁻.",
+          "Hiperpolarização imediata."
+        ],
+        dica: "Repolarização = saída de íons positivos (K⁺)."
+      },
+      {
+        correta: 0,
+        alternativas: [
+          "9 N",
+          "0,9 N",
+          "90 N",
+          "0,09 N",
+          "900 N"
+        ],
+        dica: "k ≈ 9 × 10⁹. q₁ = q₂ = 10⁻⁶ C → F = 9 N."
+      },
+      {
+        correta: 0,
+        alternativas: [
+          "Oceanos.",
+          "Solo árido.",
+          "Atmosfera superior.",
+          "Rochas sedimentares.",
+          "Vulcões."
+        ],
+        dica: "Oceanos absorvem ~25% do CO₂ antropogênico."
+      },
+      {
+        correta: 0,
+        alternativas: [
+          "133,5 g",
+          "71 g",
+          "106,8 g",
+          "213,6 g",
+          "40,5 g"
+        ],
+        dica: "27 g Al = 1 mol. 1 mol Al → 1,5 mol Cl₂ (71 g/mol)."
+      },
+      {
+        correta: 3,
+        alternativas: [
+          "2 J",
+          "15 J",
+          "25 J",
+          "50 J",
+          "100 J"
+        ],
+        dica: "Trabalho = F × Δx (força constante)."
+      }
+    ];
+
+    const total = questoes.length;
+    let acertos = 0;
+    const selecionadas = Array(total).fill(-1);
+
+    function renderizarAlternativas() {
+      questoes.forEach((q, i) => {
+        const letras = ['A', 'B', 'C', 'D', 'E'];
+        const container = document.getElementById(`alt${i}`);
+        container.innerHTML = '';
+
+        const indices = [0, 1, 2, 3, 4].sort(() => Math.random() - 0.5);
+
+        indices.forEach((idx, pos) => {
+          const div = document.createElement('div');
+          div.className = 'alternativa';
+          div.dataset.q = i;
+          div.dataset.alt = pos;
+          div.innerHTML = `
+            <div class="eliminar-btn" onclick="toggleEliminate(this, ${i}, ${pos})">X</div>
+            <div class="selecionar-btn" onclick="selecionarResposta(this, ${i}, ${pos})">${letras[pos]}</div>
+            <div class="texto-alternativa">${q.alternativas[idx]}</div>
+          `;
+          container.appendChild(div);
+        });
+
+        q.map = indices;
+      });
+    }
+
+    function criarMatriz() {
+      const matrix = document.getElementById('progresso');
+      matrix.innerHTML = '';
+      for (let i = 0; i < total; i++) {
+        const bol = document.createElement('div');
+        bol.className = 'bolinha';
+        bol.textContent = i + 1;
+        bol.dataset.q = i;
+        matrix.appendChild(bol);
+      }
+    }
+
+    function atualizarBolinha(qIndex, status) {
+      const bol = document.querySelector(`.bolinha[data-q="${qIndex}"]`);
+      bol.className = `bolinha ${status}`;
+    }
+
+    function toggleEliminate(btn, qIndex, altIndex) {
+      event.stopPropagation();
+      const alt = btn.parentElement;
+      if (selecionadas[qIndex] === altIndex) {
+        alert("Você não pode eliminar uma alternativa selecionada!");
+        return;
+      }
+      const isEliminado = alt.classList.toggle('eliminado');
+      btn.classList.toggle('eliminado', isEliminado);
+    }
+
+    function selecionarResposta(btn, qIndex, altIndex) {
+      event.stopPropagation();
+      const alt = btn.parentElement;
+      const eliminarBtn = alt.querySelector('.eliminar-btn');
+
+      if (selecionadas[qIndex] !== -1 && selecionadas[qIndex] !== altIndex) {
+        const prev = document.querySelector(`.alternativa[data-q="${qIndex}"][data-alt="${selecionadas[qIndex]}"]`);
+        prev.querySelector('.selecionar-btn').classList.remove('selecionado');
+      }
+
+      if (selecionadas[qIndex] === altIndex) {
+        btn.classList.remove('selecionado');
+        selecionadas[qIndex] = -1;
+        return;
+      }
+
+      if (alt.classList.contains('eliminado')) {
+        alt.classList.remove('eliminado');
+        eliminarBtn.classList.remove('eliminado');
+      }
+
+      btn.classList.add('selecionado');
+      selecionadas[qIndex] = altIndex;
+    }
+
+    function mostrarDica(qIndex) {
+      const dica = document.getElementById(`dica${qIndex}`);
+      dica.classList.toggle('mostrando');
+    }
+
+    function verificar(qIndex) {
+      if (selecionadas[qIndex] === -1) {
+        alert("Selecione uma alternativa!");
+        return;
+      }
+
+      const q = questoes[qIndex];
+      const respostaReal = q.map[selecionadas[qIndex]];
+      const correta = q.correta;
+      const resp = document.getElementById(`r${qIndex}`);
+      const btn = document.querySelectorAll('.btn-responder')[qIndex];
+
+      btn.disabled = true;
+      resp.style.display = 'block';
+
+      if (respostaReal === correta) {
+        resp.innerHTML = "Correto!";
+        resp.className = 'resposta correto';
+        acertos++;
+        atualizarBolinha(qIndex, 'correta');
+      } else {
+        const letraCorreta = String.fromCharCode(65 + q.map.indexOf(correta));
+        resp.innerHTML = `Errado! Resposta correta: ${letraCorreta}`;
+        resp.className = 'resposta errado';
+        atualizarBolinha(qIndex, 'errada');
+      }
+    }
+
+    window.onload = () => {
+      renderizarAlternativas();
+      criarMatriz();
+    };
+  </script>
+</body>
+</html>

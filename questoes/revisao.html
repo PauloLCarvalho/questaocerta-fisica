@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revisão - Questão Certa</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    :root {
+      --verde: #23FA0F;
+      --laranja: #FAA40F;
+      --azul: #0E70FA;
+      --rosa: #FA0FA2;
+      --azul-escuro: #416BA5;
+      --verde-escuro: #407A45;
+      --cinza: #f0f0f0;
+      --fonte-tamanho: 0.8rem;
+    }
+
+    body {
+      background: var(--cinza);
+      color: #2c3e50;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.7;
+      font-size: var(--fonte-tamanho);
+      position: relative;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid var(--azul);
+    }
+
+    .header h1 {
+      color: var(--azul);
+      font-size: 1.6rem;
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .btn-voltar {
+      background: var(--azul-escuro);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-voltar:hover {
+      background: #355a8a;
+      transform: translateY(-2px);
+    }
+
+    /* MATRIZ DE PROGRESSO - FIXA, FORA DO CONTAINER */
+    .progresso-matrix {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 14px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      backdrop-filter: blur(5px);
+      max-width: 180px;
+    }
+
+    .bolinha {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #e0e0e0;
+      border: 2px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: bold;
+      color: #666;
+      transition: all 0.3s;
+    }
+
+    .bolinha.correta {
+      background: var(--verde);
+      border-color: var(--verde-escuro);
+      color: white;
+    }
+
+    .bolinha.errada {
+      background: var(--rosa);
+      border-color: #d32f2f;
+      color: white;
+    }
+
+    .questao {
+      margin-bottom: 40px;
+      padding: 28px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      background: #fafafa;
+    }
+
+    .questao-numero {
+      font-weight: bold;
+      color: var(--azul);
+      font-size: 0.96rem;
+      margin-bottom: 15px;
+    }
+
+    .enunciado {
+      margin-bottom: 20px;
+      font-size: 0.84rem;
+    }
+
+    .alternativas {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .alternativa {
+      margin: 14px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.2s;
+    }
+
+    .alternativa:hover {
+      background: #e8f4ff;
+      border-radius: 8px;
+      padding: 6px 0;
+    }
+
+    .eliminar-btn, .selecionar-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.72rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    .eliminar-btn {
+      background: #fff;
+      border: 2px solid #ccc;
+      color: #999;
+    }
+
+    .eliminar-btn.eliminado {
+      background: var(--rosa);
+      color: white;
+      border-color: var(--rosa);
+    }
+
+    .selecionar-btn {
+      background: #fff;
+      border: 2px solid #ccc;
+      color: #999;
+    }
+
+    .selecionar-btn.selecionado {
+      background: var(--laranja);
+      color: white;
+      border-color: var(--laranja);
+      box-shadow: 0 0 8px rgba(250, 164, 15, 0.4);
+    }
+
+    .texto-alternativa {
+      flex: 1;
+      transition: all 0.3s;
+      font-size: 0.84rem;
+    }
+
+    .eliminado .texto-alternativa {
+      text-decoration: line-through;
+      opacity: 0.5;
+      color: #999;
+    }
+
+    .btn-responder {
+      background: var(--laranja);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 18px;
+      font-size: 0.8rem;
+      transition: all 0.3s;
+      box-shadow: 0 3px 10px rgba(250, 164, 15, 0.3);
+    }
+
+    .btn-responder:hover:not(:disabled) {
+      background: #e69500;
+      transform: translateY(-2px);
+    }
+
+    .btn-responder:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    .btn-dica {
+      background: var(--azul);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.72rem;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: all 0.3s;
+    }
+
+    .btn-dica:hover {
+      background: #0d5cc7;
+    }
+
+    .dica {
+      margin-top: 12px;
+      padding: 12px;
+      background: #e3f2fd;
+      border-left: 4px solid var(--azul);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.76rem;
+      color: #1565c0;
+      display: none;
+    }
+
+    .dica.mostrando {
+      display: block;
+    }
+
+    .resposta {
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      display: none;
+      font-size: 0.88rem;
+    }
+
+    .correto {
+      background: #d4edda;
+      color: var(--verde-escuro);
+      border: 1px solid var(--verde-escuro);
+    }
+
+    .errado {
+      background: #f8d7da;
+      color: var(--rosa);
+      border: 1px solid var(--rosa);
+    }
+
+    .vazio {
+      text-align: center;
+      color: #666;
+      font-style: italic;
+      padding: 40px;
+      font-size: 1rem;
+    }
+
+    /* RESPONSIVIDADE */
+    @media (max-width: 768px) {
+      .progresso-matrix {
+        grid-template-columns: 1fr;
+        top: 10px;
+        left: 10px;
+        gap: 6px;
+        padding: 10px;
+        max-width: 50px;
+      }
+      .bolinha {
+        width: 22px;
+        height: 22px;
+        font-size: 0.7rem;
+      }
+      .container {
+        padding: 20px;
+        margin-left: 60px;
+      }
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .btn-voltar {
+        font-size: 0.75rem;
+        padding: 8px 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        margin-left: 55px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- MATRIZ FIXA FORA DO CONTAINER -->
+  <div class="progresso-matrix" id="progresso"></div>
+
+  <div class="container">
+    <div class="header">
+      <h1>Revisão</h1>
+      <a href="../dashboard.html" class="btn-voltar">Voltar ao Dashboard</a>
+    </div>
+
+    <div id="questoes-container">
+      <p class="vazio">Nenhuma questão errada para revisar ainda. Continue estudando!</p>
+    </div>
+  </div>
+
+  <script>
+    // === SISTEMA DE REVISÃO ESCALÁVEL (localStorage) ===
+    // Estrutura: 
+    // localStorage.erros = JSON.stringify([{materia: "matematica", qid: "91", ...}, ...])
+    // localStorage.acertos = JSON.stringify([{materia: "matematica", qid: "91", ...}, ...])
+
+    const errosKey = 'erros';
+    const acertosKey = 'acertos';
+
+    // Carregar questões erradas
+    let questoesErradas = JSON.parse(localStorage.getItem(errosKey)) || [];
+
+    // Banco de questões completo (copiado de matematica.html e natureza.html)
+    const bancoQuestoes = {
+      matematica: [
+        { id: "91", numero: 91, ano: 2024, materia: "matematica", enunciado: "Em uma eleição, 40% dos eleitores votaram no candidato A, 35% no candidato B e 25% no candidato C. Se o total de eleitores foi de 200.000, quantos votos obteve o candidato C?", alternativas: ["40.000", "50.000", "35.000", "45.000", "50.000"], gabarito: 4, dica: "25% de 200.000 = 0,25 × 200.000." },
+        { id: "92", numero: 92, ano: 2024, materia: "matematica", enunciado: "A função quadrática f(x) = x² – 4x + 3 tem vértice no ponto:", alternativas: ["(2, –1)", "(0, 3)", "(1, 0)", "(3, 0)", "(2, 1)"], gabarito: 0, dica: "Vértice: x = -b/(2a)." },
+        { id: "93", numero: 93, ano: 2024, materia: "matematica", enunciado: "Um terreno retangular tem perímetro de 120 m e área de 800 m². Qual é a medida do lado maior?", alternativas: ["20 m", "30 m", "40 m", "50 m", "60 m"], gabarito: 2, dica: "l + c = 60; l × c = 800." },
+        { id: "94", numero: 94, ano: 2024, materia: "matematica", enunciado: "Em um triângulo retângulo, os catetos medem 6 cm e 8 cm. A altura relativa à hipotenusa é:", alternativas: ["4,8 cm", "5,0 cm", "5,4 cm", "6,0 cm", "7,2 cm"], gabarito: 0, dica: "h = (cat1 × cat2) / hip." },
+        { id: "95", numero: 95, ano: 2024, materia: "matematica", enunciado: "Um capital de R$ 5.000,00 é aplicado a juros compostos de 2% ao mês. Após 3 meses, o montante será:", alternativas: ["R$ 5.306,00", "R$ 5.300,00", "R$ 5.318,00", "R$ 5.309,00", "R$ 5.612,00"], gabarito: 3, dica: "M = 5000 × (1.02)^3." },
+        { id: "96", numero: 96, ano: 2024, materia: "matematica", enunciado: "Em um diagrama de Venn, o conjunto A tem 50 elementos, B tem 60, e a interseção tem 20. Quantos elementos estão em A ou B?", alternativas: ["90", "100", "110", "130", "150"], gabarito: 1, dica: "|A ∪ B| = |A| + |B| – |A ∩ B|." }
+      ],
+      natureza: [
+        { id: "136", numero: 136, ano: 2024, materia: "natureza", enunciado: "Em ecologia, a sucessão ecológica é o processo pelo qual as comunidades biológicas se alteram ao longo do tempo. Considere o seguinte cenário: uma área de floresta tropical é desmatada para plantio de soja. Após o abandono da área, inicia-se a sucessão secundária.<br><br>Qual é a característica principal da sucessão secundária nesse contexto?", alternativas: ["Ausência total de solo fértil, iniciando do zero.", "Rápida colonização por pioneiras como musgos e liquens.", "Presença de solo residual, permitindo regeneração mais rápida que a primária.", "Domínio imediato de espécies climácicas maduras.", "Ausência de intervenção humana no processo."], gabarito: 2, dica: "Sucessão secundária: solo já existe." },
+        { id: "176", numero: 176, ano: 2023, materia: "natureza", enunciado: "Em neurofisiologia, o potencial de ação é propagado por canais iônicos de Na⁺ e K⁺. A repolarização ocorre devido a:", alternativas: ["Entrada de Na⁺.", "Saída de K⁺.", "Bloqueio de Ca²⁺.", "Aumento de Cl⁻.", "Hiperpolarização imediata."], gabarito: 1, dica: "Repolarização = saída de K⁺." },
+        { id: "177", numero: 177, ano: 2023, materia: "natureza", enunciado: "A lei de Coulomb F = k q₁q₂/r² descreve a força entre cargas. Para q₁ = q₂ = 1 μC e r = 1 m, F é aproximadamente:", alternativas: ["9 N", "0,9 N", "90 N", "0,09 N", "900 N"], gabarito: 0, dica: "F = 9×10⁹ × (10⁻⁶)² / 1 = 9 N." },
+        { id: "178", numero: 178, ano: 2023, materia: "natureza", enunciado: "Em aquecimento global, o efeito estufa é intensificado por gases como CH₄ e CO₂. O principal sumidouro natural de CO₂ é:", alternativas: ["Oceanos.", "Solo árido.", "Atmosfera superior.", "Rochas sedimentares.", "Vulcões."], gabarito: 0, dica: "Oceanos absorvem ~25% do CO₂." },
+        { id: "179", numero: 179, ano: 2023, materia: "natureza", enunciado: "Em estequiometria, para 2Al + 3Cl₂ → 2AlCl₃, a massa de Cl₂ necessária para reagir com 27 g de Al (molar=27 g/mol) é:", alternativas: ["133,5 g", "71 g", "106,8 g", "213,6 g", "40,5 g"], gabarito: 0, dica: "1 mol Al → 1,5 mol Cl₂ → 106,5 g ≈ 106,8 g." },
+        { id: "180", numero: 180, ano: 2023, materia: "natureza", enunciado: "Um gráfico de força em função da posição mostra trabalho W = ∫F dx. Para F constante = 10 N em Δx = 5 m, W é:", alternativas: ["2 J", "15 J", "25 J", "50 J", "100 J"], gabarito: 3, dica: "W = F × Δx = 50 J." }
+      ]
+    };
+
+    const total = questoesErradas.length;
+    let acertos = 0;
+    const selecionadas = Array(total).fill(-1);
+
+    function carregarQuestoes() {
+      const container = document.getElementById('questoes-container');
+      container.innerHTML = '';
+
+      if (total === 0) {
+        container.innerHTML = '<p class="vazio">Nenhuma questão errada para revisar ainda. Continue estudando!</p>';
+        return;
+      }
+
+      questoesErradas.forEach((err, i) => {
+        const materia = err.materia;
+        const q = bancoQuestoes[materia].find(qq => qq.id === err.qid);
+        if (!q) return;
+
+        const div = document.createElement('div');
+        div.className = 'questao';
+        div.id = `q${i}`;
+        div.innerHTML = `
+          <div class="questao-numero">Questão ${q.numero} (${q.ano}) - ${materia.charAt(0).toUpperCase() + materia.slice(1)}</div>
+          <div class="enunciado">${q.enunciado}</div>
+          <div class="alternativas" id="alt${i}"></div>
+          <button class="btn-dica" onclick="mostrarDica(${i})">Dica do Professor</button>
+          <div class="dica" id="dica${i}"><strong>Dica:</strong> ${q.dica}</div>
+          <button class="btn-responder" onclick="verificar(${i}, '${materia}', '${q.id}')">Responder</button>
+          <div class="resposta" id="r${i}"></div>
+        `;
+        container.appendChild(div);
+      });
+
+      renderizarAlternativas();
+      criarMatriz();
+    }
+
+    function renderizarAlternativas() {
+      questoesErradas.forEach((err, i) => {
+        const materia = err.materia;
+        const q = bancoQuestoes[materia].find(qq => qq.id === err.qid);
+        if (!q) return;
+
+        const letras = ['A', 'B', 'C', 'D', 'E'];
+        const container = document.getElementById(`alt${i}`);
+        container.innerHTML = '';
+
+        const indices = [0, 1, 2, 3, 4].sort(() => Math.random() - 0.5);
+
+        indices.forEach((idx, pos) => {
+          const div = document.createElement('div');
+          div.className = 'alternativa';
+          div.dataset.q = i;
+          div.dataset.alt = pos;
+          div.innerHTML = `
+            <div class="eliminar-btn" onclick="toggleEliminate(this, ${i}, ${pos})">X</div>
+            <div class="selecionar-btn" onclick="selecionarResposta(this, ${i}, ${pos})">${letras[pos]}</div>
+            <div class="texto-alternativa">${q.alternativas[idx]}</div>
+          `;
+          container.appendChild(div);
+        });
+
+        q.map = indices;
+      });
+    }
+
+    function criarMatriz() {
+      const matrix = document.getElementById('progresso');
+      matrix.innerHTML = '';
+      for (let i = 0; i < total; i++) {
+        const bol = document.createElement('div');
+        bol.className = 'bolinha';
+        bol.textContent = i + 1;
+        bol.dataset.q = i;
+        matrix.appendChild(bol);
+      }
+    }
+
+    function atualizarBolinha(qIndex, status) {
+      const bol = document.querySelector(`.bolinha[data-q="${qIndex}"]`);
+      if (bol) bol.className = `bolinha ${status}`;
+    }
+
+    function toggleEliminate(btn, qIndex, altIndex) {
+      event.stopPropagation();
+      const alt = btn.parentElement;
+      if (selecionadas[qIndex] === altIndex) {
+        alert("Você não pode eliminar uma alternativa selecionada!");
+        return;
+      }
+      const isEliminado = alt.classList.toggle('eliminado');
+      btn.classList.toggle('eliminado', isEliminado);
+    }
+
+    function selecionarResposta(btn, qIndex, altIndex) {
+      event.stopPropagation();
+      const alt = btn.parentElement;
+      const eliminarBtn = alt.querySelector('.eliminar-btn');
+
+      if (selecionadas[qIndex] !== -1 && selecionadas[qIndex] !== altIndex) {
+        const prev = document.querySelector(`.alternativa[data-q="${qIndex}"][data-alt="${selecionadas[qIndex]}"]`);
+        if (prev) prev.querySelector('.selecionar-btn').classList.remove('selecionado');
+      }
+
+      if (selecionadas[qIndex] === altIndex) {
+        btn.classList.remove('selecionado');
+        selecionadas[qIndex] = -1;
+        return;
+      }
+
+      if (alt.classList.contains('eliminado')) {
+        alt.classList.remove('eliminado');
+        eliminarBtn.classList.remove('eliminado');
+      }
+
+      btn.classList.add('selecionado');
+      selecionadas[qIndex] = altIndex;
+    }
+
+    function mostrarDica(qIndex) {
+      const dica = document.getElementById(`dica${qIndex}`);
+      dica.classList.toggle('mostrando');
+    }
+
+    function verificar(qIndex, materia, qid) {
+      if (selecionadas[qIndex] === -1) {
+        alert("Selecione uma alternativa!");
+        return;
+      }
+
+      const q = bancoQuestoes[materia].find(qq => qq.id === qid);
+      const respostaReal = q.map[selecionadas[qIndex]];
+      const correta = q.gabarito;
+      const resp = document.getElementById(`r${qIndex}`);
+      const btn = document.querySelectorAll('.btn-responder')[qIndex];
+
+      btn.disabled = true;
+      resp.style.display = 'block';
+
+      if (respostaReal === correta) {
+        resp.innerHTML = "Correto! Questão removida da revisão.";
+        resp.className = 'resposta correto';
+        acertos++;
+
+        // Remover do erros
+        questoesErradas = questoesErradas.filter((_, idx) => idx !== qIndex);
+        localStorage.setItem(errosKey, JSON.stringify(questoesErradas));
+
+        // Adicionar aos acertos
+        let acertosList = JSON.parse(localStorage.getItem(acertosKey)) || [];
+        acertosList.push({ materia, qid });
+        localStorage.setItem(acertosKey, JSON.stringify(acertosList));
+
+        atualizarBolinha(qIndex, 'correta');
+
+        // Recarregar página após 1.5s
+        setTimeout(() => location.reload(), 1500);
+      } else {
+        const letraCorreta = String.fromCharCode(65 + q.map.indexOf(correta));
+        resp.innerHTML = `Errado! Resposta correta: ${letraCorreta}. Continua na revisão.`;
+        resp.className = 'resposta errado';
+        atualizarBolinha(qIndex, 'errada');
+      }
+    }
+
+    window.onload = () => {
+      carregarQuestoes();
+    };
+  </script>
+</body>
+</html>

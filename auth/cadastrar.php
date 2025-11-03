@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $senha = $_POST['senha'] ?? '';
 
     if ($nome && $email && $senha) {
-        $file = __DIR__ . '/usuarios.json';
+        $file = __DIR__ . '/../usuarios.json';
         $usuarios = file_exists($file) ? json_decode(file_get_contents($file), true) : [];
 
         foreach ($usuarios as $u) {

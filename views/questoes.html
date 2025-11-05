@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Questões - Questão Certa</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../js/questoes.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/storage.js"></script>
+
+  <style>
+    :root {
+      --verde: #23FA0F;
+      --laranja: #FAA40F;
+      --azul: #0E70FA;
+      --rosa: #FA0FA2;
+      --azul-escuro: #416BA5;
+      --verde-escuro: #407A45;
+      --cinza: #f0f0f0;
+      --fonte-tamanho: 0.8rem;
+    }
+
+    body {
+      background: var(--cinza);
+      color: #2c3e50;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.7;
+      font-size: var(--fonte-tamanho);
+      position: relative;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid var(--azul);
+    }
+
+    .header h1 {
+      color: var(--azul);
+      font-size: 1.6rem;
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .btn-voltar {
+      background: var(--azul-escuro);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-voltar:hover {
+      background: #355a8a;
+      transform: translateY(-2px);
+    }
+
+    /* MATRIZ DE PROGRESSO - FIXA, FORA DO CONTAINER */
+    .progresso-matrix {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 14px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      backdrop-filter: blur(5px);
+      max-width: 180px;
+    }
+
+    .bolinha {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #e0e0e0;
+      border: 2px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: bold;
+      color: #666;
+      transition: all 0.3s;
+    }
+
+    .bolinha.correta {
+      background: var(--verde);
+      border-color: var(--verde-escuro);
+      color: white;
+    }
+
+    .bolinha.errada {
+      background: var(--rosa);
+      border-color: #d32f2f;
+      color: white;
+    }
+
+    .questao {
+      margin-bottom: 40px;
+      padding: 28px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      background: #fafafa;
+    }
+
+    .questao-numero {
+      font-weight: bold;
+      color: var(--azul);
+      font-size: 0.96rem;
+      margin-bottom: 15px;
+    }
+
+    .enunciado {
+      margin-bottom: 20px;
+      font-size: 0.84rem;
+    }
+
+    .alternativas {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .alternativa {
+      margin: 14px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.2s;
+    }
+
+    .alternativa:hover {
+      background: #e8f4ff;
+      border-radius: 8px;
+      padding: 6px 0;
+    }
+
+    .eliminar-btn, .selecionar-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.72rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    .eliminar-btn {
+      background: #fff;
+      border: 2px solid #ccc;
+      color: #999;
+    }
+
+    .eliminar-btn.eliminado {
+      background: var(--rosa);
+      color: white;
+      border-color: var(--rosa);
+    }
+
+    .selecionar-btn {
+      background: #fff;
+      border: 2px solid #ccc;
+      color: #999;
+    }
+
+    .selecionar-btn.selecionado {
+      background: var(--laranja);
+      color: white;
+      border-color: var(--laranja);
+      box-shadow: 0 0 8px rgba(250, 164, 15, 0.4);
+    }
+
+    .texto-alternativa {
+      flex: 1;
+      transition: all 0.3s;
+      font-size: 0.84rem;
+    }
+
+    .eliminado .texto-alternativa {
+      text-decoration: line-through;
+      opacity: 0.5;
+      color: #999;
+    }
+
+    .btn-responder {
+      background: var(--laranja);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 18px;
+      font-size: 0.8rem;
+      transition: all 0.3s;
+      box-shadow: 0 3px 10px rgba(250, 164, 15, 0.3);
+    }
+
+    .btn-responder:hover:not(:disabled) {
+      background: #e69500;
+      transform: translateY(-2px);
+    }
+
+    .btn-responder:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    .btn-dica {
+      background: var(--azul);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.72rem;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: all 0.3s;
+    }
+
+    .btn-dica:hover {
+      background: #0d5cc7;
+    }
+
+    .dica {
+      margin-top: 12px;
+      padding: 12px;
+      background: #e3f2fd;
+      border-left: 4px solid var(--azul);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.76rem;
+      color: #1565c0;
+      display: none;
+    }
+
+    .dica.mostrando {
+      display: block;
+    }
+
+    .resposta {
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      display: none;
+      font-size: 0.88rem;
+    }
+
+    .correto {
+      background: #d4edda;
+      color: var(--verde-escuro);
+      border: 1px solid var(--verde-escuro);
+    }
+
+    .errado {
+      background: #f8d7da;
+      color: var(--rosa);
+      border: 1px solid var(--rosa);
+    }
+
+    .filtro {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .filtro select {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 0.8rem;
+    }
+
+    /* RESPONSIVIDADE */
+    @media (max-width: 768px) {
+      .progresso-matrix {
+        grid-template-columns: 1fr;
+        top: 10px;
+        left: 10px;
+        gap: 6px;
+        padding: 10px;
+        max-width: 50px;
+      }
+      .bolinha {
+        width: 22px;
+        height: 22px;
+        font-size: 0.7rem;
+      }
+      .container {
+        padding: 20px;
+        margin-left: 60px;
+      }
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .btn-voltar {
+        font-size: 0.75rem;
+        padding: 8px 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        margin-left: 55px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- MATRIZ FIXA FORA DO CONTAINER -->
+  <div class="progresso-matrix" id="progresso"></div>
+
+  <div class="container">
+    <div class="header">
+      <h1>Questões</h1>
+      <a href="dashboard.html" class="btn-voltar">Voltar ao Dashboard</a>
+    </div>
+
+    <div class="filtro">
+      <select id="filtro-materia" onchange="filtrar()">
+        <option value="">Todas Matérias</option>
+        <option value="fisica">Física</option>
+        <option value="matematica">Matemática</option>
+        <option value="natureza">Natureza</option>
+      </select>
+
+      <select id="filtro-ano" onchange="filtrar()">
+        <option value="">Todos Anos</option>
+        <option value="2024">2024</option>
+        <option value="2023">2023</option>
+      </select>
+    </div>
+
+    <div id="questoes-container">
+      <p>Carregando questões...</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Questão Certa.</p>
+  </footer>
+
+  <script>
+    let questoesFiltradas = [];
+
+    // Função principal de carregamento
+    async function carregarE() {
+      const container = document.getElementById("questoes-container");
+      container.innerHTML = "<p>Carregando questões...</p>";
+
+      try {
+        // Aguarda o carregamento do banco de dados
+        await QuestoesAPI.carregarBanco();
+
+        const materia = new URLSearchParams(window.location.search).get("materia") || "";
+        document.getElementById("filtro-materia").value = materia;
+
+        // Filtra e renderiza as questões
+        filtrar();
+      } catch (error) {
+        container.innerHTML = "<p>Erro ao carregar questões.</p>";
+        console.error(error);
+      }
+    }
+
+    // Função de filtro por matéria e ano
+    function filtrar() {
+      const materia = document.getElementById("filtro-materia").value;
+      const ano = document.getElementById("filtro-ano").value;
+
+      questoesFiltradas = QuestoesAPI.todasQuestoes.filter(q => {
+        return (!materia || q.materia === materia) && (!ano || q.ano.toString() === ano);
+      });
+
+      renderizarQuestoes(questoesFiltradas, materia);
+    }
+
+    // Executa o carregamento assim que a página estiver pronta
+    window.onload = carregarE;
+  </script>
+</body>
+</html>

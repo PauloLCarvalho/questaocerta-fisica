@@ -1,8 +1,8 @@
 <?php
 session_start();
 if (!isset($_SESSION['email'])) {
-    header("Location: login.php");
-    exit;
+  header("Location: index.html");
+  exit;
 }
 ?>
 
@@ -11,73 +11,57 @@ if (!isset($_SESSION['email'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard – Questão Certa</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Dashboard - Questão Certa</title>
+  <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
-
-  <!-- ==================== HEADER ==================== -->
   <header>
     <nav>
       <a href="index.html" class="logo">Questão Certa</a>
       <div class="nav-links">
-        <a href="logout.php" class="btn btn-azul">Sair</a>
+        <a href="../api/auth.php?action=logout" class="btn btn-azul">Sair</a>
       </div>
     </nav>
   </header>
 
-  <!-- ==================== DASHBOARD ==================== -->
   <section class="dashboard">
     <div class="wrapper">
-
-      <!-- Bem-vindo -->
       <div class="welcome">
         <h2>Bem-vindo, <strong><?= htmlspecialchars($_SESSION['nome']) ?></strong>!</h2>
-        <p>Escolha uma disciplina para começar a estudar.</p>
+        <p>Escolha uma disciplina.</p>
       </div>
 
-      <!-- Painel Admin (apenas para nível admin) -->
       <?php if ($_SESSION['nivel'] === 'admin'): ?>
         <div class="admin-panel">
           <h3>Painel do Administrador</h3>
-          <a href="#" class="btn-admin">Gerenciar Questões</a>
-          <a href="#" class="btn-admin">Ver Alunos</a>
+          <a href="admin.html" class="btn-admin">Adicionar Questões</a>
         </div>
       <?php endif; ?>
 
-      <!-- Título Disciplinas -->
-      <h2 style="text-align:center;color:var(--azul);margin:2rem 0 1.5rem;">Disciplinas Disponíveis</h2>
-
-      <!-- Grid de matérias -->
+      <h2 style="text-align:center; color:var(--azul); margin:2rem 0 1.5rem;">Disciplinas</h2>
       <div class="materias">
-        <div class="card" onclick="location.href='questoes/revisao.html'">
-          <h3>Revisão</h3>
-          <p>Questões que você errou</p>
-        </div>
-        <div class="card" onclick="location.href='questoes/matematica.html'">
-          <h3>Matemática</h3>
-          <p>Questões de matemática</p>
-        </div>
-        <div class="card" onclick="location.href='questoes/natureza.html'">
-          <h3>Ciências da Natureza</h3>
-          <p>Questões de natureza</p>
-        </div>
-          <div class="card" onclick="location.href='questoes/fisica.html'">
+        <div class="card" onclick="location.href='questoes.html?materia=fisica'">
           <h3>Física</h3>
           <p>Mecânica, energia, eletricidade</p>
         </div>
+        <div class="card" onclick="location.href='questoes.html?materia=matematica'">
+          <h3>Matemática</h3>
+          <p>Questões de matemática</p>
+        </div>
+        <div class="card" onclick="location.href='questoes.html?materia=natureza'">
+          <h3>Ciências da Natureza</h3>
+          <p>Biologia, Química</p>
+        </div>
+        <div class="card" onclick="location.href='revisao.html'">
+          <h3>Revisão</h3>
+          <p>Questões erradas</p>
+        </div>
       </div>
-
-      <!-- Link de logout (segundo ponto de saída) -->
-      <a href="logout.php" class="logout">← Sair da conta</a>
-
     </div>
   </section>
 
-  <!-- ==================== FOOTER ==================== -->
   <footer>
-    <p>&copy; 2025 Questão Certa. Todos os direitos reservados. <a href="#">Política de Privacidade</a></p>
+    <p>&copy; 2025 Questão Certa.</p>
   </footer>
-
 </body>
 </html>

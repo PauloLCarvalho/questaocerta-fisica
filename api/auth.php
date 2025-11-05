@@ -30,14 +30,13 @@ switch ($action) {
         ];
         file_put_contents($file, json_encode($users, JSON_PRETTY_PRINT));
         $sucesso = "Cadastro realizado! Faça login.";
+        header('Location: ../views/index.html');
+        exit;
       }
     } else {
       $erro = "Preencha todos os campos.";
     }
-
-    // Retorne JSON para JS/AJAX (escalável)
-    echo json_encode(['success' => !!$sucesso, 'message' => $sucesso ?: $erro]);
-    exit;
+    echo $erro ? $erro : $sucesso;
     break;
 
   case 'login':
@@ -53,7 +52,7 @@ switch ($action) {
             $_SESSION['email'] = $u['email'];
             $_SESSION['nome'] = $u['nome'];
             $_SESSION['nivel'] = $u['nivel'];
-            echo json_encode(['success' => true, 'redirect' => '../views/dashboard.html']);
+            header("Location: ../views/dashboard.html");
             exit;
           }
         }
@@ -62,19 +61,18 @@ switch ($action) {
     } else {
       $erro = "Preencha todos os campos.";
     }
-
-    echo json_encode(['success' => false, 'message' => $erro]);
-    exit;
+    echo $erro;
     break;
 
   case 'logout':
     session_unset();
     session_destroy();
-    echo json_encode(['success' => true, 'redirect' => '../views/index.html']);
+    header("Location: ../views/index.html");
     exit;
     break;
 
   default:
-    echo json_encode(['success' => false, 'message' => 'Ação inválida']);
+    header('Location: ../views/index.html');
     exit;
 }
+?>

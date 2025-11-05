@@ -336,6 +336,9 @@
         margin-left: 55px;
       }
     }
+    
+    /* back-to-top button style */
+    .back-to-top { position: fixed; right: 18px; bottom: 18px; width:44px; height:44px; border-radius:50%; background:var(--azul-escuro); color:#fff; border:none; display:none; align-items:center; justify-content:center; z-index:2000; cursor:pointer; }
   </style>
 </head>
 
@@ -388,6 +391,20 @@
         const materia = new URLSearchParams(window.location.search).get("materia") || "";
         document.getElementById("filtro-materia").value = materia;
 
+        // Se a página foi aberta vinculada a uma matéria (ex: vinda do dashboard),
+        // escondemos os controles de filtro e exibimos diretamente as questões
+        if (materia) {
+          const filtroEl = document.querySelector('.filtro');
+          if (filtroEl) filtroEl.style.display = 'none';
+
+          // Atualiza título para indicar a disciplina selecionada
+          const headerTitle = document.querySelector('.header h1');
+          try {
+            const pretty = materia.charAt(0).toUpperCase() + materia.slice(1);
+            if (headerTitle) headerTitle.textContent = `${headerTitle.textContent} — ${pretty}`;
+          } catch (e) { /* ignore */ }
+        }
+
         // Filtra e renderiza as questões
         filtrar();
       } catch (error) {
@@ -410,6 +427,15 @@
 
     // Executa o carregamento assim que a página estiver pronta
     window.onload = carregarE;
+  </script>
+
+  <button id="back-to-top" class="back-to-top" title="Voltar ao topo">↑</button>
+  <script>
+    (function(){
+      const btt = document.getElementById('back-to-top');
+      window.addEventListener('scroll', () => { if (!btt) return; btt.style.display = window.scrollY > 200 ? 'flex' : 'none'; });
+      if (btt) btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    })();
   </script>
 </body>
 </html>

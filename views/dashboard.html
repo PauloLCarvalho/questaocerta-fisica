@@ -13,6 +13,34 @@ if (!isset($_SESSION['email'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard - Questão Certa</title>
   <link rel="stylesheet" href="../assets/style.css">
+  <style>
+    /* back-to-top button */
+    .back-to-top {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--azul-escuro);
+      color: #fff;
+      border: none;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    }
+
+    /* settings drawer styles for dashboard */
+    .btn-settings { background: transparent; border: none; font-size: 1.1rem; cursor: pointer; padding: 6px 10px; color: var(--azul-escuro); }
+    .settings-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.35); display: none; z-index: 1200; }
+    .settings-drawer { position: fixed; left: -320px; top: 0; height: 100vh; width: 320px; background: #fff; box-shadow: 2px 0 20px rgba(0,0,0,0.2); z-index: 1300; padding: 18px; transition: left 0.32s ease; overflow: auto; }
+    .settings-drawer.open { left: 0; }
+    .settings-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+    .settings-item { margin:12px 0; }
+  </style>
 </head>
 <body>
   <header>
@@ -60,8 +88,63 @@ if (!isset($_SESSION['email'])) {
     </div>
   </section>
 
+  <!-- settings drawer and toggle (dashboard only) -->
+  <button id="settings-toggle" class="btn-settings" title="Configurações" style="position:fixed; left:14px; bottom:18px; z-index:2001;">⚙️</button>
+  <div id="settings-overlay" class="settings-overlay" onclick="closeSettings()"></div>
+  <aside id="settings-drawer" class="settings-drawer" aria-hidden="true">
+    <div class="settings-header">
+      <strong>Configurações</strong>
+      <button onclick="closeSettings()" class="btn-settings">✖</button>
+    </div>
+    <div class="settings-item">
+      <label><input type="checkbox" id="dark-mode-toggle" /> Modo escuro</label>
+    </div>
+    <div class="settings-item">
+      <button id="limpar-revisao" class="btn-voltar" style="background:#c62828;">Limpar revisão</button>
+      <p style="font-size:0.82rem; color:#666; margin-top:8px;">Remove todas as questões da sua lista de revisão.</p>
+    </div>
+  </aside>
+
+  <!-- back to top -->
+  <button id="back-to-top" class="back-to-top" title="Voltar ao topo">↑</button>
+
   <footer>
     <p>&copy; 2025 Questão Certa.</p>
   </footer>
+
+  <script>
+    // back to top behavior
+    const btt = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (!btt) return;
+      if (window.scrollY > 200) btt.style.display = 'flex'; else btt.style.display = 'none';
+    });
+    if (btt) btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // settings drawer behavior (dashboard)
+    const settingsToggle = document.getElementById('settings-toggle');
+    const settingsDrawer = document.getElementById('settings-drawer');
+    const settingsOverlay = document.getElementById('settings-overlay');
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+
+    function openSettings() { settingsDrawer.classList.add('open'); settingsOverlay.style.display = 'block'; settingsDrawer.setAttribute('aria-hidden','false'); }
+    function closeSettings() { settingsDrawer.classList.remove('open'); settingsOverlay.style.display = 'none'; settingsDrawer.setAttribute('aria-hidden','true'); }
+    if (settingsToggle) settingsToggle.addEventListener('click', openSettings);
+
+    // Dark mode
+    function applyDarkMode(enabled) { if (enabled) document.body.classList.add('dark-mode'); else document.body.classList.remove('dark-mode'); localStorage.setItem('darkMode', enabled ? '1' : '0'); }
+    const dm = localStorage.getItem('darkMode'); if (dm === '1') { if (darkModeToggle) darkModeToggle.checked = true; applyDarkMode(true); }
+    if (darkModeToggle) darkModeToggle.addEventListener('change', e => applyDarkMode(e.target.checked));
+
+    // limpar revisão from dashboard
+    const limparBtn = document.getElementById('limpar-revisao');
+    if (limparBtn) limparBtn.addEventListener('click', () => {
+      if (!confirm('Deseja remover todas as questões da lista de revisão? Esta ação não pode ser desfeita.')) return;
+      localStorage.removeItem('erros');
+      // close and notify
+      alert('Lista de revisão limpa.');
+      closeSettings();
+    });
+  </script>
 </body>
 </html>

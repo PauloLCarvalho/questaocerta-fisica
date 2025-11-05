@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Questão Certa</title>
   <link rel="stylesheet" href="../assets/style.css">
+  <style>
+    .back-to-top { position: fixed; right: 18px; bottom: 18px; width:44px; height:44px; border-radius:50%; background:#416BA5; color:#fff; border:none; display:none; align-items:center; justify-content:center; z-index:2000; cursor:pointer; }
+  </style>
 </head>
 <body>
 
@@ -61,6 +64,14 @@
       document.getElementById('cadastro-form').style.display = 'block';
       document.getElementById('login-form').style.display = 'none';
     }
+  </script>
+  <button id="back-to-top" class="back-to-top" title="Voltar ao topo">↑</button>
+  <script>
+    (function(){
+      const btt = document.getElementById('back-to-top');
+      window.addEventListener('scroll', () => { if (!btt) return; btt.style.display = window.scrollY > 200 ? 'flex' : 'none'; });
+      if (btt) btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    })();
   </script>
 </body>
 </html>

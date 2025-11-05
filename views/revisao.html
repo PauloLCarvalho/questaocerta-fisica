@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Revisão - Questão Certa</title>
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../assets/style.css">
   <style>
     :root {
       --verde: #23FA0F;
@@ -327,6 +327,14 @@
         margin-left: 55px;
       }
     }
+
+    /* Dark mode styles (simple) */
+    body.dark-mode { background: #121212; color: #e6e6e6; }
+    body.dark-mode .container { background: #1a1a1a; }
+    body.dark-mode .questao { background: #0f1720; border-color: #232b33; }
+    body.dark-mode .btn-voltar { background: #2b3a4a; }
+    /* back-to-top button */
+    .back-to-top { position: fixed; right: 18px; bottom: 18px; width:44px; height:44px; border-radius:50%; background:var(--azul-escuro); color:#fff; border:none; display:none; align-items:center; justify-content:center; z-index:2000; cursor:pointer; }
   </style>
 </head>
 <body>
@@ -336,13 +344,15 @@
   <div class="container">
     <div class="header">
       <h1>Revisão</h1>
-      <a href="../dashboard.html" class="btn-voltar">Voltar ao Dashboard</a>
+  <a href="dashboard.html" class="btn-voltar">Voltar ao Dashboard</a>
     </div>
 
     <div id="questoes-container">
       <p class="vazio">Nenhuma questão errada para revisar ainda. Continue estudando!</p>
     </div>
   </div>
+
+  
 
   <script>
     // === SISTEMA DE REVISÃO ESCALÁVEL (localStorage) ===
@@ -376,23 +386,32 @@
       ]
     };
 
-    const total = questoesErradas.length;
-    let acertos = 0;
-    const selecionadas = Array(total).fill(-1);
+  let total = questoesErradas.length;
+  let acertos = 0;
+  let selecionadas = [];
 
     function carregarQuestoes() {
       const container = document.getElementById('questoes-container');
       container.innerHTML = '';
 
+      // recalcula total e reinicia selecionadas a cada carregamento
+      total = questoesErradas.length;
+      selecionadas = Array(total).fill(-1);
+
       if (total === 0) {
         container.innerHTML = '<p class="vazio">Nenhuma questão errada para revisar ainda. Continue estudando!</p>';
+        // garantir que a matriz de progresso esteja vazia quando não houver questões
+        const prog = document.getElementById('progresso');
+        if (prog) prog.innerHTML = '';
         return;
       }
 
       questoesErradas.forEach((err, i) => {
-        const materia = err.materia;
-        const q = bancoQuestoes[materia].find(qq => qq.id === err.qid);
-        if (!q) return;
+    const materia = err.materia;
+    // Prioriza a cópia salva em localStorage.erros (err.q) se existir,
+    // caso contrário busca no banco interno.
+    const q = err.q ? err.q : (bancoQuestoes[materia] || []).find(qq => qq.id === err.qid);
+    if (!q) return;
 
         const div = document.createElement('div');
         div.className = 'questao';
@@ -406,6 +425,9 @@
           <button class="btn-responder" onclick="verificar(${i}, '${materia}', '${q.id}')">Responder</button>
           <div class="resposta" id="r${i}"></div>
         `;
+        // anexa atributos úteis para scroll/identificação
+        div.dataset.qid = q.id;
+        div.dataset.qindex = i;
         container.appendChild(div);
       });
 
@@ -416,16 +438,33 @@
     function renderizarAlternativas() {
       questoesErradas.forEach((err, i) => {
         const materia = err.materia;
-        const q = bancoQuestoes[materia].find(qq => qq.id === err.qid);
+        // Prioriza cópia salva em err.q quando disponível
+        const q = err.q ? err.q : (bancoQuestoes[materia] || []).find(qq => qq.id === err.qid);
         if (!q) return;
 
-        const letras = ['A', 'B', 'C', 'D', 'E'];
         const container = document.getElementById(`alt${i}`);
         container.innerHTML = '';
 
-        const indices = [0, 1, 2, 3, 4].sort(() => Math.random() - 0.5);
+        // Garantir exatamente 4 alternativas mostradas e incluir sempre o gabarito
+        const maxAlts = 4;
+        const originalAlts = q.alternativas || [];
+        const correctIndex = Number.isFinite(q.gabarito) ? q.gabarito : 0;
+        const available = originalAlts.map((_, idx) => idx).filter(idx => idx !== correctIndex);
+        // embaralhar disponíveis
+        for (let a = available.length - 1; a > 0; a--) {
+          const b = Math.floor(Math.random() * (a + 1));
+          [available[a], available[b]] = [available[b], available[a]];
+        }
+        const chosen = [correctIndex].concat(available.slice(0, Math.max(0, maxAlts - 1)));
+        while (chosen.length < maxAlts) chosen.push(0);
+        // embaralhar a ordem final
+        for (let a = chosen.length - 1; a > 0; a--) {
+          const b = Math.floor(Math.random() * (a + 1));
+          [chosen[a], chosen[b]] = [chosen[b], chosen[a]];
+        }
 
-        indices.forEach((idx, pos) => {
+        const letras = ['A', 'B', 'C', 'D'];
+        chosen.forEach((origIdx, pos) => {
           const div = document.createElement('div');
           div.className = 'alternativa';
           div.dataset.q = i;
@@ -433,29 +472,43 @@
           div.innerHTML = `
             <div class="eliminar-btn" onclick="toggleEliminate(this, ${i}, ${pos})">X</div>
             <div class="selecionar-btn" onclick="selecionarResposta(this, ${i}, ${pos})">${letras[pos]}</div>
-            <div class="texto-alternativa">${q.alternativas[idx]}</div>
+            <div class="texto-alternativa">${originalAlts[origIdx] || ''}</div>
           `;
           container.appendChild(div);
         });
 
-        q.map = indices;
+        q.map = chosen;
       });
     }
 
     function criarMatriz() {
       const matrix = document.getElementById('progresso');
       matrix.innerHTML = '';
-      for (let i = 0; i < total; i++) {
+      // Criar bolinhas com base nas questões atuais em questoesErradas
+      questoesErradas.forEach((err, i) => {
+        const materia = err.materia;
+        const q = err.q ? err.q : (bancoQuestoes[materia] || []).find(qq => qq.id === err.qid);
         const bol = document.createElement('div');
         bol.className = 'bolinha';
-        bol.textContent = i + 1;
-        bol.dataset.q = i;
+        // mostrar o número real da questão (ex: 91) em vez do índice
+        bol.textContent = q ? (q.numero || (i + 1)) : (i + 1);
+        bol.dataset.qindex = i;
+        bol.dataset.qid = err.qid;
+        bol.style.cursor = 'pointer';
+        bol.addEventListener('click', () => {
+          // procurar pela questão correspondente usando o qid salvo
+          const qEl = document.querySelector(`.questao[data-qid="${err.qid}"]`) || document.getElementById(`q${i}`);
+          if (qEl) qEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
         matrix.appendChild(bol);
-      }
+      });
     }
 
-    function atualizarBolinha(qIndex, status) {
-      const bol = document.querySelector(`.bolinha[data-q="${qIndex}"]`);
+    function atualizarBolinha(qid, status) {
+      // atualiza bolinha pelo qid (mais estável) ou por índice como fallback
+      let bol = null;
+      if (qid) bol = document.querySelector(`.bolinha[data-qid="${qid}"]`);
+      if (!bol && typeof qid === 'number') bol = document.querySelector(`.bolinha[data-qindex="${qid}"]`);
       if (bol) bol.className = `bolinha ${status}`;
     }
 
@@ -506,8 +559,13 @@
         return;
       }
 
-      const q = bancoQuestoes[materia].find(qq => qq.id === qid);
-      const respostaReal = q.map[selecionadas[qIndex]];
+      const errObj = questoesErradas[qIndex];
+      const q = errObj && errObj.q ? errObj.q : (bancoQuestoes[materia] || []).find(qq => qq.id === qid);
+      if (!q) {
+        alert('Questão não encontrada para verificação.');
+        return;
+      }
+      const respostaReal = (q.map && typeof q.map[selecionadas[qIndex]] !== 'undefined') ? q.map[selecionadas[qIndex]] : null;
       const correta = q.gabarito;
       const resp = document.getElementById(`r${qIndex}`);
       const btn = document.querySelectorAll('.btn-responder')[qIndex];
@@ -520,30 +578,44 @@
         resp.className = 'resposta correto';
         acertos++;
 
-        // Remover do erros
+        // Remover do erros (persistente)
         questoesErradas = questoesErradas.filter((_, idx) => idx !== qIndex);
         localStorage.setItem(errosKey, JSON.stringify(questoesErradas));
 
-        // Adicionar aos acertos
+        // Adicionar aos acertos (se já não existir)
         let acertosList = JSON.parse(localStorage.getItem(acertosKey)) || [];
-        acertosList.push({ materia, qid });
-        localStorage.setItem(acertosKey, JSON.stringify(acertosList));
+        const exists = acertosList.find(a => a.materia === materia && a.qid === qid);
+        if (!exists) {
+          acertosList.push({ materia, qid });
+          localStorage.setItem(acertosKey, JSON.stringify(acertosList));
+        }
 
-        atualizarBolinha(qIndex, 'correta');
+  // Atualiza bolinha para correta (usa qid)
+  atualizarBolinha(qid, 'correta');
 
-        // Recarregar página após 1.5s
-        setTimeout(() => location.reload(), 1500);
+        // Recarregar a lista de revisão após breve delay para o usuário ver a mensagem
+        setTimeout(() => carregarQuestoes(), 700);
       } else {
         const letraCorreta = String.fromCharCode(65 + q.map.indexOf(correta));
         resp.innerHTML = `Errado! Resposta correta: ${letraCorreta}. Continua na revisão.`;
         resp.className = 'resposta errado';
-        atualizarBolinha(qIndex, 'errada');
+  atualizarBolinha(qid, 'errada');
       }
     }
 
     window.onload = () => {
       carregarQuestoes();
     };
+
+    // Settings UI removed from this page (moved to dashboard)
+  </script>
+  <button id="back-to-top" class="back-to-top" title="Voltar ao topo">↑</button>
+  <script>
+    (function(){
+      const btt = document.getElementById('back-to-top');
+      window.addEventListener('scroll', () => { if (!btt) return; btt.style.display = window.scrollY > 200 ? 'flex' : 'none'; });
+      if (btt) btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    })();
   </script>
 </body>
 </html>

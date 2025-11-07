@@ -1,9 +1,6 @@
 <?php
-session_start();
-if (!isset($_SESSION['email'])) {
-  header("Location: index.html");
-  exit;
-}
+require_once __DIR__ . '/../includes/auth.php';
+qc_require_login();
 ?>
 
 <!DOCTYPE html>
@@ -55,9 +52,15 @@ if (!isset($_SESSION['email'])) {
   <section class="dashboard">
     <div class="wrapper">
       <div class="welcome">
-        <h2>Bem-vindo, <strong><?= htmlspecialchars($_SESSION['nome']) ?></strong>!</h2>
+        <h2>Bem-vindo, <strong><?= qc_user_name() ?></strong>!</h2>
         <p>Escolha uma disciplina.</p>
       </div>
+
+      <?php if (qc_is_admin()): ?>
+        <div class="admin-banner" style="background:#fff6e8;border-left:4px solid #f59e0b;padding:10px 14px;border-radius:8px;margin-bottom:18px;">
+          <strong>Você está logado como administrador.</strong> Use o painel abaixo para gerenciar o conteúdo.
+        </div>
+      <?php endif; ?>
 
       <?php if (isset($_SESSION['nivel']) && $_SESSION['nivel'] === 'admin'): ?>
         <div class="admin-panel">

@@ -1,17 +1,8 @@
 <?php
-session_start();
-// Only allow access to users with admin level
-if (!isset($_SESSION['email'])) {
-  // not logged in
-  header('Location: index.html');
-  exit;
-}
-if (!isset($_SESSION['nivel']) || $_SESSION['nivel'] !== 'admin') {
-  // logged but not admin -> redirect to dashboard
-  header('Location: dashboard.html');
-  exit;
-}
+require_once __DIR__ . '/../includes/auth.php';
+qc_require_admin();
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -22,14 +13,84 @@ if (!isset($_SESSION['nivel']) || $_SESSION['nivel'] !== 'admin') {
   <style>
     .admin-wrap { max-width:900px; margin:40px auto; padding:24px; background:#fff; border-radius:12px; }
     .admin-wrap h1 { color:var(--azul); }
+    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .full { grid-column: 1 / -1; }
+    .alt-row { display:flex; gap:8px; }
+    label { font-size:0.88rem; color:#374151; display:block; margin-bottom:6px; }
+    input[type="text"], input[type="number"], textarea, select { width:100%; padding:10px; border-radius:8px; border:1px solid #e5e7eb; }
+    .btn-primary { background:#0e70fa; color:#fff; padding:10px 14px; border-radius:8px; border:none; cursor:pointer; }
+    .msg { padding:10px 12px; background:#ecfdf5; border-left:4px solid #10b981; border-radius:6px; margin-bottom:12px; }
   </style>
 </head>
 <body>
   <div class="admin-wrap">
     <h1>Painel do Administrador</h1>
     <p>Aqui você pode adicionar e gerenciar questões. (Página protegida — somente administradores)</p>
-    <!-- TODO: adicionar formulário para upload/edição de questões -->
-    <p><a href="dashboard.html" class="btn-voltar">Voltar</a></p>
+
+    <?php if (isset($_GET['saved']) && $_GET['saved'] == '1'): ?>
+      <div class="msg">Questão adicionada com sucesso.</div>
+    <?php endif; ?>
+
+    <form action="../api/admin_questions.php" method="POST">
+      <input type="hidden" name="action" value="add">
+      <div class="form-grid">
+        <div>
+          <label>Matéria</label>
+          <select name="materia" required>
+            <option value="matematica">Matemática</option>
+            <option value="fisica">Física</option>
+            <option value="natureza">Natureza</option>
+          </select>
+        </div>
+        <div>
+          <label>Número da questão</label>
+          <input type="number" name="numero" required />
+        </div>
+        <div>
+          <label>Ano</label>
+          <input type="number" name="ano" value="2025" required />
+        </div>
+        <div>
+          <label>Gabarito (índice 0-4)</label>
+          <select name="gabarito" required>
+            <option value="0">A (0)</option>
+            <option value="1">B (1)</option>
+            <option value="2">C (2)</option>
+            <option value="3">D (3)</option>
+            <option value="4">E (4)</option>
+          </select>
+        </div>
+
+        <div class="full">
+          <label>Enunciado</label>
+          <textarea name="enunciado" rows="5" required></textarea>
+        </div>
+
+        <div class="full">
+          <label>Alternativas (preencha pelo menos 2)</label>
+          <div class="alt-row">
+            <input type="text" name="alt[]" placeholder="Alternativa A" required />
+            <input type="text" name="alt[]" placeholder="Alternativa B" required />
+          </div>
+          <div class="alt-row" style="margin-top:8px;">
+            <input type="text" name="alt[]" placeholder="Alternativa C" />
+            <input type="text" name="alt[]" placeholder="Alternativa D" />
+            <input type="text" name="alt[]" placeholder="Alternativa E" />
+          </div>
+        </div>
+
+        <div class="full">
+          <label>Dica (opcional)</label>
+          <input type="text" name="dica" />
+        </div>
+
+      </div>
+      <div style="margin-top:14px;">
+        <button class="btn-primary" type="submit">Adicionar Questão</button>
+        <a href="dashboard.html" class="btn-voltar" style="margin-left:12px;">Voltar</a>
+      </div>
+    </form>
+
   </div>
 </body>
 </html>

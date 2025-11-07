@@ -1,0 +1,35 @@
+<?php
+session_start();
+// Only allow access to users with admin level
+if (!isset($_SESSION['email'])) {
+  // not logged in
+  header('Location: index.html');
+  exit;
+}
+if (!isset($_SESSION['nivel']) || $_SESSION['nivel'] !== 'admin') {
+  // logged but not admin -> redirect to dashboard
+  header('Location: dashboard.html');
+  exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin - Questão Certa</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <style>
+    .admin-wrap { max-width:900px; margin:40px auto; padding:24px; background:#fff; border-radius:12px; }
+    .admin-wrap h1 { color:var(--azul); }
+  </style>
+</head>
+<body>
+  <div class="admin-wrap">
+    <h1>Painel do Administrador</h1>
+    <p>Aqui você pode adicionar e gerenciar questões. (Página protegida — somente administradores)</p>
+    <!-- TODO: adicionar formulário para upload/edição de questões -->
+    <p><a href="dashboard.html" class="btn-voltar">Voltar</a></p>
+  </div>
+</body>
+</html>

@@ -59,7 +59,7 @@ if (!isset($_SESSION['email'])) {
         <p>Escolha uma disciplina.</p>
       </div>
 
-      <?php if ($_SESSION['nivel'] === 'admin'): ?>
+      <?php if (isset($_SESSION['nivel']) && $_SESSION['nivel'] === 'admin'): ?>
         <div class="admin-panel">
           <h3>Painel do Administrador</h3>
           <a href="admin.html" class="btn-admin">Adicionar Questões</a>

@@ -30,6 +30,12 @@ qc_require_admin();
     <?php if (isset($_GET['saved']) && $_GET['saved'] == '1'): ?>
       <div class="msg">Questão adicionada com sucesso.</div>
     <?php endif; ?>
+      <?php if (isset($_GET['deleted']) && $_GET['deleted'] == '1'): ?>
+        <div class="msg">Questão removida com sucesso.</div>
+      <?php endif; ?>
+      <?php if (isset($_GET['edited']) && $_GET['edited'] == '1'): ?>
+        <div class="msg">Questão atualizada com sucesso.</div>
+      <?php endif; ?>
 
     <form action="../api/admin_questions.php" method="POST">
       <input type="hidden" name="action" value="add">
@@ -90,6 +96,88 @@ qc_require_admin();
         <a href="dashboard.html" class="btn-voltar" style="margin-left:12px;">Voltar</a>
       </div>
     </form>
+
+      <hr style="margin:20px 0">
+      <h2>Lista de questões</h2>
+      <?php
+        $dataFile = __DIR__ . '/../data/questoes.json';
+        $raw = file_get_contents($dataFile);
+        $bank = json_decode($raw, true);
+        if (!is_array($bank)) $bank = [];
+      ?>
+      <?php if (count($bank) === 0): ?>
+        <p class="vazio">Nenhuma questão cadastrada ainda.</p>
+      <?php else: ?>
+        <table style="width:100%; border-collapse:collapse; margin-top:10px;">
+          <thead>
+            <tr style="text-align:left; border-bottom:1px solid #e5e7eb;">
+              <th style="padding:8px">ID</th>
+              <th style="padding:8px">Matéria</th>
+              <th style="padding:8px">Número</th>
+              <th style="padding:8px">Ano</th>
+              <th style="padding:8px">Enunciado</th>
+              <th style="padding:8px">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+          <?php foreach ($bank as $mat => $list): ?>
+            <?php foreach ($list as $item): ?>
+              <tr>
+                <td style="padding:8px; vertical-align:top; font-family:monospace; font-size:0.85rem;"><?php echo htmlspecialchars($item['id'] ?? ''); ?></td>
+                <td style="padding:8px; vertical-align:top"><?php echo htmlspecialchars($item['materia'] ?? $mat); ?></td>
+                <td style="padding:8px; vertical-align:top"><?php echo htmlspecialchars($item['numero'] ?? ''); ?></td>
+                <td style="padding:8px; vertical-align:top"><?php echo htmlspecialchars($item['ano'] ?? ''); ?></td>
+                <td style="padding:8px; vertical-align:top; max-width:420px;"><?php echo htmlspecialchars(mb_strimwidth(strip_tags($item['enunciado'] ?? ''), 0, 140, '...')); ?></td>
+                <td style="padding:8px; vertical-align:top;">
+                  <button type="button" class="btn-primary" data-action="edit" data-id="<?php echo htmlspecialchars($item['id']); ?>">Editar</button>
+                  <form action="../api/admin_questions.php" method="POST" style="display:inline; margin-left:8px;" onsubmit="return confirm('Confirmar remoção desta questão?');">
+                    <input type="hidden" name="action" value="delete">
+                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($item['id']); ?>">
+                    <button type="submit" class="btn-voltar" style="background:#ef4444; color:#fff; border:none; padding:8px 10px; border-radius:6px;">Remover</button>
+                  </form>
+                </td>
+              </tr>
+            <?php endforeach; ?>
+          <?php endforeach; ?>
+          </tbody>
+        </table>
+      <?php endif; ?>
+
+      <script>
+        // Pass PHP bank to JS to populate edit form
+        const QC_BANK = <?php echo json_encode($bank, JSON_UNESCAPED_UNICODE); ?>;
+        document.querySelectorAll('button[data-action="edit"]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = btn.dataset.id;
+            // find item by id
+            let found = null;
+            for (const mat in QC_BANK) {
+              const list = QC_BANK[mat];
+              for (let i = 0; i < list.length; i++) {
+                if (list[i].id === id) { found = list[i]; break; }
+              }
+              if (found) break;
+            }
+            if (!found) return alert('Questão não encontrada');
+            // populate form
+            document.getElementById('form-action').value = 'edit';
+            document.getElementById('form-id').value = found.id || '';
+            document.querySelector('select[name="materia"]').value = found.materia || '';
+            document.querySelector('input[name="numero"]').value = found.numero || '';
+            document.querySelector('input[name="ano"]').value = found.ano || '';
+            document.querySelector('select[name="gabarito"]').value = found.gabarito || 0;
+            document.querySelector('textarea[name="enunciado"]').value = found.enunciado || '';
+            // clear and populate alternatives inputs
+            const altInputs = document.querySelectorAll('input[name="alt[]"]');
+            for (let i = 0; i < altInputs.length; i++) {
+              altInputs[i].value = (found.alternativas && found.alternativas[i]) ? found.alternativas[i] : '';
+            }
+            document.querySelector('input[name="dica"]').value = found.dica || '';
+            // scroll to form
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+        });
+      </script>
 
   </div>
 </body>

@@ -1,6 +1,9 @@
 <?php
 require_once __DIR__ . '/../includes/auth.php';
 qc_require_login();
+
+// Debug: log current session state to help diagnose session issues
+@file_put_contents(__DIR__ . '/../logs/auth.log', sprintf("%s DASHBOARD LOAD: session_email=%s session_nivel=%s ip=%s\n", date('c'), $_SESSION['email'] ?? '-', $_SESSION['nivel'] ?? '-', $_SERVER['REMOTE_ADDR'] ?? '-'), FILE_APPEND | LOCK_EX);
 ?>
 
 <!DOCTYPE html>

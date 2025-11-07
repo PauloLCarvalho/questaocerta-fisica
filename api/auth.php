@@ -54,11 +54,17 @@ switch ($action) {
             $_SESSION['email'] = $u['email'];
             $_SESSION['nome'] = $u['nome'];
             $_SESSION['nivel'] = $u['nivel'];
+            // log successful login
+            $log = sprintf("%s LOGIN SUCCESS: %s ip=%s nivel=%s\n", date('c'), $u['email'], $_SERVER['REMOTE_ADDR'] ?? '-', $u['nivel']);
+            @file_put_contents(__DIR__ . '/../logs/auth.log', $log, FILE_APPEND | LOCK_EX);
             header("Location: ../views/dashboard.html");
             exit;
           }
         }
       }
+      // log failed login attempt
+      $log = sprintf("%s LOGIN FAIL: %s ip=%s\n", date('c'), $email, $_SERVER['REMOTE_ADDR'] ?? '-');
+      @file_put_contents(__DIR__ . '/../logs/auth.log', $log, FILE_APPEND | LOCK_EX);
       $erro = "Email ou senha incorretos.";
     } else {
       $erro = "Preencha todos os campos.";
@@ -67,6 +73,9 @@ switch ($action) {
     break;
 
   case 'logout':
+    // log logout
+    $log = sprintf("%s LOGOUT: %s ip=%s\n", date('c'), $_SESSION['email'] ?? '-', $_SERVER['REMOTE_ADDR'] ?? '-');
+    @file_put_contents(__DIR__ . '/../logs/auth.log', $log, FILE_APPEND | LOCK_EX);
     // clear session and cookie
     $_SESSION = [];
     if (ini_get("session.use_cookies")) {

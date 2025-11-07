@@ -15,8 +15,8 @@
     <nav>
       <a href="#" class="logo">Questão Certa</a>
       <div class="nav-links">
-    <a href="login.html" class="btn btn-azul">Login</a>
-        <button onclick="mostrarCadastro()" class="btn btn-laranja">Cadastrar</button>
+        <a href="login.html" class="btn btn-azul">Login</a>
+        <a href="register.html" class="btn btn-laranja">Cadastrar</a>
       </div>
     </nav>
   </header>
@@ -28,43 +28,13 @@
     </div>
   </section>
 
-  <!-- Form Login -->
-  <div id="login-form" style="display:none; max-width:400px; margin:2rem auto; background:white; padding:2rem; border-radius:12px;">
-    <h2>Login</h2>
-    <form action="../api/auth.php" method="POST">
-      <input type="hidden" name="action" value="login">
-      <input type="email" name="email" placeholder="E-mail" required>
-      <input type="password" name="senha" placeholder="Senha" required>
-      <button type="submit" class="btn btn-laranja">Entrar</button>
-    </form>
-  </div>
-
-  <!-- Form Cadastro -->
-  <div id="cadastro-form" style="display:none; max-width:400px; margin:2rem auto; background:white; padding:2rem; border-radius:12px;">
-    <h2>Cadastrar</h2>
-    <form action="../api/auth.php" method="POST">
-      <input type="hidden" name="action" value="cadastrar">
-      <input type="text" name="nome" placeholder="Nome" required>
-      <input type="email" name="email" placeholder="E-mail" required>
-      <input type="password" name="senha" placeholder="Senha" required>
-      <button type="submit" class="btn btn-laranja">Cadastrar</button>
-    </form>
-  </div>
+  <!-- Inline forms removed: login and cadastro now have dedicated pages (login.html, register.html) -->
 
   <footer>
     <p>&copy; 2025 Questão Certa.</p>
   </footer>
 
-  <script>
-    function mostrarLogin() {
-      document.getElementById('login-form').style.display = 'block';
-      document.getElementById('cadastro-form').style.display = 'none';
-    }
-    function mostrarCadastro() {
-      document.getElementById('cadastro-form').style.display = 'block';
-      document.getElementById('login-form').style.display = 'none';
-    }
-  </script>
+  <!-- removed inline form toggles; pages now separate -->
   <button id="back-to-top" class="back-to-top" title="Voltar ao topo">↑</button>
   <script>
     (function(){

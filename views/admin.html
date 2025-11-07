@@ -143,9 +143,11 @@ qc_require_admin();
         </table>
       <?php endif; ?>
 
+      <!-- serialized bank for JS (keeps PHP out of JS expression) -->
+      <script id="qc-bank" type="application/json"><?php echo json_encode($bank, JSON_UNESCAPED_UNICODE); ?></script>
       <script>
-        // Pass PHP bank to JS to populate edit form
-        const QC_BANK = <?php echo json_encode($bank, JSON_UNESCAPED_UNICODE); ?>;
+        // Read bank data from the application/json script node
+        const QC_BANK = JSON.parse(document.getElementById('qc-bank').textContent || '{}');
         document.querySelectorAll('button[data-action="edit"]').forEach(btn => {
           btn.addEventListener('click', () => {
             const id = btn.dataset.id;

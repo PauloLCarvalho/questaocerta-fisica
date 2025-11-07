@@ -4,6 +4,18 @@ qc_require_login();
 
 // Debug: log current session state to help diagnose session issues
 @file_put_contents(__DIR__ . '/../logs/auth.log', sprintf("%s DASHBOARD LOAD: session_email=%s session_nivel=%s ip=%s\n", date('c'), $_SESSION['email'] ?? '-', $_SESSION['nivel'] ?? '-', $_SERVER['REMOTE_ADDR'] ?? '-'), FILE_APPEND | LOCK_EX);
+// prepare display email with a fallback so the UI always shows something for testing
+$__qc_email_raw = qc_user_email();
+$__qc_display_email = $__qc_email_raw ? $__qc_email_raw : 'teste@exemplo.com';
+
+// Debug: adiciona informação da sessão atual
+$__debug_info = sprintf(
+    "Email: %s, Nível: %s, Nome: %s",
+    $_SESSION['email'] ?? 'não definido',
+    $_SESSION['nivel'] ?? 'não definido',
+    $_SESSION['nome'] ?? 'não definido'
+);
+@file_put_contents(__DIR__ . '/../logs/debug.log', date('Y-m-d H:i:s') . " - " . $__debug_info . "\n", FILE_APPEND | LOCK_EX);
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +26,25 @@ qc_require_login();
   <title>Dashboard - Questão Certa</title>
   <link rel="stylesheet" href="../assets/style.css">
   <style>
+    /* small layout for header user email near logout button */
+    .nav-links .user-email {
+      font-size: 0.95rem;
+      color: #333;
+      background: #eef2ff;
+      padding: 6px 10px;
+      border-radius: 8px;
+      display: inline-block;
+      white-space: nowrap;
+      max-width: 220px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-right: 8px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
     /* back-to-top button */
     .back-to-top {
       position: fixed;
@@ -46,10 +77,8 @@ qc_require_login();
   <header>
     <nav>
       <a href="index.html" class="logo">Questão Certa</a>
-      <div class="nav-links" style="display:flex; align-items:center; gap:10px;">
-        <div style="font-size:0.9rem; color:#333; background:#eef2ff; padding:6px 10px; border-radius:8px;">
-          <?= qc_user_email() ?>
-        </div>
+      <div class="nav-links">
+        <span class="user-email" id="user-email" data-email="<?= htmlspecialchars($__qc_display_email) ?>" title="<?= htmlspecialchars($__qc_display_email) ?>"><?= htmlspecialchars($__qc_display_email) ?></span>
         <a href="../api/auth.php?action=logout" class="btn btn-azul">Sair</a>
       </div>
     </nav>
@@ -62,18 +91,7 @@ qc_require_login();
         <p>Escolha uma disciplina.</p>
       </div>
 
-      <?php if (qc_is_admin()): ?>
-        <div class="admin-banner" style="background:#fff6e8;border-left:4px solid #f59e0b;padding:10px 14px;border-radius:8px;margin-bottom:18px;">
-          <strong>Você está logado como administrador.</strong> Use o painel abaixo para gerenciar o conteúdo.
-        </div>
-      <?php endif; ?>
-
-      <?php if (isset($_SESSION['nivel']) && $_SESSION['nivel'] === 'admin'): ?>
-        <div class="admin-panel">
-          <h3>Painel do Administrador</h3>
-          <a href="admin.html" class="btn-admin">Adicionar Questões</a>
-        </div>
-      <?php endif; ?>
+      <!-- Debug info removed, banner removed -->
 
       <h2 style="text-align:center; color:var(--azul); margin:2rem 0 1.5rem;">Disciplinas</h2>
       <div class="materias">
@@ -122,13 +140,26 @@ qc_require_login();
   </footer>
 
   <script>
-    // back to top behavior
-    const btt = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-      if (!btt) return;
-      if (window.scrollY > 200) btt.style.display = 'flex'; else btt.style.display = 'none';
-    });
-    if (btt) btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    // Debug: mostrar email no console
+    console.log('Email do usuário:', <?= json_encode($__qc_display_email) ?>);
+    
+      <script>
+    // Esperar o DOM carregar antes de executar qualquer código
+    document.addEventListener('DOMContentLoaded', () => {
+      // Debug: mostrar email do elemento no console
+      const emailElement = document.getElementById('user-email');
+      if (emailElement) {
+        console.log('Email do usuário:', emailElement.dataset.email);
+      }
+
+      // back to top behavior
+      const btt = document.getElementById('back-to-top');
+      if (btt) {
+        window.addEventListener('scroll', () => {
+          btt.style.display = window.scrollY > 200 ? 'flex' : 'none';
+        });
+        btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+      }
 
     // settings drawer behavior (dashboard)
     const settingsToggle = document.getElementById('settings-toggle');

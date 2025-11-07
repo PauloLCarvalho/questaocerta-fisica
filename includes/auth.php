@@ -33,4 +33,8 @@ function qc_user_name() {
     return isset($_SESSION['nome']) ? htmlspecialchars($_SESSION['nome']) : '';
 }
 
+function qc_user_email() {
+    return isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : '';
+}
+
 ?>

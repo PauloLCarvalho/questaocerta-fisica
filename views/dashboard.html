@@ -44,9 +44,9 @@ qc_require_login();
     <nav>
       <a href="index.html" class="logo">Questão Certa</a>
       <div class="nav-links" style="display:flex; align-items:center; gap:10px;">
-        <div style="font-size:0.9rem; color:#333; background:#eef2ff; padding:6px 10px; border-radius:8px;"><?= htmlspecialchars(
-          isset($_SESSION['email']) ? $_SESSION['email'] : ''
-        ) ?></div>
+        <div style="font-size:0.9rem; color:#333; background:#eef2ff; padding:6px 10px; border-radius:8px;">
+          <?= qc_user_email() ?>
+        </div>
         <a href="../api/auth.php?action=logout" class="btn btn-azul">Sair</a>
       </div>
     </nav>

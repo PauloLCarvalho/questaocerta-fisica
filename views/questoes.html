@@ -364,7 +364,8 @@
         const params = new URLSearchParams(window.location.search);
         const materia = params.get("materia") || "";
         const componente = params.get("componente") || "";
-        const nivel = params.get("nivel") || "";
+  const nivelParam = params.get("nivel") || "";
+  const niveis = nivelParam ? nivelParam.split(',').map(s => s.trim()).filter(Boolean) : [];
 
         // Atualiza título para indicar os filtros ativos
         const headerTitle = document.querySelector('.header h1');
@@ -375,7 +376,25 @@
             'natureza': 'Ciências da Natureza',
             'linguagens': 'Linguagens'
           }[materia] || materia;
-          headerTitle.textContent = `Questões — ${nomeArea}`;
+
+          const todosPossiveis = ['facil','medio','dificil','impossivel'];
+          const displayNivel = {
+            'facil': 'Fácil',
+            'medio': 'Médio',
+            'dificil': 'Difícil',
+            'impossivel': 'Impossível'
+          };
+
+          let nivelTexto = '';
+          if (niveis.length === todosPossiveis.length && todosPossiveis.every(n => niveis.includes(n))) {
+            nivelTexto = ' — Todos níveis';
+          } else if (niveis.length === 1) {
+            nivelTexto = ` — Nível: ${displayNivel[niveis[0]] || niveis[0]}`;
+          } else if (niveis.length > 1) {
+            nivelTexto = ' — Vários níveis';
+          }
+
+          headerTitle.textContent = `Questões — ${nomeArea}${nivelTexto}`;
         }
 
         // Filtra as questões pelos novos campos
@@ -392,15 +411,15 @@
             match = match && (q.componente === componente);
           }
           
-          // Filtro por nivel
-          if (nivel) {
-            match = match && (q.nivel === nivel);
+          // Filtro por nivel (suporta múltiplos níveis via vírgula)
+          if (niveis.length > 0) {
+            match = match && (niveis.includes(q.nivel));
           }
           
           return match;
         });
 
-        console.log(`Filtros aplicados: area=${materia}, componente=${componente}, nivel=${nivel}`);
+        console.log(`Filtros aplicados: area=${materia}, componente=${componente}, niveis=${niveis.join('|')}`);
         console.log(`Questões encontradas: ${questoesFiltradas.length}`);
 
         if (questoesFiltradas.length === 0) {

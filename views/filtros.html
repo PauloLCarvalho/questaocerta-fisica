@@ -39,14 +39,22 @@
       </div>
 
       <div class="form-group">
-        <label for="nivel">Nível de Dificuldade</label>
-        <select id="nivel" name="nivel" required>
-          <option value="">-- Selecione --</option>
-          <option value="facil">Fácil</option>
-          <option value="medio">Médio</option>
-          <option value="dificil">Difícil</option>
-          <option value="impossivel">Impossível</option>
-        </select>
+        <label>Nível de Dificuldade</label>
+        <div id="niveis" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap:8px;">
+          <label style="display:flex; align-items:center; gap:8px; font-weight:500;">
+            <input type="checkbox" name="nivel" value="facil"> Fácil
+          </label>
+          <label style="display:flex; align-items:center; gap:8px; font-weight:500;">
+            <input type="checkbox" name="nivel" value="medio"> Médio
+          </label>
+          <label style="display:flex; align-items:center; gap:8px; font-weight:500;">
+            <input type="checkbox" name="nivel" value="dificil"> Difícil
+          </label>
+          <label style="display:flex; align-items:center; gap:8px; font-weight:500;">
+            <input type="checkbox" name="nivel" value="impossivel"> Impossível
+          </label>
+        </div>
+        <small style="color:#6b7280; display:block; margin-top:6px;">Selecione um ou mais níveis.</small>
       </div>
 
       <button type="submit" class="btn-iniciar">Iniciar</button>
@@ -103,18 +111,18 @@
     document.getElementById('form-filtros').addEventListener('submit', (e) => {
       e.preventDefault();
       const componente = document.getElementById('componente').value;
-      const nivel = document.getElementById('nivel').value;
-      
-      if (!componente || !nivel) {
-        alert('Por favor, selecione componente e nível.');
+      const niveisSelecionados = Array.from(document.querySelectorAll('input[name="nivel"]:checked')).map(i => i.value);
+
+      if (!componente || niveisSelecionados.length === 0) {
+        alert('Por favor, selecione o componente e ao menos um nível.');
         return;
       }
 
       // Redirecionar para questões com os filtros
       if (area === 'simulado') {
-        window.location.href = `simulado.html?componente=${componente}&nivel=${nivel}`;
+        window.location.href = `simulado.html?componente=${componente}&nivel=${encodeURIComponent(niveisSelecionados.join(','))}`;
       } else {
-        window.location.href = `questoes.html?materia=${area}&componente=${componente}&nivel=${nivel}`;
+        window.location.href = `questoes.html?materia=${area}&componente=${componente}&nivel=${encodeURIComponent(niveisSelecionados.join(','))}`;
       }
     });
   </script>

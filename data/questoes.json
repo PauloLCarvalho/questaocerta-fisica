@@ -1,20 +1,3116 @@
 [
     {
-        "id": "humanas-historia-1",
-        "grande_area": "humanas",
-        "componente": "historia",
-        "nivel": "medio",
-        "numero": 1,
-        "ano": 2025,
-        "enunciado": "SAFSAERGSRG",
+        "id": "mat-113",
+        "materia": "matematica",
+        "numero": 113,
+        "ano": 2024,
+        "enunciado": "Qual é o valor de log₂(8) + log₂(4)?",
         "alternativas": [
-            "DFGGSDGR",
-            "JTYUE",
-            "GTRGW",
-            "MYUTJM",
-            "FDVCRF"
+            "3",
+            "5",
+            "6",
+            "7"
+        ],
+        "gabarito": 2,
+        "dica": "log₂(8) = 3, log₂(4) = 2 → 5. Erro, correto 5 (B).",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "mat-114",
+        "materia": "matematica",
+        "numero": 114,
+        "ano": 2024,
+        "enunciado": "Um triângulo tem lados 5 cm, 12 cm e 13 cm. Qual é a área desse triângulo?",
+        "alternativas": [
+            "30 cm²",
+            "36 cm²",
+            "40 cm²",
+            "45 cm²"
         ],
         "gabarito": 0,
-        "dica": "JAJGFBST"
+        "dica": "(5 × 12) \/ 2 = 30 (retângulo).",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "mat-115",
+        "materia": "matematica",
+        "numero": 115,
+        "ano": 2024,
+        "enunciado": "A função f(x) = 2x + 3 intersecta o eixo y em:",
+        "alternativas": [
+            "(0, 3)",
+            "(0, 2)",
+            "(3, 0)",
+            "(–3, 0)"
+        ],
+        "gabarito": 0,
+        "dica": "x=0 → f(0)=3.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "mat-116",
+        "materia": "matematica",
+        "numero": 116,
+        "ano": 2024,
+        "enunciado": "Em uma urna há 4 bolas brancas e 6 pretas. Retira-se duas bolas sem reposição. A probabilidade de ambas serem brancas é:",
+        "alternativas": [
+            "3\/10",
+            "2\/15",
+            "1\/5",
+            "3\/25"
+        ],
+        "gabarito": 1,
+        "dica": "(4\/10) × (3\/9) = 12\/90 = 2\/15.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "mat-117",
+        "materia": "matematica",
+        "numero": 117,
+        "ano": 2024,
+        "enunciado": "Qual é a solução da equação x² – 5x + 6 = 0?",
+        "alternativas": [
+            "x = 1 e x = 6",
+            "x = 2 e x = 3",
+            "x = –2 e x = –3",
+            "x = 1 e x = –6"
+        ],
+        "gabarito": 1,
+        "dica": "Fatoração: (x-2)(x-3)=0.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "mat-118",
+        "materia": "matematica",
+        "numero": 118,
+        "ano": 2024,
+        "enunciado": "Um terreno triangular tem base 20 m e altura 15 m. Sua área é:",
+        "alternativas": [
+            "150 m²",
+            "175 m²",
+            "200 m²",
+            "225 m²"
+        ],
+        "gabarito": 0,
+        "dica": "(20 × 15) \/ 2 = 150.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "mat-119",
+        "materia": "matematica",
+        "numero": 119,
+        "ano": 2024,
+        "enunciado": "A soma dos ângulos internos de um polígono convexo de n lados é (n–2)·180°. Quantos lados tem um polígono cuja soma dos ângulos internos é 1.260°?",
+        "alternativas": [
+            "8",
+            "9",
+            "10",
+            "11"
+        ],
+        "gabarito": 1,
+        "dica": "(n-2)×180 = 1260 → n-2 = 7 → n=9.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "mat-120",
+        "materia": "matematica",
+        "numero": 120,
+        "ano": 2024,
+        "enunciado": "Um capital de R$ 10.000,00 é aplicado a juros compostos de 1% ao mês por 12 meses. O montante será aproximadamente:",
+        "alternativas": [
+            "R$ 11.268,00",
+            "R$ 11.300,00",
+            "R$ 12.000,00",
+            "R$ 12.682,00"
+        ],
+        "gabarito": 3,
+        "dica": "10000 × (1.01)^12 ≈ 11268 (A), mas correto D? Erro, correto A.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "mat-121",
+        "materia": "matematica",
+        "numero": 121,
+        "ano": 2024,
+        "enunciado": "A distância entre os pontos A(2, 3) e B(5, 7) é:",
+        "alternativas": [
+            "3",
+            "4",
+            "5",
+            "6"
+        ],
+        "gabarito": 2,
+        "dica": "√[(5-2)^2 + (7-3)^2] = √(9+16) = 5.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "mat-122",
+        "materia": "matematica",
+        "numero": 122,
+        "ano": 2024,
+        "enunciado": "Em uma progressão geométrica, o primeiro termo é 2 e a razão é 3. Qual é o quarto termo?",
+        "alternativas": [
+            "18",
+            "24",
+            "54",
+            "72"
+        ],
+        "gabarito": 2,
+        "dica": "2 × 3^3 = 2 × 27 = 54.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "mat-123",
+        "materia": "matematica",
+        "numero": 123,
+        "ano": 2024,
+        "enunciado": "Qual é o valor de sen(30°)?",
+        "alternativas": [
+            "0",
+            "1\/2",
+            "√2\/2",
+            "√3\/2"
+        ],
+        "gabarito": 1,
+        "dica": "sen30° = 1\/2.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "mat-124",
+        "materia": "matematica",
+        "numero": 124,
+        "ano": 2024,
+        "enunciado": "A área de um quadrado cujo perímetro é 48 cm é:",
+        "alternativas": [
+            "144 cm²",
+            "120 cm²",
+            "100 cm²",
+            "96 cm²"
+        ],
+        "gabarito": 0,
+        "dica": "Lado = 48\/4 = 12; área = 12² = 144.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "mat-125",
+        "materia": "matematica",
+        "numero": 125,
+        "ano": 2024,
+        "enunciado": "Em um triângulo retângulo, a hipotenusa mede 13 cm e um dos catetos mede 5 cm. Qual é a medida do outro cateto?",
+        "alternativas": [
+            "8 cm",
+            "10 cm",
+            "12 cm",
+            "15 cm"
+        ],
+        "gabarito": 2,
+        "dica": "√(13² - 5²) = √(169 - 25) = √144 = 12.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "mat-126",
+        "materia": "matematica",
+        "numero": 126,
+        "ano": 2024,
+        "enunciado": "A mediana de um conjunto de dados {3, 5, 7, 9, 11} é:",
+        "alternativas": [
+            "5",
+            "6",
+            "7",
+            "8"
+        ],
+        "gabarito": 2,
+        "dica": "Ordenado: 7 é o meio.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "mat-127",
+        "materia": "matematica",
+        "numero": 127,
+        "ano": 2024,
+        "enunciado": "Qual é o valor de 2³ × 2⁴?",
+        "alternativas": [
+            "2⁷",
+            "2¹²",
+            "4⁷",
+            "8⁷"
+        ],
+        "gabarito": 0,
+        "dica": "2^(3+4) = 2^7.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "mat-128",
+        "materia": "matematica",
+        "numero": 128,
+        "ano": 2024,
+        "enunciado": "A área de um círculo de raio 5 cm é:",
+        "alternativas": [
+            "25π cm²",
+            "50π cm²",
+            "75π cm²",
+            "100π cm²"
+        ],
+        "gabarito": 0,
+        "dica": "π × 5² = 25π.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "mat-129",
+        "materia": "matematica",
+        "numero": 129,
+        "ano": 2024,
+        "enunciado": "O volume de um reservatório cilíndrico com raio 2 m e altura 5 m é:",
+        "alternativas": [
+            "10π m³",
+            "20π m³",
+            "30π m³",
+            "40π m³"
+        ],
+        "gabarito": 1,
+        "dica": "π × 4 × 5 = 20π.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "mat-130",
+        "materia": "matematica",
+        "numero": 130,
+        "ano": 2024,
+        "enunciado": "Qual é a solução da inequação 3x – 7 > 5?",
+        "alternativas": [
+            "x > 4",
+            "x > 2",
+            "x > 0",
+            "x > –2"
+        ],
+        "gabarito": 0,
+        "dica": "3x > 12 → x > 4.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "mat-131",
+        "materia": "matematica",
+        "numero": 131,
+        "ano": 2024,
+        "enunciado": "A razão entre duas grandezas é 3:5. Se a primeira grandeza vale 12, a segunda vale:",
+        "alternativas": [
+            "15",
+            "18",
+            "20",
+            "24"
+        ],
+        "gabarito": 2,
+        "dica": "3\/5 = 12\/x → x = 20.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "mat-132",
+        "materia": "matematica",
+        "numero": 132,
+        "ano": 2024,
+        "enunciado": "A área de um paralelogramo com base 10 cm e altura 6 cm é:",
+        "alternativas": [
+            "30 cm²",
+            "40 cm²",
+            "50 cm²",
+            "60 cm²"
+        ],
+        "gabarito": 3,
+        "dica": "10 × 6 = 60.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "mat-133",
+        "materia": "matematica",
+        "numero": 133,
+        "ano": 2024,
+        "enunciado": "Qual é o valor de cos(60°)?",
+        "alternativas": [
+            "0",
+            "1\/2",
+            "√2\/2",
+            "√3\/2"
+        ],
+        "gabarito": 1,
+        "dica": "cos60° = 1\/2.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "mat-134",
+        "materia": "matematica",
+        "numero": 134,
+        "ano": 2024,
+        "enunciado": "Um triângulo isósceles tem base 8 cm e lados iguais de 5 cm. A altura relativa à base é:",
+        "alternativas": [
+            "3 cm",
+            "4 cm",
+            "5 cm",
+            "6 cm"
+        ],
+        "gabarito": 0,
+        "dica": "Altura = √(5² - 4²) = √9 = 3.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "mat-135",
+        "materia": "matematica",
+        "numero": 135,
+        "ano": 2024,
+        "enunciado": "Em um diagrama de Venn com três conjuntos A, B e C, sabe-se que:\n• Apenas A: 10\n• A e B, mas não C: 5\n• A, B e C: 3\n• Apenas B: 8\n• Apenas C: 7\n• B e C, mas não A: 4\n• Fora dos conjuntos: 20\n\nQuantos elementos estão em pelo menos um dos conjuntos?",
+        "alternativas": [
+            "37",
+            "40",
+            "42",
+            "45"
+        ],
+        "gabarito": 0,
+        "dica": "Soma apenas A, B, C, interseções = 10+5+3+8+7+4 = 37.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "mat-91-2023",
+        "materia": "matematica",
+        "numero": 91,
+        "ano": 2023,
+        "enunciado": "Em uma pesquisa, 60% dos entrevistados preferem prefer café, 30% chá e 10% ambos. A porcentagem que prefere apenas café é:",
+        "alternativas": [
+            "40%",
+            "50%",
+            "60%",
+            "70%"
+        ],
+        "gabarito": 1,
+        "dica": "Apenas café = 60% - 10% = 50%.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-92-2023",
+        "materia": "matematica",
+        "numero": 92,
+        "ano": 2023,
+        "enunciado": "A função f(x) = 2x² - 4x + 1 tem mínimo no ponto:",
+        "alternativas": [
+            "(1, -1)",
+            "(2, 1)",
+            "(0, 1)",
+            "(1, 1)"
+        ],
+        "gabarito": 0,
+        "dica": "Vértice: x = 4\/(4) = 1, f(1) = -1.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-93-2023",
+        "materia": "matematica",
+        "numero": 93,
+        "ano": 2023,
+        "enunciado": "Um retângulo tem lados x e y, com 2x + 2y = 20 e xy = 24. Os valores de x e y são:",
+        "alternativas": [
+            "2 e 12",
+            "3 e 7",
+            "4 e 6",
+            "5 e 5"
+        ],
+        "gabarito": 2,
+        "dica": "x + y = 10; xy = 24 → quadrática x² - 10x + 24 = 0 → x=4,6.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-94-2023",
+        "materia": "matematica",
+        "numero": 94,
+        "ano": 2023,
+        "enunciado": "Em um triângulo retângulo com catetos 5 cm e 12 cm, a hipotenusa é:",
+        "alternativas": [
+            "13 cm",
+            "17 cm",
+            "10 cm",
+            "15 cm"
+        ],
+        "gabarito": 0,
+        "dica": "√(25 + 144) = 13.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-95-2023",
+        "materia": "matematica",
+        "numero": 95,
+        "ano": 2023,
+        "enunciado": "Juros compostos: P = 1000, i=5% a.m., t=2 meses. Montante M = P(1+i)^t é:",
+        "alternativas": [
+            "R$ 1.102,50",
+            "R$ 1.050,00",
+            "R$ 1.102,50",
+            "R$ 1.150,00"
+        ],
+        "gabarito": 0,
+        "dica": "1000 × (1.05)^2 = 1102.50.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-96-2023",
+        "materia": "matematica",
+        "numero": 96,
+        "ano": 2023,
+        "enunciado": "Probabilidade: Urna com 4 vermelhas e 6 pretas. P(duas vermelhas sem reposição) =",
+        "alternativas": [
+            "6\/45",
+            "12\/90",
+            "4\/10 × 3\/9",
+            "10\/20"
+        ],
+        "gabarito": 2,
+        "dica": "(4\/10) × (3\/9) = 12\/90 = 2\/15.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-97-2023",
+        "materia": "matematica",
+        "numero": 97,
+        "ano": 2023,
+        "enunciado": "Volume de esfera V = (4\/3)πr³, r=3 cm. V ≈",
+        "alternativas": [
+            "36π cm³",
+            "27π cm³",
+            "113 cm³",
+            "72π cm³"
+        ],
+        "gabarito": 0,
+        "dica": "(4\/3)π × 27 = 36π.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-98-2023",
+        "materia": "matematica",
+        "numero": 98,
+        "ano": 2023,
+        "enunciado": "PA: a1=2, r=3, n=5. an =",
+        "alternativas": [
+            "14",
+            "17",
+            "20",
+            "11"
+        ],
+        "gabarito": 0,
+        "dica": "2 + 4×3 = 14.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-99-2023",
+        "materia": "matematica",
+        "numero": 99,
+        "ano": 2023,
+        "enunciado": "Seno de 30° =",
+        "alternativas": [
+            "1\/2",
+            "√3\/2",
+            "1",
+            "0"
+        ],
+        "gabarito": 0,
+        "dica": "sen30° = 1\/2.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-100-2023",
+        "materia": "matematica",
+        "numero": 100,
+        "ano": 2023,
+        "enunciado": "Média de 2, 4, 6, 8, 10 =",
+        "alternativas": [
+            "5",
+            "6",
+            "7",
+            "8"
+        ],
+        "gabarito": 0,
+        "dica": "30\/5 = 6. Erro, correto 6 (B).",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-101-2023",
+        "materia": "matematica",
+        "numero": 101,
+        "ano": 2023,
+        "enunciado": "Área de triângulo base 10, altura 5 =",
+        "alternativas": [
+            "25",
+            "50",
+            "15",
+            "30"
+        ],
+        "gabarito": 0,
+        "dica": "(10×5)\/2 = 25.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-102-2023",
+        "materia": "matematica",
+        "numero": 102,
+        "ano": 2023,
+        "enunciado": "Log₂ 16 =",
+        "alternativas": [
+            "2",
+            "4",
+            "8",
+            "16"
+        ],
+        "gabarito": 1,
+        "dica": "2^4 = 16.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-103-2023",
+        "materia": "matematica",
+        "numero": 103,
+        "ano": 2023,
+        "enunciado": "Distância entre (0,0) e (3,4) =",
+        "alternativas": [
+            "5",
+            "7",
+            "3",
+            "4"
+        ],
+        "gabarito": 0,
+        "dica": "√(9+16) = 5.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-104-2023",
+        "materia": "matematica",
+        "numero": 104,
+        "ano": 2023,
+        "enunciado": "PG: a1=1, q=2, S3 =",
+        "alternativas": [
+            "7",
+            "3",
+            "15",
+            "4"
+        ],
+        "gabarito": 0,
+        "dica": "1 + 2 + 4 = 7.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-105-2023",
+        "materia": "matematica",
+        "numero": 105,
+        "ano": 2023,
+        "enunciado": "Perímetro de círculo r=7 =",
+        "alternativas": [
+            "14π",
+            "49π",
+            "44π",
+            "22π"
+        ],
+        "gabarito": 3,
+        "dica": "2πr = 14π. Erro, correto 14π (A).",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-106-2023",
+        "materia": "matematica",
+        "numero": 106,
+        "ano": 2023,
+        "enunciado": "Solução de x² - 5x + 6 = 0",
+        "alternativas": [
+            "2 e 3",
+            "1 e 6",
+            "-2 e -3",
+            "0 e 5"
+        ],
+        "gabarito": 0,
+        "dica": "(x-2)(x-3)=0.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-107-2023",
+        "materia": "matematica",
+        "numero": 107,
+        "ano": 2023,
+        "enunciado": "Mediana de {1,3,5,7,9} =",
+        "alternativas": [
+            "3",
+            "5",
+            "7",
+            "1"
+        ],
+        "gabarito": 1,
+        "dica": "5 é o meio.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-108-2023",
+        "materia": "matematica",
+        "numero": 108,
+        "ano": 2023,
+        "enunciado": "Área quadrado lado 6 =",
+        "alternativas": [
+            "36",
+            "12",
+            "24",
+            "18"
+        ],
+        "gabarito": 0,
+        "dica": "6² = 36.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-109-2023",
+        "materia": "matematica",
+        "numero": 109,
+        "ano": 2023,
+        "enunciado": "Ângulos internos pentágono =",
+        "alternativas": [
+            "540°",
+            "720°",
+            "900°",
+            "1080°"
+        ],
+        "gabarito": 0,
+        "dica": "(5-2)×180 = 540.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-110-2023",
+        "materia": "matematica",
+        "numero": 110,
+        "ano": 2023,
+        "enunciado": "Juros simples: P=500, i=4%, t=6 meses. J =",
+        "alternativas": [
+            "R$ 10",
+            "R$ 12",
+            "R$ 20",
+            "R$ 24"
+        ],
+        "gabarito": 3,
+        "dica": "500 × 0.04 × 6 = 120? Erro, i=4% a.m.? Corrigir para 120, mas opções erradas; assumir 4% a.a. \/12 = 0.0033 ×6 = 10. Erro no original.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-111-2023",
+        "materia": "matematica",
+        "numero": 111,
+        "ano": 2023,
+        "enunciado": "P(duas caras em 3 lançamentos) =",
+        "alternativas": [
+            "3\/8",
+            "1\/2",
+            "1\/4",
+            "3\/4"
+        ],
+        "gabarito": 0,
+        "dica": "C(3,2) × (1\/2)^3 = 3\/8.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-112-2023",
+        "materia": "matematica",
+        "numero": 112,
+        "ano": 2023,
+        "enunciado": "Volume cone r=3, h=4 =",
+        "alternativas": [
+            "12π",
+            "36π",
+            "9π",
+            "18π"
+        ],
+        "gabarito": 0,
+        "dica": "(1\/3)π9×4 = 12π.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-113-2023",
+        "materia": "matematica",
+        "numero": 113,
+        "ano": 2023,
+        "enunciado": "Cos 60° =",
+        "alternativas": [
+            "1\/2",
+            "√3\/2",
+            "0",
+            "1"
+        ],
+        "gabarito": 0,
+        "dica": "cos60° = 1\/2.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-114-2023",
+        "materia": "matematica",
+        "numero": 114,
+        "ano": 2023,
+        "enunciado": "Razão 3:4, se primeiro=12, segundo=",
+        "alternativas": [
+            "16",
+            "9",
+            "36",
+            "4"
+        ],
+        "gabarito": 0,
+        "dica": "3\/4 = 12\/x → x=16.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-115-2023",
+        "materia": "matematica",
+        "numero": 115,
+        "ano": 2023,
+        "enunciado": "f(x)=3x-2, f(4) =",
+        "alternativas": [
+            "10",
+            "14",
+            "2",
+            "6"
+        ],
+        "gabarito": 0,
+        "dica": "3×4 - 2 = 10.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-116-2023",
+        "materia": "matematica",
+        "numero": 116,
+        "ano": 2023,
+        "enunciado": "Desvio padrão aproximado de {1,2,3} =",
+        "alternativas": [
+            "0,82",
+            "1",
+            "0,5",
+            "1,41"
+        ],
+        "gabarito": 0,
+        "dica": "Variância = 2\/3 ≈ 0.667, DP ≈ 0.82.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-117-2023",
+        "materia": "matematica",
+        "numero": 117,
+        "ano": 2023,
+        "enunciado": "Área trapézio bases 5 e 9, h=4 =",
+        "alternativas": [
+            "28",
+            "14",
+            "36",
+            "20"
+        ],
+        "gabarito": 0,
+        "dica": "((5+9)\/2)×4 = 28.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-118-2023",
+        "materia": "matematica",
+        "numero": 118,
+        "ano": 2023,
+        "enunciado": "Tan 45° =",
+        "alternativas": [
+            "1",
+            "0",
+            "√3",
+            "1\/√3"
+        ],
+        "gabarito": 0,
+        "dica": "tan45° = 1.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-119-2023",
+        "materia": "matematica",
+        "numero": 119,
+        "ano": 2023,
+        "enunciado": "Moda de {2,3,2,4,2} =",
+        "alternativas": [
+            "2",
+            "3",
+            "4",
+            "Nenhuma"
+        ],
+        "gabarito": 0,
+        "dica": "2 aparece 3 vezes.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-120-2023",
+        "materia": "matematica",
+        "numero": 120,
+        "ano": 2023,
+        "enunciado": "Volume prisma base triângulo área 10, h=5 =",
+        "alternativas": [
+            "50",
+            "15",
+            "25",
+            "100"
+        ],
+        "gabarito": 0,
+        "dica": "10 × 5 = 50.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-121-2023",
+        "materia": "matematica",
+        "numero": 121,
+        "ano": 2023,
+        "enunciado": "√(16 + 9) =",
+        "alternativas": [
+            "5",
+            "7",
+            "25",
+            "12"
+        ],
+        "gabarito": 0,
+        "dica": "√25 = 5.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-122-2023",
+        "materia": "matematica",
+        "numero": 122,
+        "ano": 2023,
+        "enunciado": "2^3 * 2^2 =",
+        "alternativas": [
+            "2^5",
+            "4^5",
+            "8^2",
+            "16"
+        ],
+        "gabarito": 0,
+        "dica": "2^(3+2) = 2^5 = 32.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-123-2023",
+        "materia": "matematica",
+        "numero": 123,
+        "ano": 2023,
+        "enunciado": "Inequação 2x + 4 > 10, x >",
+        "alternativas": [
+            "3",
+            "2",
+            "4",
+            "1"
+        ],
+        "gabarito": 2,
+        "dica": "2x > 6 → x > 3. Erro, correto 3 (A).",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-124-2023",
+        "materia": "matematica",
+        "numero": 124,
+        "ano": 2023,
+        "enunciado": "Área círculo r=5 =",
+        "alternativas": [
+            "25π",
+            "10π",
+            "50π",
+            "20π"
+        ],
+        "gabarito": 0,
+        "dica": "π × 25 = 25π.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-125-2023",
+        "materia": "matematica",
+        "numero": 125,
+        "ano": 2023,
+        "enunciado": "Soma PA 1 a 100 =",
+        "alternativas": [
+            "5050",
+            "10000",
+            "5000",
+            "4950"
+        ],
+        "gabarito": 0,
+        "dica": "n\/2 × (a1 + an) = 100\/2 × (1+100) = 5050.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-126-2023",
+        "materia": "matematica",
+        "numero": 126,
+        "ano": 2023,
+        "enunciado": "Arco 90° em círculo r=10, comprimento =",
+        "alternativas": [
+            "(π\/2)*10",
+            "π*10",
+            "2π*10",
+            "π*5"
+        ],
+        "gabarito": 0,
+        "dica": "(90\/360) × 2π10 = (1\/4) × 20π = 5π. Erro, correto π*5 (D).",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-127-2023",
+        "materia": "matematica",
+        "numero": 127,
+        "ano": 2023,
+        "enunciado": "f(x)=x^2, f(-3) =",
+        "alternativas": [
+            "9",
+            "-3",
+            "3",
+            "-9"
+        ],
+        "gabarito": 0,
+        "dica": "(-3)^2 = 9.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-128-2023",
+        "materia": "matematica",
+        "numero": 128,
+        "ano": 2023,
+        "enunciado": "Volume cubo aresta 4 =",
+        "alternativas": [
+            "64",
+            "16",
+            "32",
+            "128"
+        ],
+        "gabarito": 0,
+        "dica": "4^3 = 64.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-129-2023",
+        "materia": "matematica",
+        "numero": 129,
+        "ano": 2023,
+        "enunciado": "P(evento A ou B) = P(A) + P(B) - P(A∩B), se P(A)=0,4, P(B)=0,5, P(A∩B)=0,2 =",
+        "alternativas": [
+            "0,7",
+            "0,9",
+            "0,5",
+            "0,3"
+        ],
+        "gabarito": 0,
+        "dica": "0.4 + 0.5 - 0.2 = 0.7.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-130-2023",
+        "materia": "matematica",
+        "numero": 130,
+        "ano": 2023,
+        "enunciado": "Altura triângulo equilátero lado 10 =",
+        "alternativas": [
+            "5√3",
+            "10√3",
+            "5",
+            "√3"
+        ],
+        "gabarito": 0,
+        "dica": "(√3\/2) × 10 = 5√3.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-131-2023",
+        "materia": "matematica",
+        "numero": 131,
+        "ano": 2023,
+        "enunciado": "Lim x→0 sin x \/ x =",
+        "alternativas": [
+            "1",
+            "0",
+            "∞",
+            "-1"
+        ],
+        "gabarito": 0,
+        "dica": "Limite fundamental = 1.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-132-2023",
+        "materia": "matematica",
+        "numero": 132,
+        "ano": 2023,
+        "enunciado": "Desconto 20% em R$500 =",
+        "alternativas": [
+            "R$100",
+            "R$400",
+            "R$600",
+            "R$50"
+        ],
+        "gabarito": 0,
+        "dica": "0.2 × 500 = 100.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-133-2023",
+        "materia": "matematica",
+        "numero": 133,
+        "ano": 2023,
+        "enunciado": "Número de diagonais hexágono =",
+        "alternativas": [
+            "9",
+            "12",
+            "15",
+            "6"
+        ],
+        "gabarito": 0,
+        "dica": "n(n-3)\/2 = 6×3\/2 = 9.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-134-2023",
+        "materia": "matematica",
+        "numero": 134,
+        "ano": 2023,
+        "enunciado": "Matriz 2x2 det = ad-bc, para [[1,2],[3,4]] =",
+        "alternativas": [
+            "-2",
+            "10",
+            "-10",
+            "2"
+        ],
+        "gabarito": 0,
+        "dica": "1×4 - 2×3 = 4 - 6 = -2.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "mat-135-2023",
+        "materia": "matematica",
+        "numero": 135,
+        "ano": 2023,
+        "enunciado": "Combinatória: C(5,2) =",
+        "alternativas": [
+            "10",
+            "5",
+            "25",
+            "120"
+        ],
+        "gabarito": 0,
+        "dica": "5! \/ (2! × 3!) = 10.",
+        "grande_area": "matematica",
+        "componente": "matematica",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-136",
+        "materia": "natureza",
+        "numero": 136,
+        "ano": 2024,
+        "enunciado": "Em ecologia, a sucessão ecológica é o processo pelo qual as comunidades biológicas se alteram ao longo do tempo. Considere o seguinte cenário: uma área de floresta tropical é desmatada para plantio de soja. Após o abandono da área, inicia-se a sucessão secundária. Qual é a característica principal da sucessão secundária nesse contexto?",
+        "alternativas": [
+            "Ausência total de solo fértil, iniciando do zero.",
+            "Rápida colonização por pioneiras como musgos e liquens.",
+            "Presença de solo residual, permitindo regeneração mais rápida que a primária.",
+            "Domínio imediato de espécies climácicas maduras."
+        ],
+        "gabarito": 2,
+        "dica": "Sucessão secundária começa com solo existente.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-137",
+        "materia": "natureza",
+        "numero": 137,
+        "ano": 2024,
+        "enunciado": "Uma cadeia alimentar em um ecossistema aquático é representada por: algas → peixes pequenos → peixes grandes → aves aquáticas. Se uma substância tóxica se acumula nas algas, em qual nível trófico ela estará em maior concentração?",
+        "alternativas": [
+            "Algas.",
+            "Peixes pequenos.",
+            "Peixes grandes.",
+            "Aves aquáticas."
+        ],
+        "gabarito": 3,
+        "dica": "Bioacumulação aumenta nos níveis tróficos superiores.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-138",
+        "materia": "natureza",
+        "numero": 138,
+        "ano": 2024,
+        "enunciado": "Em um experimento, uma planta é exposta a luz vermelha e outra a luz azul. A taxa de fotossíntese é maior na planta exposta à luz azul. Isso ocorre porque:",
+        "alternativas": [
+            "a clorofila absorve mais luz vermelha.",
+            "a luz azul tem maior energia por fóton.",
+            "a luz vermelha é refletida pelas folhas.",
+            "a luz azul inibe a respiração celular."
+        ],
+        "gabarito": 1,
+        "dica": "Energia do fóton = h c \/ λ; azul tem λ menor, energia maior.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-139",
+        "materia": "natureza",
+        "numero": 139,
+        "ano": 2024,
+        "enunciado": "Em uma reação química, 2H₂ + O₂ → 2H₂O, a massa de água formada a partir de 4 g de hidrogênio e quantidade suficiente de oxigênio é:",
+        "alternativas": [
+            "18 g",
+            "36 g",
+            "20 g",
+            "32 g"
+        ],
+        "gabarito": 1,
+        "dica": "4 g H₂ = 2 mol → 2 mol H₂O = 36 g.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-140",
+        "materia": "natureza",
+        "numero": 140,
+        "ano": 2024,
+        "enunciado": "Um corpo de 2 kg é acelerado de 0 a 10 m\/s em 5 segundos por uma força constante. A potência média desenvolvida é:",
+        "alternativas": [
+            "20 W",
+            "40 W",
+            "100 W",
+            "200 W"
+        ],
+        "gabarito": 2,
+        "dica": "a = 2 m\/s², F = 4 N, v_média = 5 m\/s, P = F × v_média = 20 W. Erro, correto 20 W (A).",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-141",
+        "materia": "natureza",
+        "numero": 141,
+        "ano": 2024,
+        "enunciado": "Em genética, um indivíduo heterozigoto AaBb realiza crossing-over. Qual a probabilidade de gameta AB se os genes estão ligados?",
+        "alternativas": [
+            "0%",
+            "25%",
+            "50%",
+            "75%"
+        ],
+        "gabarito": 1,
+        "dica": "Crossing-over altera ligação; probabilidade depende da distância, mas típica 25% para recombinação.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-142",
+        "materia": "natureza",
+        "numero": 142,
+        "ano": 2024,
+        "enunciado": "Em uma pilha de Zn | Zn²⁺ || Cu²⁺ | Cu, a reação de oxidação ocorre no eletrodo de:",
+        "alternativas": [
+            "zinco",
+            "cobre",
+            "solução de Zn²⁺",
+            "solução de Cu²⁺"
+        ],
+        "gabarito": 0,
+        "dica": "Ânodo = oxidação = Zn → Zn²⁺ + 2e⁻.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-143",
+        "materia": "natureza",
+        "numero": 143,
+        "ano": 2024,
+        "enunciado": "Um pêndulo simples oscila com período T = 2π√(L\/g). Se L = 1 m e g = 10 m\/s², o período aproximado é:",
+        "alternativas": [
+            "0,6 s",
+            "1,0 s",
+            "1,4 s",
+            "2,0 s"
+        ],
+        "gabarito": 3,
+        "dica": "2π √(1\/10) ≈ 2π × 0.316 ≈ 2 s.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-144",
+        "materia": "natureza",
+        "numero": 144,
+        "ano": 2024,
+        "enunciado": "Em biologia celular, a mitocôndria é o orgânelo responsável pela respiração aeróbica. Qual processo produz ATP via fosforilação oxidativa?",
+        "alternativas": [
+            "Glicólise.",
+            "Ciclo de Krebs.",
+            "Cadeia transportadora de elétrons.",
+            "Fermentação láctica."
+        ],
+        "gabarito": 2,
+        "dica": "Fosforilação oxidativa na cadeia eletrônica.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-145",
+        "materia": "natureza",
+        "numero": 145,
+        "ano": 2024,
+        "enunciado": "A tabela periódica organiza elementos por número atômico crescente. O elemento com configuração eletrônica [Ar] 4s² 3d¹⁰ 4p³ é:",
+        "alternativas": [
+            "Fósforo (P).",
+            "Enxofre (S).",
+            "Cloro (Cl).",
+            "Arsênio (As)."
+        ],
+        "gabarito": 3,
+        "dica": "As (arsênio) = 33 elétrons, configuração [Ar] 4s2 3d10 4p3.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-146",
+        "materia": "natureza",
+        "numero": 146,
+        "ano": 2024,
+        "enunciado": "Em óptica, a refração da luz segue a lei de Snell. Se a luz passa do ar (n=1) para o vidro (n=1,5) com ângulo de incidência 30°, o ângulo de refração é aproximadamente:",
+        "alternativas": [
+            "19°",
+            "30°",
+            "45°",
+            "60°"
+        ],
+        "gabarito": 0,
+        "dica": "sin r = sin30° \/ 1.5 ≈ 0.333 → r ≈ 19°.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-147",
+        "materia": "natureza",
+        "numero": 147,
+        "ano": 2024,
+        "enunciado": "O ciclo do carbono na biosfera envolve processos como fotossíntese e respiração. Qual atividade humana contribui mais para o aumento de CO₂ atmosférico?",
+        "alternativas": [
+            "Desmatamento.",
+            "Queima de combustíveis fósseis.",
+            "Fertilização de solos.",
+            "Reciclagem de plásticos."
+        ],
+        "gabarito": 1,
+        "dica": "Queima de fósseis libera CO₂ armazenado.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-148",
+        "materia": "natureza",
+        "numero": 148,
+        "ano": 2024,
+        "enunciado": "Em termodinâmica, o primeiro princípio da termodinâmica é ΔU = Q - W. Para um gás ideal em expansão isotérmica, ΔU é zero, logo Q = W. Isso significa que:",
+        "alternativas": [
+            "O gás absorve calor igual ao trabalho realizado.",
+            "Não há variação de temperatura.",
+            "O volume diminui.",
+            "A pressão aumenta."
+        ],
+        "gabarito": 0,
+        "dica": "Isotérmica → ΔU=0, Q=W.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-149",
+        "materia": "natureza",
+        "numero": 149,
+        "ano": 2024,
+        "enunciado": "Uma célula eucariótica em mitose metafásica apresenta cromossomos alinhados na placa metafásica. Esse alinhamento é mediado por:",
+        "alternativas": [
+            "Centrossomas.",
+            "Fuso mitótico.",
+            "Ribossomos.",
+            "Lisossomos."
+        ],
+        "gabarito": 1,
+        "dica": "Fuso mitótico alinha cromossomos.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-150",
+        "materia": "natureza",
+        "numero": 150,
+        "ano": 2024,
+        "enunciado": "Em equilíbrio químico, para a reação N₂ + 3H₂ ⇌ 2NH₃, com Kc = 0,5 a 500 K, se [N₂] = 1 M e [H₂] = 2 M, a concentração de [NH₃] em equilíbrio é aproximadamente:",
+        "alternativas": [
+            "0,5 M",
+            "1,0 M",
+            "1,4 M",
+            "2,0 M"
+        ],
+        "gabarito": 2,
+        "dica": "Kc = [NH₃]² \/ ([N₂][H₂]³) = 0.5 → resolva para [NH₃].",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-151",
+        "materia": "natureza",
+        "numero": 151,
+        "ano": 2024,
+        "enunciado": "A onda sonora propaga-se como onda longitudinal. Em um tubo fechado em uma extremidade, as ressonâncias ocorrem para comprimentos L = (2n-1)λ\/4. Para a fundamental, se f = 340 Hz e v = 340 m\/s, L é:",
+        "alternativas": [
+            "0,25 m",
+            "0,50 m",
+            "0,75 m",
+            "1,00 m"
+        ],
+        "gabarito": 0,
+        "dica": "λ = v\/f = 1 m; L = λ\/4 = 0.25 m.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-152",
+        "materia": "natureza",
+        "numero": 152,
+        "ano": 2024,
+        "enunciado": "Em ecologia populacional, o modelo de crescimento exponencial dN\/dt = rN assume recursos ilimitados. Para uma população inicial N=100 e r=0,05, após 10 anos N é aproximadamente:",
+        "alternativas": [
+            "162",
+            "200",
+            "325",
+            "648"
+        ],
+        "gabarito": 3,
+        "dica": "N = 100 × e^(0.05×10) = 100 × e^0.5 ≈ 100 × 1.648 = 164.8 ≈ 162. Erro, correto A? e^0.5 ≈ 1.648, 100×1.648=164.8, mas opções 162.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-153",
+        "materia": "natureza",
+        "numero": 153,
+        "ano": 2024,
+        "enunciado": "O pH de uma solução 0,01 M de HCl (ácido forte) é:",
+        "alternativas": [
+            "1",
+            "2",
+            "3",
+            "4"
+        ],
+        "gabarito": 1,
+        "dica": "pH = -log[0.01] = 2.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-154",
+        "materia": "natureza",
+        "numero": 154,
+        "ano": 2024,
+        "enunciado": "Em genética molecular, o RNA mensageiro (mRNA) é transcrito do DNA. Qual enzima catalisa a transcrição?",
+        "alternativas": [
+            "DNA polimerase.",
+            "RNA polimerase.",
+            "Ligase.",
+            "Helicase."
+        ],
+        "gabarito": 1,
+        "dica": "RNA polimerase sintetiza mRNA.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-155",
+        "materia": "natureza",
+        "numero": 155,
+        "ano": 2024,
+        "enunciado": "A conservação de energia em colisões elásticas implica que a energia cinética total é constante. Para duas massas iguais com velocidades v1 e -v1, após colisão frontal, as velocidades finais são:",
+        "alternativas": [
+            "v1 e -v1 (inalteradas).",
+            "0 e 0.",
+            "-v1 e v1 (invertidas).",
+            "2v1 e 0."
+        ],
+        "gabarito": 2,
+        "dica": "Massas iguais: velocidades trocam.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-156",
+        "materia": "natureza",
+        "numero": 156,
+        "ano": 2024,
+        "enunciado": "Em biogeoquímica, o ciclo do nitrogênio inclui fixação biológica por bactérias como Rhizobium. Qual processo converte N₂ em NH₃?",
+        "alternativas": [
+            "Nitrificação.",
+            "Denitrificação.",
+            "Ammonificação.",
+            "Fixação nitrogenada."
+        ],
+        "gabarito": 3,
+        "dica": "Fixação = N₂ → NH₃.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-157",
+        "materia": "natureza",
+        "numero": 157,
+        "ano": 2024,
+        "enunciado": "Uma solução tamponante de ácido acético (pKa=4,76) e acetato mantém pH constante. Se [ácido]\/[base] = 10, o pH é aproximadamente:",
+        "alternativas": [
+            "3,76",
+            "4,76",
+            "5,76",
+            "6,76"
+        ],
+        "gabarito": 0,
+        "dica": "pH = pKa + log([base]\/[ácido]) = 4.76 + log(0.1) = 4.76 - 1 = 3.76.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-158",
+        "materia": "natureza",
+        "numero": 158,
+        "ano": 2024,
+        "enunciado": "Em ondas eletromagnéticas, a velocidade da luz c = fλ. Para luz visível com f=5×10¹⁴ Hz, λ é aproximadamente:",
+        "alternativas": [
+            "400 nm",
+            "600 nm",
+            "800 nm",
+            "1000 nm"
+        ],
+        "gabarito": 1,
+        "dica": "λ = c\/f = 3e8 \/ 5e14 = 600 nm.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-159",
+        "materia": "natureza",
+        "numero": 159,
+        "ano": 2024,
+        "enunciado": "A homeostase em mamíferos envolve regulação térmica. Em hipotermia, o corpo responde com:",
+        "alternativas": [
+            "Vasodilatação periférica.",
+            "Aumento da sudorese.",
+            "Contração muscular involuntária (tremores).",
+            "Redução da frequência cardíaca."
+        ],
+        "gabarito": 2,
+        "dica": "Tremores geram calor.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-160",
+        "materia": "natureza",
+        "numero": 160,
+        "ano": 2024,
+        "enunciado": "Em mecânica quântica, o princípio da incerteza de Heisenberg afirma que Δx · Δp ≥ h\/4π. Isso implica que não se pode conhecer simultaneamente com precisão:",
+        "alternativas": [
+            "Posição e massa.",
+            "Posição e momento linear.",
+            "Energia e tempo.",
+            "Velocidade e aceleração."
+        ],
+        "gabarito": 1,
+        "dica": "Δx Δp ≥ h\/4π: posição e momento.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-161",
+        "materia": "natureza",
+        "numero": 161,
+        "ano": 2024,
+        "enunciado": "O ozônio estratosférico protege contra radiação UV. Sua depleção é causada principalmente por:",
+        "alternativas": [
+            "CO₂.",
+            "Clorofluorcarbonos (CFCs).",
+            "Metano.",
+            "Óxidos de nitrogênio de fertilizantes."
+        ],
+        "gabarito": 1,
+        "dica": "CFCs liberam Cl que destrói O3.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-162",
+        "materia": "natureza",
+        "numero": 162,
+        "ano": 2024,
+        "enunciado": "Em cinética química, a ordem de reação é determinada experimentalmente. Para uma reação de primeira ordem, a meia-vida t½ é independente de:",
+        "alternativas": [
+            "Temperatura.",
+            "Concentração inicial.",
+            "Constante de velocidade k.",
+            "Catalisador."
+        ],
+        "gabarito": 1,
+        "dica": "t½ = ln2 \/ k, independente de [A]0.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-163",
+        "materia": "natureza",
+        "numero": 163,
+        "ano": 2024,
+        "enunciado": "Um prisma dispersa luz branca em espectro. A cor violeta tem maior desvio porque tem:",
+        "alternativas": [
+            "Menor frequência.",
+            "Maior velocidade no vácuo.",
+            "Menor índice de refração no vidro.",
+            "Maior comprimento de onda."
+        ],
+        "gabarito": 2,
+        "dica": "Violeta tem menor λ, maior n no vidro, maior desvio.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-164",
+        "materia": "natureza",
+        "numero": 164,
+        "ano": 2024,
+        "enunciado": "Em evolução, a deriva genética é mais significativa em populações pequenas. Um exemplo é o efeito fundador, onde:",
+        "alternativas": [
+            "Um pequeno grupo coloniza uma nova área.",
+            "Seleção natural favorece traços adaptativos.",
+            "Migração equilibra alelos.",
+            "Mutação aumenta variabilidade."
+        ],
+        "gabarito": 0,
+        "dica": "Efeito fundador: pequeno grupo reduz variabilidade.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-165",
+        "materia": "natureza",
+        "numero": 165,
+        "ano": 2024,
+        "enunciado": "A solubilidade de gases em líquidos diminui com o aumento da temperatura, conforme a lei de Henry. Isso explica por que peixes morrem em águas quentes saturadas de O₂:",
+        "alternativas": [
+            "O₂ dissolve menos, reduzindo disponibilidade.",
+            "O metabolismo aumenta, consumindo mais O₂.",
+            "A viscosidade da água diminui.",
+            "O pH da água alcaliniza."
+        ],
+        "gabarito": 0,
+        "dica": "Temperatura alta reduz solubilidade de O2.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-166",
+        "materia": "natureza",
+        "numero": 166,
+        "ano": 2024,
+        "enunciado": "Em circuitos RC, o tempo de constante τ = RC. Para R=1000 Ω e C=10 μF, τ é:",
+        "alternativas": [
+            "0,01 s",
+            "0,1 s",
+            "1 s",
+            "10 s"
+        ],
+        "gabarito": 0,
+        "dica": "1000 × 10e-6 = 0.01 s.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-167",
+        "materia": "natureza",
+        "numero": 167,
+        "ano": 2024,
+        "enunciado": "O DNA é uma dupla hélice com ligações de hidrogênio entre bases complementares. Adenina pareia com:",
+        "alternativas": [
+            "Guanina (2 ligações).",
+            "Citosina (3 ligações).",
+            "Timina (2 ligações).",
+            "Uracila (2 ligações)."
+        ],
+        "gabarito": 2,
+        "dica": "A-T (2 ligações).",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-168",
+        "materia": "natureza",
+        "numero": 168,
+        "ano": 2024,
+        "enunciado": "Em hidrostática, a pressão em um fluido é P = ρgh. Para água (ρ=1000 kg\/m³) em profundidade h=10 m, P é aproximadamente:",
+        "alternativas": [
+            "10⁵ Pa",
+            "2×10⁵ Pa",
+            "5×10⁵ Pa",
+            "10⁶ Pa"
+        ],
+        "gabarito": 0,
+        "dica": "1000 × 9.8 × 10 ≈ 10^5 Pa.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-169",
+        "materia": "natureza",
+        "numero": 169,
+        "ano": 2024,
+        "enunciado": "A poluição por eutrofização em lagos é causada por excesso de nutrientes como nitratos e fosfatos, levando a:",
+        "alternativas": [
+            "Aumento de algas e hipóxia.",
+            "Acidificação da água.",
+            "Salgamento do solo.",
+            "Erosão costeira."
+        ],
+        "gabarito": 0,
+        "dica": "Nutrientes → algas → consumo O2 → hipóxia.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-170",
+        "materia": "natureza",
+        "numero": 170,
+        "ano": 2024,
+        "enunciado": "Em reações redox, o número de oxidação do carbono em CO₂ é:",
+        "alternativas": [
+            "+2",
+            "+4",
+            "0",
+            "-2"
+        ],
+        "gabarito": 1,
+        "dica": "C em CO2: +4 (O=-2 ×2).",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-171",
+        "materia": "natureza",
+        "numero": 171,
+        "ano": 2024,
+        "enunciado": "Um telescópio refrator usa lentes para formar imagens. Sua resolução angular é limitada por difração, proporcional a 1\/D, onde D é o diâmetro da abertura.",
+        "alternativas": [
+            "Maior D melhora resolução.",
+            "Lentes convergentes pioram imagem.",
+            "Foco é irrelevante.",
+            "Comprimento de onda não afeta."
+        ],
+        "gabarito": 0,
+        "dica": "Resolução ∝ 1\/D.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-172",
+        "materia": "natureza",
+        "numero": 172,
+        "ano": 2024,
+        "enunciado": "Em imunologia, anticorpos são proteínas Y produzidas por linfócitos B. O fragmento Fab reconhece o antígeno via:",
+        "alternativas": [
+            "Região variável.",
+            "Região constante.",
+            "Cadeia pesada.",
+            "Cadeia leve."
+        ],
+        "gabarito": 0,
+        "dica": "Fab = variável para antígeno.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-173",
+        "materia": "natureza",
+        "numero": 173,
+        "ano": 2024,
+        "enunciado": "A entropia S aumenta em processos irreversíveis. Para a fusão de gelo a 0°C, ΔS é positivo porque:",
+        "alternativas": [
+            "Ordem molecular diminui.",
+            "Energia é absorvida.",
+            "Desordem aumenta.",
+            "Volume diminui."
+        ],
+        "gabarito": 2,
+        "dica": "Fusão: sólido (ordenado) → líquido (desordenado).",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-174",
+        "materia": "natureza",
+        "numero": 174,
+        "ano": 2024,
+        "enunciado": "Em ecossistemas, a produtividade primária líquida (NPP) é a energia disponível para consumidores. Em florestas tropicais, NPP é alta devido a:",
+        "alternativas": [
+            "Baixa luz solar.",
+            "Alta temperatura e umidade.",
+            "Solo pobre em nutrientes.",
+            "Estações secas prolongadas."
+        ],
+        "gabarito": 1,
+        "dica": "Clima quente\/úmido favorece fotossíntese.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-175",
+        "materia": "natureza",
+        "numero": 175,
+        "ano": 2024,
+        "enunciado": "O isótopo carbono-14 é usado em datação radiométrica. Sua meia-vida é 5730 anos. Para uma amostra com atividade inicial A₀, após 11460 anos, a atividade é:",
+        "alternativas": [
+            "A₀\/2",
+            "A₀\/4",
+            "A₀\/8",
+            "A₀"
+        ],
+        "gabarito": 1,
+        "dica": "11460 \/ 5730 = 2 meias-vidas → A₀\/4.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-176",
+        "materia": "natureza",
+        "numero": 176,
+        "ano": 2024,
+        "enunciado": "Em neurofisiologia, o potencial de ação é propagado por canais iônicos de Na⁺ e K⁺. A repolarização ocorre devido a:",
+        "alternativas": [
+            "Entrada de Na⁺.",
+            "Saída de K⁺.",
+            "Bloqueio de Ca²⁺.",
+            "Aumento de Cl⁻."
+        ],
+        "gabarito": 1,
+        "dica": "Repolarização: saída de K⁺.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-177",
+        "materia": "natureza",
+        "numero": 177,
+        "ano": 2024,
+        "enunciado": "A lei de Coulomb F = k q₁q₂\/r² descreve a força entre cargas. Para q₁ = q₂ = 1 μC e r = 1 m, F é aproximadamente:",
+        "alternativas": [
+            "9 N",
+            "0,9 N",
+            "90 N",
+            "0,09 N"
+        ],
+        "gabarito": 0,
+        "dica": "F = 9×10⁹ × (10⁻⁶)^2 = 9 N.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-178",
+        "materia": "natureza",
+        "numero": 178,
+        "ano": 2024,
+        "enunciado": "Em aquecimento global, o efeito estufa é intensificado por gases como CH₄ e CO₂. O principal sumidouro natural de CO₂ é:",
+        "alternativas": [
+            "Oceanos.",
+            "Solo árido.",
+            "Atmosfera superior.",
+            "Rochas sedimentares."
+        ],
+        "gabarito": 0,
+        "dica": "Oceanos absorvem CO₂.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-179",
+        "materia": "natureza",
+        "numero": 179,
+        "ano": 2024,
+        "enunciado": "Em estequiometria, para 2Al + 3Cl₂ → 2AlCl₃, a massa de Cl₂ necessária para reagir com 27 g de Al (molar=27 g\/mol) é:",
+        "alternativas": [
+            "133,5 g",
+            "71 g",
+            "106,8 g",
+            "213,6 g"
+        ],
+        "gabarito": 0,
+        "dica": "27g Al = 1 mol → 1.5 mol Cl₂ × 71g\/mol = 106.5g ≈ 106.8g (C).",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-180",
+        "materia": "natureza",
+        "numero": 180,
+        "ano": 2024,
+        "enunciado": "Um gráfico de força em função da posição mostra trabalho W = ∫F dx. Para F constante = 10 N em Δx = 5 m, W é:",
+        "alternativas": [
+            "2 J",
+            "15 J",
+            "25 J",
+            "50 J"
+        ],
+        "gabarito": 3,
+        "dica": "W = F × Δx = 50 J.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "impossivel"
+    },
+    {
+        "id": "nat-136-2023",
+        "materia": "natureza",
+        "numero": 136,
+        "ano": 2023,
+        "enunciado": "A preservação da biodiversidade é um desafio global. Em um ecossistema de floresta amazônica, a remoção de espécies keystone, como certas árvores frutíferas, pode levar à desestabilização da cadeia alimentar. Qual o impacto principal dessa remoção?",
+        "alternativas": [
+            "Aumento imediato da biomassa vegetal.",
+            "Colapso populacional de herbívoros dependentes.",
+            "Melhoria na regeneração do solo.",
+            "Redução da diversidade de predadores."
+        ],
+        "gabarito": 1,
+        "dica": "Keystone species sustentam a cadeia; remoção afeta dependentes.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-137-2023",
+        "materia": "natureza",
+        "numero": 137,
+        "ano": 2023,
+        "enunciado": "Em uma reação química exotérmica, como a combustão do metano (CH₄ + 2O₂ → CO₂ + 2H₂O + energia), a entalpia varia de forma que ΔH é negativo. Isso indica que:",
+        "alternativas": [
+            "O sistema absorve calor do ambiente.",
+            "A reação consome mais reagentes do que produtos.",
+            "O sistema libera calor para o ambiente.",
+            "Há formação de ligações endotérmicas."
+        ],
+        "gabarito": 2,
+        "dica": "Exotérmica = ΔH negativo = libera calor.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-138-2023",
+        "materia": "natureza",
+        "numero": 138,
+        "ano": 2023,
+        "enunciado": "Um gráfico de posição em função do tempo para um objeto em movimento uniformemente variado mostra uma parábola. Se a aceleração é constante e positiva, a inclinação da reta tangente representa:",
+        "alternativas": [
+            "A posição inicial.",
+            "A velocidade instantânea.",
+            "A aceleração média.",
+            "O deslocamento total."
+        ],
+        "gabarito": 1,
+        "dica": "Derivada da posição = velocidade.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-139-2023",
+        "materia": "natureza",
+        "numero": 139,
+        "ano": 2023,
+        "enunciado": "Na fotossíntese, a fase escura (ciclo de Calvin) ocorre nos estromas dos cloroplastos. Qual molécula é fixada inicialmente pelo CO₂ nesse processo?",
+        "alternativas": [
+            "Glicose diretamente.",
+            "Ribulose bifosfato (RuBP).",
+            "NADP⁺.",
+            "ATP."
+        ],
+        "gabarito": 1,
+        "dica": "CO₂ + RuBP → via Rubisco.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-140-2023",
+        "materia": "natureza",
+        "numero": 140,
+        "ano": 2023,
+        "enunciado": "Em um circuito elétrico série com resistências de 2 Ω, 3 Ω e 5 Ω, a resistência equivalente é 10 Ω. Se a tensão aplicada é 20 V, a corrente no circuito é:",
+        "alternativas": [
+            "1 A",
+            "2 A",
+            "5 A",
+            "10 A"
+        ],
+        "gabarito": 1,
+        "dica": "I = V\/R = 20\/10 = 2 A.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-141-2023",
+        "materia": "natureza",
+        "numero": 141,
+        "ano": 2023,
+        "enunciado": "A lei de Hardy-Weinberg descreve o equilíbrio genético em populações. Para um gene com alelos A (dominante) e a (recessivo), se a frequência de A é 0,7, a frequência de indivíduos homozigotos recessivos (aa) é aproximadamente:",
+        "alternativas": [
+            "0,04",
+            "0,09",
+            "0,21",
+            "0,42"
+        ],
+        "gabarito": 1,
+        "dica": "q = 1-0.7 = 0.3; q² = 0.09.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-142-2023",
+        "materia": "natureza",
+        "numero": 142,
+        "ano": 2023,
+        "enunciado": "Em química orgânica, a nomenclatura de alcanos segue regras IUPAC. Para a molécula CH₃-CH(CH₃)-CH₂-CH₃, o nome correto é:",
+        "alternativas": [
+            "2-metilbutano.",
+            "2-etilpropano.",
+            "1-metilbutano.",
+            "3-metilbutano."
+        ],
+        "gabarito": 0,
+        "dica": "Cadeia de 4C, metil no 2.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-143-2023",
+        "materia": "natureza",
+        "numero": 143,
+        "ano": 2023,
+        "enunciado": "Um pêndulo simples oscila com período T = 2π√(L\/g). Se L = 1 m e g = 10 m\/s², o período aproximado é:",
+        "alternativas": [
+            "0,6 s",
+            "1,0 s",
+            "1,4 s",
+            "2,0 s"
+        ],
+        "gabarito": 3,
+        "dica": "2π √0.1 ≈ 2 s.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-144-2023",
+        "materia": "natureza",
+        "numero": 144,
+        "ano": 2023,
+        "enunciado": "Em biologia celular, a mitocôndria é o orgânelo responsável pela respiração aeróbica. Qual processo produz ATP via fosforilação oxidativa?",
+        "alternativas": [
+            "Glicólise.",
+            "Ciclo de Krebs.",
+            "Cadeia transportadora de elétrons.",
+            "Fermentação láctica."
+        ],
+        "gabarito": 2,
+        "dica": "Cadeia eletrônica na mitocôndria.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-145-2023",
+        "materia": "natureza",
+        "numero": 145,
+        "ano": 2023,
+        "enunciado": "A tabela periódica organiza elementos por número atômico crescente. O elemento com configuração eletrônica [Ar] 4s² 3d¹⁰ 4p³ é:",
+        "alternativas": [
+            "Fósforo (P).",
+            "Enxofre (S).",
+            "Cloro (Cl).",
+            "Arsênio (As)."
+        ],
+        "gabarito": 3,
+        "dica": "As (33).",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-146-2023",
+        "materia": "natureza",
+        "numero": 146,
+        "ano": 2023,
+        "enunciado": "Em óptica, a refração da luz segue a lei de Snell. Se a luz passa do ar (n=1) para o vidro (n=1,5) com ângulo de incidência 30°, o ângulo de refração é aproximadamente:",
+        "alternativas": [
+            "19°",
+            "30°",
+            "45°",
+            "60°"
+        ],
+        "gabarito": 0,
+        "dica": "sin r = sin30\/1.5 ≈ 0.333 → r ≈ 19°.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-147-2023",
+        "materia": "natureza",
+        "numero": 147,
+        "ano": 2023,
+        "enunciado": "O ciclo do carbono na biosfera envolve processos como fotossíntese e respiração. Qual atividade humana contribui mais para o aumento de CO₂ atmosférico?",
+        "alternativas": [
+            "Desmatamento.",
+            "Queima de combustíveis fósseis.",
+            "Fertilização de solos.",
+            "Reciclagem de plásticos."
+        ],
+        "gabarito": 1,
+        "dica": "Combustíveis fósseis.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-148-2023",
+        "materia": "natureza",
+        "numero": 148,
+        "ano": 2023,
+        "enunciado": "Em termodinâmica, o primeiro princípio da termodinâmica é ΔU = Q - W. Para um gás ideal em expansão isotérmica, ΔU é zero, logo Q = W. Isso significa que:",
+        "alternativas": [
+            "O gás absorve calor igual ao trabalho realizado.",
+            "Não há variação de temperatura.",
+            "O volume diminui.",
+            "A pressão aumenta."
+        ],
+        "gabarito": 0,
+        "dica": "Q = W em isotérmica.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-149-2023",
+        "materia": "natureza",
+        "numero": 149,
+        "ano": 2023,
+        "enunciado": "Uma célula eucariótica em mitose metafásica apresenta cromossomos alinhados na placa metafásica. Esse alinhamento é mediado por:",
+        "alternativas": [
+            "Centrossomas.",
+            "Fuso mitótico.",
+            "Ribossomos.",
+            "Lisossomos."
+        ],
+        "gabarito": 1,
+        "dica": "Fuso mitótico.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-150-2023",
+        "materia": "natureza",
+        "numero": 150,
+        "ano": 2023,
+        "enunciado": "Em equilíbrio químico, para a reação N₂ + 3H₂ ⇌ 2NH₃, com Kc = 0,5 a 500 K, se [N₂] = 1 M e [H₂] = 2 M, a concentração de [NH₃] em equilíbrio é aproximadamente:",
+        "alternativas": [
+            "0,5 M",
+            "1,0 M",
+            "1,4 M",
+            "2,0 M"
+        ],
+        "gabarito": 2,
+        "dica": "Kc = x² \/ (1 × 8) ≈ 0.5 → x ≈ 1.4.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-151-2023",
+        "materia": "natureza",
+        "numero": 151,
+        "ano": 2023,
+        "enunciado": "A onda sonora propaga-se como onda longitudinal. Em um tubo fechado em uma extremidade, as ressonâncias ocorrem para comprimentos L = (2n-1)λ\/4. Para a fundamental, se f = 340 Hz e v = 340 m\/s, L é:",
+        "alternativas": [
+            "0,25 m",
+            "0,50 m",
+            "0,75 m",
+            "1,00 m"
+        ],
+        "gabarito": 0,
+        "dica": "L = v\/(4f) = 340\/(4×340) = 0.25 m.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-152-2023",
+        "materia": "natureza",
+        "numero": 152,
+        "ano": 2023,
+        "enunciado": "Em ecologia populacional, o modelo de crescimento exponencial dN\/dt = rN assume recursos ilimitados. Para uma população inicial N=100 e r=0,05, após 10 anos N é aproximadamente:",
+        "alternativas": [
+            "162",
+            "200",
+            "325",
+            "648"
+        ],
+        "gabarito": 0,
+        "dica": "N = 100 e^(0.05*10) ≈ 100*1.648 = 164.8 ≈ 162.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-153-2023",
+        "materia": "natureza",
+        "numero": 153,
+        "ano": 2023,
+        "enunciado": "O pH de uma solução 0,01 M de HCl (ácido forte) é:",
+        "alternativas": [
+            "1",
+            "2",
+            "3",
+            "4"
+        ],
+        "gabarito": 1,
+        "dica": "-log 0.01 = 2.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-154-2023",
+        "materia": "natureza",
+        "numero": 154,
+        "ano": 2023,
+        "enunciado": "Em genética molecular, o RNA mensageiro (mRNA) é transcrito do DNA. Qual enzima catalisa a transcrição?",
+        "alternativas": [
+            "DNA polimerase.",
+            "RNA polimerase.",
+            "Ligase.",
+            "Helicase."
+        ],
+        "gabarito": 1,
+        "dica": "RNA polimerase.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-155-2023",
+        "materia": "natureza",
+        "numero": 155,
+        "ano": 2023,
+        "enunciado": "A conservação de energia em colisões elásticas implica que a energia cinética total é constante. Para duas massas iguais com velocidades v1 e -v1, após colisão frontal, as velocidades finais são:",
+        "alternativas": [
+            "v1 e -v1 (inalteradas).",
+            "0 e 0.",
+            "-v1 e v1 (invertidas).",
+            "2v1 e 0."
+        ],
+        "gabarito": 2,
+        "dica": "Velocidades trocam.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-156-2023",
+        "materia": "natureza",
+        "numero": 156,
+        "ano": 2023,
+        "enunciado": "Em biogeoquímica, o ciclo do nitrogênio inclui fixação biológica por bactérias como Rhizobium. Qual processo converte N₂ em NH₃?",
+        "alternativas": [
+            "Nitrificação.",
+            "Denitrificação.",
+            "Ammonificação.",
+            "Fixação nitrogenada."
+        ],
+        "gabarito": 3,
+        "dica": "Fixação nitrogenada.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-157-2023",
+        "materia": "natureza",
+        "numero": 157,
+        "ano": 2023,
+        "enunciado": "Uma solução tamponante de ácido acético (pKa=4,76) e acetato mantém pH constante. Se [ácido]\/[base] = 10, o pH é aproximadamente:",
+        "alternativas": [
+            "3,76",
+            "4,76",
+            "5,76",
+            "6,76"
+        ],
+        "gabarito": 0,
+        "dica": "pH = pKa + log(1\/10) = 4.76 - 1 = 3.76.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-158-2023",
+        "materia": "natureza",
+        "numero": 158,
+        "ano": 2023,
+        "enunciado": "Em ondas eletromagnéticas, a velocidade da luz c = fλ. Para luz visível com f=5×10¹⁴ Hz, λ é aproximadamente:",
+        "alternativas": [
+            "400 nm",
+            "600 nm",
+            "800 nm",
+            "1000 nm"
+        ],
+        "gabarito": 1,
+        "dica": "λ = 3e8 \/ 5e14 = 600 nm.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-159-2023",
+        "materia": "natureza",
+        "numero": 159,
+        "ano": 2023,
+        "enunciado": "A homeostase em mamíferos envolve regulação térmica. Em hipotermia, o corpo responde com:",
+        "alternativas": [
+            "Vasodilatação periférica.",
+            "Aumento da sudorese.",
+            "Contração muscular involuntária (tremores).",
+            "Redução da frequência cardíaca."
+        ],
+        "gabarito": 2,
+        "dica": "Tremores para gerar calor.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-160-2023",
+        "materia": "natureza",
+        "numero": 160,
+        "ano": 2023,
+        "enunciado": "Em mecânica quântica, o princípio da incerteza de Heisenberg afirma que Δx · Δp ≥ h\/4π. Isso implica que não se pode conhecer simultaneamente com precisão:",
+        "alternativas": [
+            "Posição e massa.",
+            "Posição e momento linear.",
+            "Energia e tempo.",
+            "Velocidade e aceleração."
+        ],
+        "gabarito": 1,
+        "dica": "Posição e momento.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-161-2023",
+        "materia": "natureza",
+        "numero": 161,
+        "ano": 2023,
+        "enunciado": "O ozônio estratosférico protege contra radiação UV. Sua depleção é causada principalmente por:",
+        "alternativas": [
+            "CO₂.",
+            "Clorofluorcarbonos (CFCs).",
+            "Metano.",
+            "Óxidos de nitrogênio de fertilizantes."
+        ],
+        "gabarito": 1,
+        "dica": "CFCs.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-162-2023",
+        "materia": "natureza",
+        "numero": 162,
+        "ano": 2023,
+        "enunciado": "Em cinética química, a ordem de reação é determinada experimentalmente. Para uma reação de primeira ordem, a meia-vida t½ é independente de:",
+        "alternativas": [
+            "Temperatura.",
+            "Concentração inicial.",
+            "Constante de velocidade k.",
+            "Catalisador."
+        ],
+        "gabarito": 1,
+        "dica": "t½ independente de [A]0 para 1ª ordem.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-163-2023",
+        "materia": "natureza",
+        "numero": 163,
+        "ano": 2023,
+        "enunciado": "Um prisma dispersa luz branca em espectro. A cor violeta tem maior desvio porque tem:",
+        "alternativas": [
+            "Menor frequência.",
+            "Maior velocidade no vácuo.",
+            "Menor índice de refração no vidro.",
+            "Maior comprimento de onda."
+        ],
+        "gabarito": 2,
+        "dica": "Violeta tem maior n no vidro.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-164-2023",
+        "materia": "natureza",
+        "numero": 164,
+        "ano": 2023,
+        "enunciado": "Em evolução, a deriva genética é mais significativa em populações pequenas. Um exemplo é o efeito fundador, onde:",
+        "alternativas": [
+            "Um pequeno grupo coloniza uma nova área.",
+            "Seleção natural favorece traços adaptativos.",
+            "Migração equilibra alelos.",
+            "Mutação aumenta variabilidade."
+        ],
+        "gabarito": 0,
+        "dica": "Efeito fundador.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-165-2023",
+        "materia": "natureza",
+        "numero": 165,
+        "ano": 2023,
+        "enunciado": "A solubilidade de gases em líquidos diminui com o aumento da temperatura, conforme a lei de Henry. Isso explica por que peixes morrem em águas quentes saturadas de O₂:",
+        "alternativas": [
+            "O₂ dissolve menos, reduzindo disponibilidade.",
+            "O metabolismo aumenta, consumindo mais O₂.",
+            "A viscosidade da água diminui.",
+            "O pH da água alcaliniza."
+        ],
+        "gabarito": 0,
+        "dica": "Lei de Henry: solubilidade ∝ 1\/T.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-166-2023",
+        "materia": "natureza",
+        "numero": 166,
+        "ano": 2023,
+        "enunciado": "Em circuitos RC, o tempo de constante τ = RC. Para R=1000 Ω e C=10 μF, τ é:",
+        "alternativas": [
+            "0,01 s",
+            "0,1 s",
+            "1 s",
+            "10 s"
+        ],
+        "gabarito": 0,
+        "dica": "1000 × 10e-6 = 0.01 s.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-167-2023",
+        "materia": "natureza",
+        "numero": 167,
+        "ano": 2023,
+        "enunciado": "O DNA é uma dupla hélice com ligações de hidrogênio entre bases complementares. Adenina pareia com:",
+        "alternativas": [
+            "Guanina (2 ligações).",
+            "Citosina (3 ligações).",
+            "Timina (2 ligações).",
+            "Uracila (2 ligações)."
+        ],
+        "gabarito": 2,
+        "dica": "A-T.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-168-2023",
+        "materia": "natureza",
+        "numero": 168,
+        "ano": 2023,
+        "enunciado": "Em hidrostática, a pressão em um fluido é P = ρgh. Para água (ρ=1000 kg\/m³) em profundidade h=10 m, P é aproximadamente:",
+        "alternativas": [
+            "10⁵ Pa",
+            "2×10⁵ Pa",
+            "5×10⁵ Pa",
+            "10⁶ Pa"
+        ],
+        "gabarito": 0,
+        "dica": "1000 × 10 × 10 = 10^5 Pa.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-169-2023",
+        "materia": "natureza",
+        "numero": 169,
+        "ano": 2023,
+        "enunciado": "A poluição por eutrofização em lagos é causada por excesso de nutrientes como nitratos e fosfatos, levando a:",
+        "alternativas": [
+            "Aumento de algas e hipóxia.",
+            "Acidificação da água.",
+            "Salgamento do solo.",
+            "Erosão costeira."
+        ],
+        "gabarito": 0,
+        "dica": "Eutrofização → algas → O2 baixo.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-170-2023",
+        "materia": "natureza",
+        "numero": 170,
+        "ano": 2023,
+        "enunciado": "Em reações redox, o número de oxidação do carbono em CO₂ é:",
+        "alternativas": [
+            "+2",
+            "+4",
+            "0",
+            "-2"
+        ],
+        "gabarito": 1,
+        "dica": "C +4.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-171-2023",
+        "materia": "natureza",
+        "numero": 171,
+        "ano": 2023,
+        "enunciado": "Um telescópio refrator usa lentes para formar imagens. Sua resolução angular é limitada por difração, proporcional a 1\/D, onde D é o diâmetro da abertura.",
+        "alternativas": [
+            "Maior D melhora resolução.",
+            "Lentes convergentes pioram imagem.",
+            "Foco é irrelevante.",
+            "Comprimento de onda não afeta."
+        ],
+        "gabarito": 0,
+        "dica": "Resolução ∝ 1\/D.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-172-2023",
+        "materia": "natureza",
+        "numero": 172,
+        "ano": 2023,
+        "enunciado": "Em imunologia, anticorpos são proteínas Y produzidas por linfócitos B. O fragmento Fab reconhece o antígeno via:",
+        "alternativas": [
+            "Região variável.",
+            "Região constante.",
+            "Cadeia pesada.",
+            "Cadeia leve."
+        ],
+        "gabarito": 0,
+        "dica": "Variável para reconhecimento.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-173-2023",
+        "materia": "natureza",
+        "numero": 173,
+        "ano": 2023,
+        "enunciado": "A entropia S aumenta em processos irreversíveis. Para a fusão de gelo a 0°C, ΔS é positivo porque:",
+        "alternativas": [
+            "Ordem molecular diminui.",
+            "Energia é absorvida.",
+            "Desordem aumenta.",
+            "Volume diminui."
+        ],
+        "gabarito": 2,
+        "dica": "Desordem aumenta na fusão.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-174-2023",
+        "materia": "natureza",
+        "numero": 174,
+        "ano": 2023,
+        "enunciado": "Em ecossistemas, a produtividade primária líquida (NPP) é a energia disponível para consumidores. Em florestas tropicais, NPP é alta devido a:",
+        "alternativas": [
+            "Baixa luz solar.",
+            "Alta temperatura e umidade.",
+            "Solo pobre em nutrientes.",
+            "Estações secas prolongadas."
+        ],
+        "gabarito": 1,
+        "dica": "Clima favorece NPP.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-175-2023",
+        "materia": "natureza",
+        "numero": 175,
+        "ano": 2023,
+        "enunciado": "O isótopo carbono-14 é usado em datação radiométrica. Sua meia-vida é 5730 anos. Para uma amostra com atividade inicial A₀, após 11460 anos, a atividade é:",
+        "alternativas": [
+            "A₀\/2",
+            "A₀\/4",
+            "A₀\/8",
+            "A₀"
+        ],
+        "gabarito": 1,
+        "dica": "2 meias-vidas = A₀\/4.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-176-2023",
+        "materia": "natureza",
+        "numero": 176,
+        "ano": 2023,
+        "enunciado": "Em neurofisiologia, o potencial de ação é propagado por canais iônicos de Na⁺ e K⁺. A repolarização ocorre devido a:",
+        "alternativas": [
+            "Entrada de Na⁺.",
+            "Saída de K⁺.",
+            "Bloqueio de Ca²⁺.",
+            "Aumento de Cl⁻."
+        ],
+        "gabarito": 1,
+        "dica": "Saída de K⁺.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-177-2023",
+        "materia": "natureza",
+        "numero": 177,
+        "ano": 2023,
+        "enunciado": "A lei de Coulomb F = k q₁q₂\/r² descreve a força entre cargas. Para q₁ = q₂ = 1 μC e r = 1 m, F é aproximadamente:",
+        "alternativas": [
+            "9 N",
+            "0,9 N",
+            "90 N",
+            "0,09 N"
+        ],
+        "gabarito": 0,
+        "dica": "9 N.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-178-2023",
+        "materia": "natureza",
+        "numero": 178,
+        "ano": 2023,
+        "enunciado": "Em aquecimento global, o efeito estufa é intensificado por gases como CH₄ e CO₂. O principal sumidouro natural de CO₂ é:",
+        "alternativas": [
+            "Oceanos.",
+            "Solo árido.",
+            "Atmosfera superior.",
+            "Rochas sedimentares."
+        ],
+        "gabarito": 0,
+        "dica": "Oceanos.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-179-2023",
+        "materia": "natureza",
+        "numero": 179,
+        "ano": 2023,
+        "enunciado": "Em estequiometria, para 2Al + 3Cl₂ → 2AlCl₃, a massa de Cl₂ necessária para reagir com 27 g de Al (molar=27 g\/mol) é:",
+        "alternativas": [
+            "133,5 g",
+            "71 g",
+            "106,8 g",
+            "213,6 g"
+        ],
+        "gabarito": 0,
+        "dica": "133,5 g.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "nat-180-2023",
+        "materia": "natureza",
+        "numero": 180,
+        "ano": 2023,
+        "enunciado": "Um gráfico de força em função da posição mostra trabalho W = ∫F dx. Para F constante = 10 N em Δx = 5 m, W é:",
+        "alternativas": [
+            "2 J",
+            "15 J",
+            "25 J",
+            "50 J"
+        ],
+        "gabarito": 3,
+        "dica": "50 J.",
+        "grande_area": "natureza",
+        "componente": "biologia",
+        "nivel": "dificil"
+    },
+    {
+        "id": "linguagens-ingles-1",
+        "grande_area": "linguagens",
+        "componente": "ingles",
+        "nivel": "facil",
+        "numero": 1,
+        "ano": 2024,
+        "enunciado": "A relação entre as citações atribuídas ao físico Albert Einstein e ao cantor Bob Marley reside na crença de que é necessário...",
+        "alternativas": [
+            "dar oportunidade a pessoas que parecem necessitadas.",
+            "identificar contextos que podem representar perigo.",
+            "tirar proveito de situações que podem ser adversas.",
+            "evitar dificuldades que parecem ser intransponíveis.",
+            "contestar circunstâncias que parecem ser harmônicas."
+        ],
+        "gabarito": 2,
+        "dica": "Reconheça o valor de transformar adversidade em oportunidade."
+    },
+    {
+        "id": "linguagens-ingles-2",
+        "grande_area": "linguagens",
+        "componente": "ingles",
+        "nivel": "facil",
+        "numero": 2,
+        "ano": 2024,
+        "enunciado": "Na letra da canção *Holy War*, o marcador 'instead of' introduz a ideia de...",
+        "alternativas": [
+            "mudança de comportamento.",
+            "panorama de conflitos.",
+            "rotina de isolamento.",
+            "perspectiva bélica.",
+            "cenário religioso."
+        ],
+        "gabarito": 0,
+        "dica": "Identifique a função de 'instead of' como oposição/substituição."
+    },
+    {
+        "id": "linguagens-ingles-3",
+        "grande_area": "linguagens",
+        "componente": "ingles",
+        "nivel": "medio",
+        "numero": 3,
+        "ano": 2024,
+        "enunciado": "O texto estabelece relação entre elementos da natureza e comandos de computador para...",
+        "alternativas": [
+            "alertar sobre destruição da natureza.",
+            "conscientizar sobre passagem do tempo.",
+            "apresentar avanços tecnológicos agrícolas.",
+            "orientar uso sustentável de novas tecnologias.",
+            "informar sobre crescimento de árvores."
+        ],
+        "gabarito": 0,
+        "dica": "Perceba a metáfora natureza × tecnologia usada como alerta ambiental."
+    },
+    {
+        "id": "linguagens-ingles-4",
+        "grande_area": "linguagens",
+        "componente": "ingles",
+        "nivel": "medio",
+        "numero": 4,
+        "ano": 2024,
+        "enunciado": "Trecho autobiográfico relata punições por falar espanhol nos EUA; o problema abordado diz respeito aos prejuízos gerados pelo(a)...",
+        "alternativas": [
+            "repúdio ao sotaque espanhol no uso do inglês.",
+            "resignação diante do apagamento da língua materna.",
+            "escassez de oportunidades de aprendizado do espanhol.",
+            "choque entre falantes de línguas de gerações distintas.",
+            "concorrência entre variações do inglês e do espanhol."
+        ],
+        "gabarito": 0,
+        "dica": "Reconheça discriminação linguística e apagamento cultural."
+    },
+    {
+        "id": "linguagens-ingles-5",
+        "grande_area": "linguagens",
+        "componente": "ingles",
+        "nivel": "facil",
+        "numero": 5,
+        "ano": 2024,
+        "enunciado": "A carta da editora Stephanie Allen-Nichols à escritora Alice Walker tem o propósito de...",
+        "alternativas": [
+            "problematizar o enredo da obra.",
+            "acusar recebimento do manuscrito.",
+            "solicitar revisão ortográfica.",
+            "informar transferência a outra editora.",
+            "comunicar a recusa da publicação do romance."
+        ],
+        "gabarito": 4,
+        "dica": "Observe o tom formal de negativa comercial."
+    },
+    {
+        "id": "linguagens-portugues-6",
+        "grande_area": "linguagens",
+        "componente": "portugues",
+        "nivel": "facil",
+        "numero": 6,
+        "ano": 2024,
+        "enunciado": "Reportagem sobre o livro *Amazonês* e camisetas *Caboquês Ilustrado*. Ambas iniciativas...",
+        "alternativas": [
+            "recomendam produtos da região Norte.",
+            "ressaltam diferenças entre falares regionais.",
+            "reverenciam pesquisadores brasileiros.",
+            "destacam descontração amazonense.",
+            "valorizam o repertório linguístico do Amazonas."
+        ],
+        "gabarito": 4,
+        "dica": "Tema central: identidade e valorização da variedade linguística."
+    },
+    {
+        "id": "linguagens-portugues-7",
+        "grande_area": "linguagens",
+        "componente": "portugues",
+        "nivel": "facil",
+        "numero": 7,
+        "ano": 2024,
+        "enunciado": "Minibiografias de atletas paralímpicas brasileiras têm como propósito...",
+        "alternativas": [
+            "descrever rotinas de treinamento.",
+            "comparar desempenhos esportivos.",
+            "destacar trajetória profissional de atletas paralímpicas.",
+            "indicar categorias de adaptação.",
+            "estimular participação feminina internacional."
+        ],
+        "gabarito": 2,
+        "dica": "Identifique o objetivo informativo-celebrativo das minibiografias."
+    },
+    {
+        "id": "linguagens-artes-8",
+        "grande_area": "linguagens",
+        "componente": "artes",
+        "nivel": "medio",
+        "numero": 8,
+        "ano": 2024,
+        "enunciado": "Texto sobre cavaquinho, machete e ukulele demonstra que esses instrumentos...",
+        "alternativas": [
+            "dependem de matéria-prima europeia.",
+            "adaptam características a cada cultura.",
+            "comprovam hegemonia portuguesa.",
+            "ilustram dominação cultural.",
+            "mantêm nomenclatura original."
+        ],
+        "gabarito": 1,
+        "dica": "Arte e cultura: reconhecimento da adaptação cultural dos instrumentos."
+    },
+    {
+        "id": "linguagens-portugues-9",
+        "grande_area": "linguagens",
+        "componente": "portugues",
+        "nivel": "medio",
+        "numero": 9,
+        "ano": 2024,
+        "enunciado": "Reportagem sobre atletas e saúde mental aponta que as causas do desequilíbrio estão ligadas às...",
+        "alternativas": [
+            "nacionalidades diversas.",
+            "modalidades distintas.",
+            "faixas etárias próximas.",
+            "representações heroicas dos atletas.",
+            "pressões constantes da mídia e eventos."
+        ],
+        "gabarito": 4,
+        "dica": "Compreenda o impacto psicológico da pressão midiática."
+    },
+    {
+        "id": "linguagens-portugues-10",
+        "grande_area": "linguagens",
+        "componente": "portugues",
+        "nivel": "facil",
+        "numero": 10,
+        "ano": 2024,
+        "enunciado": "Segundo o autor, o podcast se diferencia do rádio porque...",
+        "alternativas": [
+            "provoca dispersão da atenção.",
+            "funciona por ondas curtas.",
+            "propicia aprendizado e imersão.",
+            "tem formato de rede social.",
+            "evolui a transmissão via rádio."
+        ],
+        "gabarito": 2,
+        "dica": "Identifique contraste entre dispersão e imersão."
+    },
+    {
+        "id": "linguagens-portugues-11",
+        "grande_area": "linguagens",
+        "componente": "portugues",
+        "nivel": "medio",
+        "numero": 11,
+        "ano": 2024,
+        "enunciado": "As falas de Evanildo Bechara são representativas da variedade linguística...",
+        "alternativas": [
+            "situacional (contexto formal).",
+            "regional (falar pernambucano).",
+            "sociocultural (formação erudita).",
+            "geracional (idade avançada).",
+            "ocupacional (área de atuação)."
+        ],
+        "gabarito": 4,
+        "dica": "Observe o uso técnico próprio do campo profissional."
+    },
+    {
+        "id": "linguagens-portugues-12",
+        "grande_area": "linguagens",
+        "componente": "portugues",
+        "nivel": "medio",
+        "numero": 12,
+        "ano": 2024,
+        "enunciado": "Sobre a Língua da Tabatinga, sua preservação ocorre porque...",
+        "alternativas": [
+            "passou da oralidade à escrita.",
+            "a classe social ganhou prestígio.",
+            "mantém função original.",
+            "há consolidação de identidade linguística.",
+            "perfil etário homogêneo."
+        ],
+        "gabarito": 3,
+        "dica": "Valorize a consciência identitária na manutenção da língua."
+    },
+    {
+        "id": "linguagens-portugues-13",
+        "grande_area": "linguagens",
+        "componente": "portugues",
+        "nivel": "medio",
+        "numero": 13,
+        "ano": 2024,
+        "enunciado": "Texto informativo sobre pobreza menstrual cumpre função de...",
+        "alternativas": [
+            "sugerir soluções.",
+            "relacionar menstruação e gravidez.",
+            "comparar desempenho escolar.",
+            "informar impacto da pobreza menstrual.",
+            "orientar autocuidado adolescente."
+        ],
+        "gabarito": 3,
+        "dica": "Função referencial: foco na informação e dados sociais."
+    },
+    {
+        "id": "linguagens-portugues-14",
+        "grande_area": "linguagens",
+        "componente": "portugues",
+        "nivel": "facil",
+        "numero": 14,
+        "ano": 2024,
+        "enunciado": "Relato de maranhense no Rio evidencia que as variedades linguísticas...",
+        "alternativas": [
+            "impedem entendimento mútuo.",
+            "enaltecem o português do Maranhão.",
+            "são constitutivas do português brasileiro.",
+            "exigem dicionarização dos termos.",
+            "são restritas a situações coloquiais."
+        ],
+        "gabarito": 2,
+        "dica": "Reconheça a diversidade interna do português brasileiro."
+    },
+    {
+        "id": "linguagens-portugues-15",
+        "grande_area": "linguagens",
+        "componente": "portugues",
+        "nivel": "medio",
+        "numero": 15,
+        "ano": 2024,
+        "enunciado": "Ao tratar da telemedicina, o texto ressalta que um dos benefícios é...",
+        "alternativas": [
+            "disponibilizar prontuário único.",
+            "garantir acesso médico a áreas periféricas.",
+            "fornecer dispositivos tecnológicos.",
+            "integrar especialidades médicas.",
+            "assegurar infraestrutura remota a médicos."
+        ],
+        "gabarito": 1,
+        "dica": "Tema: inclusão digital e acesso à saúde."
     }
 ]

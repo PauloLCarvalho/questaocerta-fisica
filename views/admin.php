@@ -37,15 +37,35 @@ qc_require_admin();
         <div class="msg">Questão atualizada com sucesso.</div>
       <?php endif; ?>
 
-    <form action="../api/admin_questions.php" method="POST">
-      <input type="hidden" name="action" value="add">
+    <form action="../api/admin_questions.php" method="POST" id="questao-form">
+      <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(qc_csrf_token()) ?>">
+      <input type="hidden" name="action" value="add" id="form-action">
+      <input type="hidden" name="id" value="" id="form-id">
       <div class="form-grid">
         <div>
-          <label>Matéria</label>
-          <select name="materia" required>
+          <label>Grande Área</label>
+          <select name="grande_area" id="grande_area" required>
+            <option value="">Selecione...</option>
+            <option value="humanas">Ciências Humanas</option>
             <option value="matematica">Matemática</option>
-            <option value="fisica">Física</option>
-            <option value="natureza">Natureza</option>
+            <option value="natureza">Ciências da Natureza</option>
+            <option value="linguagens">Linguagens</option>
+          </select>
+        </div>
+        <div>
+          <label>Componente</label>
+          <select name="componente" id="componente" required>
+            <option value="">Selecione área primeiro...</option>
+          </select>
+        </div>
+        <div>
+          <label>Nível</label>
+          <select name="nivel" required>
+            <option value="">Selecione...</option>
+            <option value="facil">Fácil</option>
+            <option value="medio">Médio</option>
+            <option value="dificil">Difícil</option>
+            <option value="impossivel">Impossível</option>
           </select>
         </div>
         <div>
@@ -93,7 +113,7 @@ qc_require_admin();
       </div>
       <div style="margin-top:14px;">
         <button class="btn-primary" type="submit">Adicionar Questão</button>
-        <a href="dashboard.html" class="btn-voltar" style="margin-left:12px;">Voltar</a>
+        <a href="dashboard.php" class="btn-voltar" style="margin-left:12px;">Voltar</a>
       </div>
     </form>
 
@@ -112,32 +132,35 @@ qc_require_admin();
           <thead>
             <tr style="text-align:left; border-bottom:1px solid #e5e7eb;">
               <th style="padding:8px">ID</th>
-              <th style="padding:8px">Matéria</th>
-              <th style="padding:8px">Número</th>
+              <th style="padding:8px">Área</th>
+              <th style="padding:8px">Componente</th>
+              <th style="padding:8px">Nível</th>
+              <th style="padding:8px">Nº</th>
               <th style="padding:8px">Ano</th>
               <th style="padding:8px">Enunciado</th>
               <th style="padding:8px">Ações</th>
             </tr>
           </thead>
           <tbody>
-          <?php foreach ($bank as $mat => $list): ?>
-            <?php foreach ($list as $item): ?>
+          <?php foreach ($bank as $item): ?>
               <tr>
                 <td style="padding:8px; vertical-align:top; font-family:monospace; font-size:0.85rem;"><?php echo htmlspecialchars($item['id'] ?? ''); ?></td>
-                <td style="padding:8px; vertical-align:top"><?php echo htmlspecialchars($item['materia'] ?? $mat); ?></td>
+                <td style="padding:8px; vertical-align:top"><?php echo htmlspecialchars($item['grande_area'] ?? ''); ?></td>
+                <td style="padding:8px; vertical-align:top"><?php echo htmlspecialchars($item['componente'] ?? ''); ?></td>
+                <td style="padding:8px; vertical-align:top"><?php echo htmlspecialchars($item['nivel'] ?? ''); ?></td>
                 <td style="padding:8px; vertical-align:top"><?php echo htmlspecialchars($item['numero'] ?? ''); ?></td>
                 <td style="padding:8px; vertical-align:top"><?php echo htmlspecialchars($item['ano'] ?? ''); ?></td>
-                <td style="padding:8px; vertical-align:top; max-width:420px;"><?php echo htmlspecialchars(mb_strimwidth(strip_tags($item['enunciado'] ?? ''), 0, 140, '...')); ?></td>
+                <td style="padding:8px; vertical-align:top; max-width:320px;"><?php echo htmlspecialchars(mb_strimwidth(strip_tags($item['enunciado'] ?? ''), 0, 100, '...')); ?></td>
                 <td style="padding:8px; vertical-align:top;">
                   <button type="button" class="btn-primary" data-action="edit" data-id="<?php echo htmlspecialchars($item['id']); ?>">Editar</button>
                   <form action="../api/admin_questions.php" method="POST" style="display:inline; margin-left:8px;" onsubmit="return confirm('Confirmar remoção desta questão?');">
                     <input type="hidden" name="action" value="delete">
                     <input type="hidden" name="id" value="<?php echo htmlspecialchars($item['id']); ?>">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(qc_csrf_token()) ?>">
                     <button type="submit" class="btn-voltar" style="background:#ef4444; color:#fff; border:none; padding:8px 10px; border-radius:6px;">Remover</button>
                   </form>
                 </td>
               </tr>
-            <?php endforeach; ?>
           <?php endforeach; ?>
           </tbody>
         </table>
@@ -146,25 +169,51 @@ qc_require_admin();
       <!-- serialized bank for JS (keeps PHP out of JS expression) -->
       <script id="qc-bank" type="application/json"><?php echo json_encode($bank, JSON_UNESCAPED_UNICODE); ?></script>
       <script>
+        // Mapeamento de componentes por grande área
+        const COMPONENTES = {
+          'humanas': ['historia', 'geografia', 'filosofia', 'sociologia'],
+          'matematica': ['matematica'],
+          'natureza': ['fisica', 'quimica', 'biologia'],
+          'linguagens': ['portugues', 'literatura', 'ingles', 'espanhol', 'artes']
+        };
+
+        // Atualiza select de componente quando grande_area muda
+        document.getElementById('grande_area').addEventListener('change', function() {
+          const area = this.value;
+          const componenteSelect = document.getElementById('componente');
+          componenteSelect.innerHTML = '<option value="">Selecione...</option>';
+          
+          if (area && COMPONENTES[area]) {
+            COMPONENTES[area].forEach(comp => {
+              const option = document.createElement('option');
+              option.value = comp;
+              option.textContent = comp.charAt(0).toUpperCase() + comp.slice(1);
+              componenteSelect.appendChild(option);
+            });
+          }
+        });
+
         // Read bank data from the application/json script node
-        const QC_BANK = JSON.parse(document.getElementById('qc-bank').textContent || '{}');
+        const QC_BANK = JSON.parse(document.getElementById('qc-bank').textContent || '[]');
         document.querySelectorAll('button[data-action="edit"]').forEach(btn => {
           btn.addEventListener('click', () => {
             const id = btn.dataset.id;
-            // find item by id
-            let found = null;
-            for (const mat in QC_BANK) {
-              const list = QC_BANK[mat];
-              for (let i = 0; i < list.length; i++) {
-                if (list[i].id === id) { found = list[i]; break; }
-              }
-              if (found) break;
-            }
+            // find item by id in flat array
+            const found = QC_BANK.find(q => q.id === id);
             if (!found) return alert('Questão não encontrada');
+            
             // populate form
             document.getElementById('form-action').value = 'edit';
             document.getElementById('form-id').value = found.id || '';
-            document.querySelector('select[name="materia"]').value = found.materia || '';
+            document.getElementById('grande_area').value = found.grande_area || '';
+            
+            // Trigger change to populate componente options
+            document.getElementById('grande_area').dispatchEvent(new Event('change'));
+            setTimeout(() => {
+              document.getElementById('componente').value = found.componente || '';
+            }, 50);
+            
+            document.querySelector('select[name="nivel"]').value = found.nivel || '';
             document.querySelector('input[name="numero"]').value = found.numero || '';
             document.querySelector('input[name="ano"]').value = found.ano || '';
             document.querySelector('select[name="gabarito"]').value = found.gabarito || 0;

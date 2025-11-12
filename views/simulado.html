@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulado - Questão Certa</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <style>
+    .simulado-wrap { max-width:900px; margin:40px auto; background:#fff; padding:28px; border-radius:14px; box-shadow:0 8px 28px rgba(0,0,0,.08); }
+    h1 { margin-top:0; color:var(--azul); }
+    .actions { margin:24px 0; display:flex; flex-wrap:wrap; gap:12px; }
+    .actions button { background:var(--azul); color:#fff; border:none; padding:12px 20px; border-radius:8px; cursor:pointer; font-weight:600; box-shadow:0 4px 14px rgba(0,0,0,.12); }
+    .actions button.secondary { background:var(--laranja); }
+    .placeholder { background:#f5f7fb; padding:20px; border-radius:10px; border:1px dashed #cbd5e1; color:#475569; font-size:.95rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="logo">Questão Certa</a>
+      <div class="nav-links">
+        <a href="dashboard.php" class="btn btn-azul">Voltar ao Dashboard</a>
+      </div>
+    </nav>
+  </header>
+  <div class="simulado-wrap">
+    <h1>Simulado</h1>
+    <p>Crie ou execute um simulado completo combinando as grandes áreas. (Página inicial de recurso – ainda em construção)</p>
+
+    <div class="actions">
+      <button id="btn-simulado-rapido">Simulado Rápido</button>
+      <button id="btn-simulado-personalizado" class="secondary">Personalizar</button>
+    </div>
+
+    <div class="placeholder" id="simulado-info">
+      Em breve: geração automática de provas com número configurável de questões por área, tempo limite, cálculo de nota e relatório de desempenho.
+    </div>
+  </div>
+  <footer>
+    <p style="text-align:center; padding:40px 0; font-size:.85rem; color:#555;">&copy; <?= date('Y') ?> Questão Certa.</p>
+  </footer>
+  <script>
+    document.getElementById('btn-simulado-rapido').addEventListener('click', () => {
+      alert('Funcionalidade de simulado rápido será implementada em breve.');
+    });
+    document.getElementById('btn-simulado-personalizado').addEventListener('click', () => {
+      alert('Personalização de simulado em desenvolvimento.');
+    });
+  </script>
+</body>
+</html>

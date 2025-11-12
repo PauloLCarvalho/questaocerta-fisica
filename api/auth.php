@@ -1,11 +1,12 @@
 <?php
-session_start();
+require_once __DIR__ . '/../includes/auth.php';
 
 $erro = $sucesso = '';
 $action = $_POST['action'] ?? '';
 
 switch ($action) {
   case 'cadastrar':
+    qc_require_csrf();
     $nome = trim($_POST['nome'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $senha = $_POST['senha'] ?? '';
@@ -40,6 +41,7 @@ switch ($action) {
     break;
 
   case 'login':
+    qc_require_csrf();
     $email = trim($_POST['email'] ?? '');
     $senha = $_POST['senha'] ?? '';
 
@@ -57,7 +59,7 @@ switch ($action) {
             // log successful login
             $log = sprintf("%s LOGIN SUCCESS: %s ip=%s nivel=%s\n", date('c'), $u['email'], $_SERVER['REMOTE_ADDR'] ?? '-', $u['nivel']);
             @file_put_contents(__DIR__ . '/../logs/auth.log', $log, FILE_APPEND | LOCK_EX);
-            header("Location: ../views/dashboard.html");
+            header("Location: ../views/dashboard.php");
             exit;
           }
         }
@@ -73,6 +75,9 @@ switch ($action) {
     break;
 
   case 'logout':
+    // enforce POST + CSRF for logout
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') { header('Location: ../views/index.html'); exit; }
+    qc_require_csrf();
     // log logout
     $log = sprintf("%s LOGOUT: %s ip=%s\n", date('c'), $_SESSION['email'] ?? '-', $_SERVER['REMOTE_ADDR'] ?? '-');
     @file_put_contents(__DIR__ . '/../logs/auth.log', $log, FILE_APPEND | LOCK_EX);
@@ -85,9 +90,9 @@ switch ($action) {
         $params["secure"], $params["httponly"]
       );
     }
-    session_unset();
-    session_destroy();
-    header("Location: ../views/index.html");
+  session_unset();
+  session_destroy();
+  header("Location: ../views/index.html");
     exit;
     break;
 

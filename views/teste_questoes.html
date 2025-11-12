@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste de Questões</title>
+  <style>
+    body { font-family: system-ui; padding: 20px; max-width: 1000px; margin: 0 auto; }
+    h1 { color: #0e70fa; }
+    pre { background: #f5f5f5; padding: 15px; border-radius: 8px; overflow: auto; font-size: 0.85rem; }
+    .filtros { background: #e3f2fd; padding: 15px; border-radius: 8px; margin: 20px 0; }
+    button { background: #0e70fa; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; margin-right: 10px; }
+    button:hover { background: #0d66e0; }
+    .resultado { margin-top: 20px; padding: 15px; background: #fff; border: 1px solid #ddd; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>🔧 Teste do Sistema de Questões</h1>
+  
+  <div class="filtros">
+    <h3>Filtros de Teste</h3>
+    <p>
+      <label>Grande Área: 
+        <select id="area">
+          <option value="">Todas</option>
+          <option value="matematica">Matemática</option>
+          <option value="natureza">Ciências da Natureza</option>
+          <option value="humanas">Ciências Humanas</option>
+          <option value="linguagens">Linguagens</option>
+        </select>
+      </label>
+    </p>
+    <p>
+      <label>Componente: 
+        <select id="componente">
+          <option value="">Todos</option>
+          <option value="matematica">Matemática</option>
+          <option value="fisica">Física</option>
+          <option value="biologia">Biologia</option>
+          <option value="quimica">Química</option>
+          <option value="historia">História</option>
+          <option value="geografia">Geografia</option>
+        </select>
+      </label>
+    </p>
+    <p>
+      <label>Nível: 
+        <select id="nivel">
+          <option value="">Todos</option>
+          <option value="facil">Fácil</option>
+          <option value="medio">Médio</option>
+          <option value="dificil">Difícil</option>
+          <option value="impossivel">Impossível</option>
+        </select>
+      </label>
+    </p>
+    <button onclick="testarFiltros()">🔍 Testar Filtros</button>
+    <button onclick="testarTodas()">📚 Carregar Todas</button>
+  </div>
+
+  <div class="resultado">
+    <h3>Resultado:</h3>
+    <pre id="output">Clique em um dos botões acima para testar...</pre>
+  </div>
+
+  <script src="../js/questoes.js"></script>
+  <script>
+    async function testarTodas() {
+      const output = document.getElementById('output');
+      output.textContent = 'Carregando...';
+      
+      try {
+        await QuestoesAPI.carregarBanco();
+        const total = QuestoesAPI.todasQuestoes.length;
+        
+        // Agrupar por grande_area
+        const porArea = {};
+        QuestoesAPI.todasQuestoes.forEach(q => {
+          const area = q.grande_area || q.materia || 'sem_area';
+          porArea[area] = (porArea[area] || 0) + 1;
+        });
+        
+        // Agrupar por nivel
+        const porNivel = {};
+        QuestoesAPI.todasQuestoes.forEach(q => {
+          const nivel = q.nivel || 'sem_nivel';
+          porNivel[nivel] = (porNivel[nivel] || 0) + 1;
+        });
+        
+        let result = `✅ TOTAL DE QUESTÕES: ${total}\n\n`;
+        result += `📊 POR GRANDE ÁREA:\n`;
+        Object.entries(porArea).forEach(([k, v]) => {
+          result += `  • ${k}: ${v} questões\n`;
+        });
+        
+        result += `\n📊 POR NÍVEL:\n`;
+        Object.entries(porNivel).forEach(([k, v]) => {
+          result += `  • ${k}: ${v} questões\n`;
+        });
+        
+        result += `\n📝 EXEMPLO DA PRIMEIRA QUESTÃO:\n`;
+        result += JSON.stringify(QuestoesAPI.todasQuestoes[0], null, 2);
+        
+        output.textContent = result;
+      } catch (err) {
+        output.textContent = `❌ ERRO: ${err.message}\n\n${err.stack}`;
+      }
+    }
+
+    async function testarFiltros() {
+      const output = document.getElementById('output');
+      output.textContent = 'Filtrando...';
+      
+      try {
+        await QuestoesAPI.carregarBanco();
+        
+        const area = document.getElementById('area').value;
+        const componente = document.getElementById('componente').value;
+        const nivel = document.getElementById('nivel').value;
+        
+        const filtradas = QuestoesAPI.todasQuestoes.filter(q => {
+          let match = true;
+          if (area) match = match && (q.grande_area === area || q.materia === area);
+          if (componente) match = match && (q.componente === componente);
+          if (nivel) match = match && (q.nivel === nivel);
+          return match;
+        });
+        
+        let result = `🔍 FILTROS APLICADOS:\n`;
+        result += `  • Grande Área: ${area || 'Todas'}\n`;
+        result += `  • Componente: ${componente || 'Todos'}\n`;
+        result += `  • Nível: ${nivel || 'Todos'}\n\n`;
+        result += `✅ QUESTÕES ENCONTRADAS: ${filtradas.length}\n\n`;
+        
+        if (filtradas.length > 0) {
+          result += `📝 PRIMEIRAS 3 QUESTÕES:\n`;
+          filtradas.slice(0, 3).forEach((q, i) => {
+            result += `\n${i+1}. ID: ${q.id}\n`;
+            result += `   Área: ${q.grande_area || q.materia}\n`;
+            result += `   Componente: ${q.componente}\n`;
+            result += `   Nível: ${q.nivel}\n`;
+            result += `   Enunciado: ${q.enunciado.substring(0, 60)}...\n`;
+          });
+        }
+        
+        output.textContent = result;
+      } catch (err) {
+        output.textContent = `❌ ERRO: ${err.message}\n\n${err.stack}`;
+      }
+    }
+  </script>
+</body>
+</html>

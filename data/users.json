@@ -10,5 +10,17 @@
         "email": "lulu@questaocerta.com",
         "senha": "$2y$10$TmZ6868I1pq\/6LOFZgPLIuRjQlBTcQlLYvIrzSU1uiFQGjxRkaKsm",
         "nivel": "aluno"
+    },
+    {
+        "nome": "conta teste",
+        "email": "teste@questaocerta.com",
+        "senha": "$2y$10$wk290OVnQrmVDkxA\/T\/NWO.ypetFUjXGA1DrkhF24EQ2M1FP1FgKG",
+        "nivel": "aluno"
+    },
+    {
+        "nome": "lucianoTeste",
+        "email": "lucianoteste@questaocerta.com",
+        "senha": "$2y$10$RPiB15MMVnI9ZrBfAnXt3eJ.h64.V7lP3K0Sa6nXSxrXZLLhUG40G",
+        "nivel": "aluno"
     }
 ]

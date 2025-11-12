@@ -8,8 +8,8 @@ const QuestoesAPI = {
 	async carregarBanco() {
 		if (this._carregado) return;
 		try {
-			// Resolve caminho relativo à página atual
-			const url = new URL('../data/questoes.json', window.location.href).href;
+			// Resolve caminho relativo à página atual - usa API para evitar bloqueio do .htaccess
+			const url = new URL('../api/questoes.php', window.location.href).href;
 			const resp = await fetch(url);
 			if (!resp.ok) throw new Error(`Falha ao carregar ${url}: ${resp.status}`);
 			const data = await resp.json();

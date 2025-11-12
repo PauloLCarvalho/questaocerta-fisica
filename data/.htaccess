@@ -1,0 +1,4 @@
+# Deny direct web access to JSON data files
+<FilesMatch "\.(json|txt)$">
+  Require all denied
+</FilesMatch>

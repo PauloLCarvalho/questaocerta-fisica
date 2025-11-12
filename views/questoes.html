@@ -288,19 +288,6 @@
       border: 1px solid var(--rosa);
     }
 
-    .filtro {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .filtro select {
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-      font-size: 0.8rem;
-    }
-
     /* RESPONSIVIDADE */
     @media (max-width: 768px) {
       .progresso-matrix {
@@ -349,22 +336,7 @@
   <div class="container">
     <div class="header">
       <h1>Questões</h1>
-      <a href="dashboard.html" class="btn-voltar">Voltar ao Dashboard</a>
-    </div>
-
-    <div class="filtro">
-      <select id="filtro-materia" onchange="filtrar()">
-        <option value="">Todas Matérias</option>
-        <option value="fisica">Física</option>
-        <option value="matematica">Matemática</option>
-        <option value="natureza">Natureza</option>
-      </select>
-
-      <select id="filtro-ano" onchange="filtrar()">
-        <option value="">Todos Anos</option>
-        <option value="2024">2024</option>
-        <option value="2023">2023</option>
-      </select>
+      <a href="dashboard.php" class="btn-voltar">Voltar ao Dashboard</a>
     </div>
 
     <div id="questoes-container">
@@ -388,41 +360,66 @@
         // Aguarda o carregamento do banco de dados
         await QuestoesAPI.carregarBanco();
 
-        const materia = new URLSearchParams(window.location.search).get("materia") || "";
-        document.getElementById("filtro-materia").value = materia;
+        // Obter parâmetros da URL (vindos da página de filtros)
+        const params = new URLSearchParams(window.location.search);
+        const materia = params.get("materia") || "";
+        const componente = params.get("componente") || "";
+        const nivel = params.get("nivel") || "";
 
-        // Se a página foi aberta vinculada a uma matéria (ex: vinda do dashboard),
-        // escondemos os controles de filtro e exibimos diretamente as questões
-        if (materia) {
-          const filtroEl = document.querySelector('.filtro');
-          if (filtroEl) filtroEl.style.display = 'none';
-
-          // Atualiza título para indicar a disciplina selecionada
-          const headerTitle = document.querySelector('.header h1');
-          try {
-            const pretty = materia.charAt(0).toUpperCase() + materia.slice(1);
-            if (headerTitle) headerTitle.textContent = `${headerTitle.textContent} — ${pretty}`;
-          } catch (e) { /* ignore */ }
+        // Atualiza título para indicar os filtros ativos
+        const headerTitle = document.querySelector('.header h1');
+        if (headerTitle && materia) {
+          const nomeArea = {
+            'humanas': 'Ciências Humanas',
+            'matematica': 'Matemática',
+            'natureza': 'Ciências da Natureza',
+            'linguagens': 'Linguagens'
+          }[materia] || materia;
+          headerTitle.textContent = `Questões — ${nomeArea}`;
         }
 
-        // Filtra e renderiza as questões
-        filtrar();
+        // Filtra as questões pelos novos campos
+        questoesFiltradas = QuestoesAPI.todasQuestoes.filter(q => {
+          let match = true;
+          
+          // Filtro por grande_area (compatível com materia antiga)
+          if (materia) {
+            match = match && (q.grande_area === materia || q.materia === materia);
+          }
+          
+          // Filtro por componente
+          if (componente) {
+            match = match && (q.componente === componente);
+          }
+          
+          // Filtro por nivel
+          if (nivel) {
+            match = match && (q.nivel === nivel);
+          }
+          
+          return match;
+        });
+
+        console.log(`Filtros aplicados: area=${materia}, componente=${componente}, nivel=${nivel}`);
+        console.log(`Questões encontradas: ${questoesFiltradas.length}`);
+
+        if (questoesFiltradas.length === 0) {
+          container.innerHTML = `
+            <div style="text-align:center; padding:40px; color:#666;">
+              <p style="font-size:1.2rem; margin-bottom:12px;">📚 Nenhuma questão encontrada</p>
+              <p style="font-size:0.9rem;">Não há questões cadastradas com esses filtros ainda.</p>
+              <p style="font-size:0.85rem; margin-top:20px;">
+                <a href="dashboard.php" style="color:var(--azul); text-decoration:none;">← Voltar ao Dashboard</a>
+              </p>
+            </div>
+          `;
+        } else {
+          renderizarQuestoes(questoesFiltradas, materia);
+        }
       } catch (error) {
         container.innerHTML = "<p>Erro ao carregar questões.</p>";
         console.error(error);
       }
-    }
-
-    // Função de filtro por matéria e ano
-    function filtrar() {
-      const materia = document.getElementById("filtro-materia").value;
-      const ano = document.getElementById("filtro-ano").value;
-
-      questoesFiltradas = QuestoesAPI.todasQuestoes.filter(q => {
-        return (!materia || q.materia === materia) && (!ano || q.ano.toString() === ano);
-      });
-
-      renderizarQuestoes(questoesFiltradas, materia);
     }
 
     // Executa o carregamento assim que a página estiver pronta

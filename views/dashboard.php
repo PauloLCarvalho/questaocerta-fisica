@@ -1,21 +1,8 @@
 <?php
 require_once __DIR__ . '/../includes/auth.php';
 qc_require_login();
-
-// Debug: log current session state to help diagnose session issues
-@file_put_contents(__DIR__ . '/../logs/auth.log', sprintf("%s DASHBOARD LOAD: session_email=%s session_nivel=%s ip=%s\n", date('c'), $_SESSION['email'] ?? '-', $_SESSION['nivel'] ?? '-', $_SERVER['REMOTE_ADDR'] ?? '-'), FILE_APPEND | LOCK_EX);
-// prepare display email with a fallback so the UI always shows something for testing
-$__qc_email_raw = qc_user_email();
-$__qc_display_email = $__qc_email_raw ? $__qc_email_raw : 'teste@exemplo.com';
-
-// Debug: adiciona informação da sessão atual
-$__debug_info = sprintf(
-    "Email: %s, Nível: %s, Nome: %s",
-    $_SESSION['email'] ?? 'não definido',
-    $_SESSION['nivel'] ?? 'não definido',
-    $_SESSION['nome'] ?? 'não definido'
-);
-@file_put_contents(__DIR__ . '/../logs/debug.log', date('Y-m-d H:i:s') . " - " . $__debug_info . "\n", FILE_APPEND | LOCK_EX);
+// email do usuário (sem fallback fictício)
+$__qc_display_email = qc_user_email();
 ?>
 
 <!DOCTYPE html>
@@ -71,6 +58,10 @@ $__debug_info = sprintf(
     .settings-drawer.open { left: 0; }
     .settings-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
     .settings-item { margin:12px 0; }
+    /* hide email on small screens */
+    @media (max-width: 520px) {
+      .nav-links .user-email { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -79,7 +70,11 @@ $__debug_info = sprintf(
       <a href="index.html" class="logo">Questão Certa</a>
       <div class="nav-links">
         <span class="user-email" id="user-email" data-email="<?= htmlspecialchars($__qc_display_email, ENT_QUOTES, 'UTF-8') ?>" title="<?= htmlspecialchars($__qc_display_email, ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars($__qc_display_email) ?></span>
-        <a href="../api/auth.php?action=logout" class="btn btn-azul">Sair</a>
+        <form action="../api/auth.php" method="POST" style="display:inline; margin:0;">
+          <input type="hidden" name="action" value="logout">
+          <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(qc_csrf_token()) ?>">
+          <button type="submit" class="btn btn-azul">Sair</button>
+        </form>
       </div>
     </nav>
   </header>
@@ -88,29 +83,37 @@ $__debug_info = sprintf(
     <div class="wrapper">
       
       <div class="welcome">
-        <h2>Bem-vindo, <strong><?= htmlspecialchars(qc_user_name()) ?></strong>!</h2>
+        <h2>Bem-vindo, <strong><?= htmlspecialchars($_SESSION['nome'] ?? 'Usuário') ?></strong>!</h2>
         <p>Escolha uma disciplina.</p>
       </div>
 
-      <!-- Debug info removed, banner removed -->
+      
 
       <h2 style="text-align:center; color:var(--azul); margin:2rem 0 1.5rem;">Disciplinas</h2>
       <div class="materias">
-        <div class="card" onclick="location.href='questoes.html?materia=fisica'">
-          <h3>Física</h3>
-          <p>Mecânica, energia, eletricidade</p>
+        <div class="card" onclick="location.href='filtros.html?area=humanas'">
+          <h3>Ciências Humanas</h3>
+          <p>História, Geografia, Sociologia, Filosofia</p>
         </div>
-        <div class="card" onclick="location.href='questoes.html?materia=matematica'">
+        <div class="card" onclick="location.href='filtros.html?area=matematica'">
           <h3>Matemática</h3>
           <p>Questões de matemática</p>
         </div>
-        <div class="card" onclick="location.href='questoes.html?materia=natureza'">
+        <div class="card" onclick="location.href='filtros.html?area=natureza'">
           <h3>Ciências da Natureza</h3>
-          <p>Biologia, Química</p>
+          <p>Biologia, Química e Física</p>
+        </div>
+        <div class="card" onclick="location.href='filtros.html?area=linguagens'">
+          <h3>Linguagens</h3>
+          <p>Português, Literatura, Inglês/Interpretação</p>
         </div>
         <div class="card" onclick="location.href='revisao.html'">
           <h3>Revisão</h3>
           <p>Questões erradas</p>
+        </div>
+        <div class="card" onclick="location.href='filtros.html?area=simulado'">
+          <h3>Simulado</h3>
+          <p>Monte ou faça provas completas</p>
         </div>
       </div>
     </div>
@@ -141,19 +144,8 @@ $__debug_info = sprintf(
   </footer>
 
   <script>
-    // Debug: mostrar email no console (comente em produção)
-    // console.log('Email do usuário:', <?= json_encode($__qc_display_email) ?>);
-  </script>
-
-  <script>
     // Esperar o DOM carregar antes de executar qualquer código
     document.addEventListener('DOMContentLoaded', () => {
-      // Debug: mostrar email do elemento no console (comente em produção)
-      // const emailElement = document.getElementById('user-email');
-      // if (emailElement) {
-      //   console.log('Email do usuário:', emailElement.dataset.email);
-      // }
-
       // back to top behavior
       const btt = document.getElementById('back-to-top');
       if (btt) {

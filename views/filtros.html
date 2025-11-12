@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filtros - Questão Certa</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <style>
+    .filtros-wrap { max-width:700px; margin:60px auto; background:#fff; padding:32px; border-radius:14px; box-shadow:0 8px 28px rgba(0,0,0,.08); }
+    h1 { margin-top:0; color:var(--azul); font-size:1.8rem; }
+    .form-group { margin-bottom:20px; }
+    label { display:block; font-weight:600; color:#374151; margin-bottom:8px; font-size:.95rem; }
+    select { width:100%; padding:12px 14px; border-radius:8px; border:1px solid #e5e7eb; font-size:1rem; background:#fff; }
+    .btn-iniciar { width:100%; background:var(--azul); color:#fff; border:none; padding:14px; border-radius:8px; font-size:1.1rem; font-weight:600; cursor:pointer; margin-top:12px; }
+    .btn-iniciar:hover { background:#0d66e0; }
+    .btn-voltar { display:inline-block; margin-top:12px; color:var(--azul); text-decoration:none; font-size:.9rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="logo">Questão Certa</a>
+      <div class="nav-links">
+        <a href="dashboard.php" class="btn btn-azul">Dashboard</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="filtros-wrap">
+    <h1 id="titulo-area">Selecione os Filtros</h1>
+    <p id="descricao-area" style="color:#6b7280; margin-bottom:24px;">Personalize sua sessão de estudos escolhendo o componente e o nível de dificuldade.</p>
+
+    <form id="form-filtros">
+      <div class="form-group">
+        <label for="componente">Componente</label>
+        <select id="componente" name="componente" required>
+          <option value="">-- Selecione --</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="nivel">Nível de Dificuldade</label>
+        <select id="nivel" name="nivel" required>
+          <option value="">-- Selecione --</option>
+          <option value="facil">Fácil</option>
+          <option value="medio">Médio</option>
+          <option value="dificil">Difícil</option>
+          <option value="impossivel">Impossível</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn-iniciar">Iniciar</button>
+    </form>
+
+    <a href="dashboard.php" class="btn-voltar">← Voltar ao Dashboard</a>
+  </div>
+
+  <footer>
+    <p style="text-align:center; padding:40px 0; font-size:.85rem; color:#555;">&copy; 2025 Questão Certa.</p>
+  </footer>
+
+  <script>
+    // Função para normalizar strings (remover acentos e converter para lowercase)
+    function normalizar(str) {
+      return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, '-');
+    }
+
+    // Mapeamento de componentes por área
+    const componentesPorArea = {
+      humanas: ['História', 'Geografia', 'Sociologia', 'Filosofia'],
+      matematica: ['Matemática', 'Raciocínio Lógico'],
+      natureza: ['Biologia', 'Química', 'Física'],
+      linguagens: ['Português', 'Literatura', 'Inglês', 'Redação'],
+      simulado: ['Todas as Áreas']
+    };
+
+    const titulosPorArea = {
+      humanas: 'Ciências Humanas',
+      matematica: 'Matemática',
+      natureza: 'Ciências da Natureza',
+      linguagens: 'Linguagens',
+      simulado: 'Simulado'
+    };
+
+    // Obter área da URL
+    const params = new URLSearchParams(window.location.search);
+    const area = params.get('area') || 'humanas';
+
+    // Atualizar título e descrição
+    document.getElementById('titulo-area').textContent = titulosPorArea[area] || 'Selecione os Filtros';
+    
+    // Preencher select de componentes
+    const selectComponente = document.getElementById('componente');
+    const componentes = componentesPorArea[area] || [];
+    componentes.forEach(comp => {
+      const opt = document.createElement('option');
+      opt.value = normalizar(comp); // Remove acentos e lowercase
+      opt.textContent = comp;
+      selectComponente.appendChild(opt);
+    });
+
+    // Submeter formulário
+    document.getElementById('form-filtros').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const componente = document.getElementById('componente').value;
+      const nivel = document.getElementById('nivel').value;
+      
+      if (!componente || !nivel) {
+        alert('Por favor, selecione componente e nível.');
+        return;
+      }
+
+      // Redirecionar para questões com os filtros
+      if (area === 'simulado') {
+        window.location.href = `simulado.html?componente=${componente}&nivel=${nivel}`;
+      } else {
+        window.location.href = `questoes.html?materia=${area}&componente=${componente}&nivel=${nivel}`;
+      }
+    });
+  </script>
+</body>
+</html>
